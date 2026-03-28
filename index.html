@@ -210,6 +210,50 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
 .footer-link:hover{color:var(--gold)}
 .footer-disclaimer{font-size:.67rem;color:var(--border);line-height:1.75;max-width:480px;margin:0 auto}
 .footer-disclaimer strong{color:var(--muted)}
+/* ── BLOG ── */
+.blog-hero{text-align:center;padding:28px 0 20px}
+.blog-hero h2{font-family:'Cinzel Decorative',serif;font-size:clamp(1.3rem,5vw,2rem);font-weight:700;background:linear-gradient(135deg,var(--amber),var(--gold2),var(--gold),var(--amber));background-size:300% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite;margin-bottom:8px}
+.blog-hero p{color:var(--muted);font-size:.82rem;line-height:1.7}
+.blog-grid{display:flex;flex-direction:column;gap:12px;margin-top:18px}
+.blog-card{background:var(--stone);border:1px solid var(--border);border-radius:6px;padding:18px 16px;cursor:pointer;transition:border-color .2s,transform .15s,box-shadow .2s;position:relative;overflow:hidden}
+.blog-card:hover{border-color:var(--amber);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.4)}
+.blog-card-tag{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:8px}
+.blog-card-title{font-family:'Cinzel',serif;font-size:.95rem;font-weight:700;color:var(--gold);margin-bottom:6px;line-height:1.4}
+.blog-card-excerpt{font-size:.78rem;color:var(--muted);line-height:1.65;margin-bottom:12px}
+.blog-card-meta{display:flex;align-items:center;justify-content:space-between;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:1px;color:var(--border)}
+.blog-card-read{color:var(--amber);font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.blog-card-read::after{content:' →'}
+
+/* Article pages */
+.article-wrap{animation:rise .5s ease both}
+.article-hero{text-align:center;padding:16px 0 26px;border-bottom:1px solid var(--border);margin-bottom:22px}
+.article-tag{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+.article-title{font-family:'Cinzel Decorative',serif;font-size:clamp(1.2rem,5vw,1.7rem);font-weight:700;color:var(--gold);line-height:1.35;margin-bottom:10px}
+.article-meta{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:1px;color:var(--border)}
+.article-lead{font-size:.9rem;color:var(--text);line-height:1.85;margin-bottom:18px;padding:14px 16px;border-left:3px solid var(--gold);background:rgba(232,184,75,.04);border-radius:0 4px 4px 0}
+.article-h2{font-family:'Cinzel',serif;font-size:.95rem;font-weight:700;color:var(--gold);letter-spacing:.06em;margin:26px 0 10px;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.article-h2::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
+.article-h3{font-family:'Cinzel',serif;font-size:.82rem;font-weight:700;color:var(--amber);margin:18px 0 8px;letter-spacing:.04em}
+.article-p{font-size:.83rem;color:var(--muted);line-height:1.9;margin-bottom:12px}
+.article-ul{list-style:none;padding:0;margin:0 0 14px}
+.article-ul li{font-size:.82rem;color:var(--muted);line-height:1.8;padding:5px 0 5px 22px;position:relative;border-bottom:1px solid rgba(74,56,32,.2)}
+.article-ul li:last-child{border-bottom:none}
+.article-ul li::before{content:'⚔';position:absolute;left:0;top:7px;font-size:.5rem;color:var(--amber)}
+.article-tip{background:rgba(196,122,30,.07);border:1px solid rgba(196,122,30,.25);border-left:3px solid var(--amber);border-radius:0 4px 4px 0;padding:12px 14px;margin:14px 0;font-size:.81rem;color:var(--muted);line-height:1.75}
+.article-tip strong{color:var(--gold)}
+.article-tip-icon{font-size:1rem;margin-right:6px}
+.article-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}
+.article-stat{background:var(--stone2);border:1px solid var(--border);border-radius:4px;padding:12px 10px;text-align:center}
+.article-stat-val{font-family:'Cinzel',serif;font-size:1.3rem;font-weight:900;color:var(--gold2);display:block;margin-bottom:3px}
+.article-stat-lbl{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.article-cta{background:linear-gradient(135deg,rgba(196,122,30,.1),rgba(232,184,75,.05));border:1px solid var(--amber);border-radius:6px;padding:16px 16px;margin:20px 0;text-align:center}
+.article-cta p{font-size:.8rem;color:var(--muted);margin-bottom:10px}
+.article-cta button{background:linear-gradient(135deg,#8b5e1a,#c47a1e,#8b5e1a);border:1px solid var(--gold);border-radius:4px;color:#0d0a06;font-family:'Cinzel',serif;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:10px 20px;cursor:pointer;transition:all .2s}
+.article-cta button:hover{background:linear-gradient(135deg,#c47a1e,#e8b84b,#c47a1e)}
+.article-nav{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+.article-nav-btn{flex:1;background:var(--stone);border:1px solid var(--border);border-radius:4px;color:var(--muted);font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 12px;cursor:pointer;transition:all .2s;text-align:center}
+.article-nav-btn:hover{border-color:var(--amber);color:var(--gold)}
+.word-count{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:1px;color:var(--border);text-align:right;margin-top:16px;padding-top:10px;border-top:1px solid var(--border2)}
 </style>
 </head>
 <body>
@@ -224,6 +268,7 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
     <button class="nav-tab"        onclick="showTool('war')">⚔ War</button>
     <button class="nav-tab"        onclick="showTool('base')">🏰 Base</button>
     <button class="nav-tab"        onclick="showTool('equip')">⚒️ Equip</button>
+    <button class="nav-tab"        onclick="showTool('blog')">📰 Blog</button>
     <button class="nav-tab"        onclick="showTool('about')">👤 About</button>
     <button class="nav-tab"        onclick="showTool('policy')">📜 Policy</button>
   </div>
@@ -750,13 +795,363 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
 
 </main>
 
+<!-- ══════════════════════════════════════════════
+     BLOG INDEX
+══════════════════════════════════════════════ -->
+<div id="page-blog" class="tool-page" style="display:block">
+<div style="position:relative;z-index:1;max-width:560px;margin:0 auto;padding:24px 16px 60px">
+  <div class="page-header">
+    <button class="back-btn" onclick="showHome()">← Back</button>
+    <span class="page-title">📰 Chief's Blog</span>
+  </div>
+  <div class="blog-hero">
+    <h2>Chief's Blog</h2>
+    <p>In-depth guides and strategies written by a real Clash of Clans player. No filler — just knowledge that wins wars and fills storages.</p>
+  </div>
+  <div class="ad-unit">
+    <div class="ad-label">Advertisement</div>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2624592165226987" data-ad-slot="SLOT_ID_B1" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle=window.adsbygoogle||[]).push({})</script>
+  </div>
+  <div class="blog-grid">
+    <div class="blog-card" onclick="showTool('art1')">
+      <div class="blog-card-tag">💰 Farming · Strategy</div>
+      <div class="blog-card-title">The Complete Clash of Clans Farming Guide: Best Strategies to Max Your Resources Fast</div>
+      <div class="blog-card-excerpt">From trophy manipulation to dead base hunting and shield cycling — everything a serious farmer needs to fund back-to-back upgrades without grinding for weeks.</div>
+      <div class="blog-card-meta"><span>March 2025 · ~1,100 words</span><span class="blog-card-read">Read Article</span></div>
+    </div>
+    <div class="blog-card" onclick="showTool('art2')">
+      <div class="blog-card-tag">🏰 Upgrading · Planning</div>
+      <div class="blog-card-title">The Ultimate Upgrade Priority Guide: What to Build First at Every Town Hall</div>
+      <div class="blog-card-excerpt">Stop wasting months on the wrong buildings. This guide covers the optimal upgrade order from TH8 to TH18, aligned with the Chief's Journey and war weight math.</div>
+      <div class="blog-card-meta"><span>March 2025 · ~1,050 words</span><span class="blog-card-read">Read Article</span></div>
+    </div>
+    <div class="blog-card" onclick="showTool('art3')">
+      <div class="blog-card-tag">🐉 TH18 · End Game</div>
+      <div class="blog-card-title">TH18 Tips &amp; Tricks: How to Dominate at the Highest Town Hall Level</div>
+      <div class="blog-card-excerpt">Dragon Duke, Revenge Tower, Super Wizard Tower merges — TH18 is the most complex meta in CoC history. Here's your complete playbook.</div>
+      <div class="blog-card-meta"><span>March 2025 · ~1,050 words</span><span class="blog-card-read">Read Article</span></div>
+    </div>
+  </div>
+  <div class="ad-unit" style="margin-top:18px">
+    <div class="ad-label">Advertisement</div>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2624592165226987" data-ad-slot="SLOT_ID_B2" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle=window.adsbygoogle||[]).push({})</script>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     ARTICLE 1 — FARMING GUIDE (~1,100 words)
+══════════════════════════════════════════════ -->
+<div id="page-art1" class="tool-page" style="display:block">
+<div style="position:relative;z-index:1;max-width:600px;margin:0 auto;padding:24px 16px 60px">
+  <div class="article-wrap">
+    <div class="page-header">
+      <button class="back-btn" onclick="showTool('blog')">← Blog</button>
+      <span class="page-title">💰 Farming Guide</span>
+    </div>
+    <div class="article-hero">
+      <div class="article-tag">💰 Farming · Strategy · Resources</div>
+      <div class="article-title">The Complete Clash of Clans Farming Guide: Best Strategies to Max Your Resources Fast</div>
+      <div class="article-meta">ClashForge · March 2025 · ~1,100 words · Unofficial Fan Guide</div>
+    </div>
+
+    <p class="article-lead">Farming in Clash of Clans is the heartbeat of progression. Without a steady flow of Gold, Elixir, and Dark Elixir, your upgrade queue grinds to a halt. Whether you are a casual raider or a dedicated grinder, this guide covers everything you need to maximise loot every single day — from base layout choices to army compositions and trophy management.</p>
+
+    <div class="ad-unit"><div class="ad-label">Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2624592165226987" data-ad-slot="SLOT_ID_A1" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div>
+
+    <div class="article-h2">Understanding the Farming Mindset</div>
+    <p class="article-p">The first thing every serious farmer must understand is that <strong style="color:var(--gold)">loot is tied to trophy range</strong>. The higher you push, the tougher your opponents — and tougher bases often mean less accessible loot. For most players the sweet spot is a trophy range slightly below their natural level, where bases hold large resources but defenses are weaker than what you'd face higher up.</p>
+    <p class="article-p">This technique is called <strong style="color:var(--gold)">trophy dropping</strong>. Intentionally losing a few defenses to land in a lower bracket can dramatically increase loot per raid. Many veteran players do this at the start of each season to farm aggressively before pushing back up for end-of-season rewards.</p>
+
+    <div class="article-stat-grid">
+      <div class="article-stat"><span class="article-stat-val">3–5×</span><span class="article-stat-lbl">More loot in ideal trophy range vs. over-pushed</span></div>
+      <div class="article-stat"><span class="article-stat-val">~15 min</span><span class="article-stat-lbl">Average time per raid including search</span></div>
+      <div class="article-stat"><span class="article-stat-val">200K+</span><span class="article-stat-lbl">Gold/Elixir per raid in a good bracket</span></div>
+      <div class="article-stat"><span class="article-stat-val">1,500–3,000</span><span class="article-stat-lbl">Dark Elixir per raid at TH10+</span></div>
+    </div>
+
+    <div class="article-h2">Best Farming Trophy Ranges by TH Level</div>
+    <p class="article-p">Each Town Hall has a sweet spot. These are general community benchmarks — your ideal range may shift slightly based on league bonus preferences:</p>
+    <ul class="article-ul">
+      <li><strong style="color:var(--text)">TH8–TH9:</strong> Gold I to Crystal III (1,800–2,200 trophies). Bases are full and poorly defended.</li>
+      <li><strong style="color:var(--text)">TH10–TH11:</strong> Crystal I to Master III (2,400–2,800). Strong Elixir and Dark Elixir availability.</li>
+      <li><strong style="color:var(--text)">TH12–TH13:</strong> Master I to Champion III (2,900–3,400). Dead bases with full storages are common.</li>
+      <li><strong style="color:var(--text)">TH14–TH16:</strong> Champion I to Titan III (3,400–4,200). Large storages and frequent dead base spawns.</li>
+      <li><strong style="color:var(--text)">TH17–TH18:</strong> Titan I to Legend (4,400+). Focus on league bonuses alongside raid loot.</li>
+    </ul>
+
+    <div class="article-h2">Hunting Dead Bases</div>
+    <p class="article-p">A <strong style="color:var(--gold)">dead base</strong> is one whose owner has been offline for many hours, letting their collectors and mines fill to maximum capacity. These are the most valuable farming targets because all resources sit exposed in the collectors — not locked inside vaults — making them easy to steal without needing to destroy the full base.</p>
+
+    <div class="article-tip"><span class="article-tip-icon">💡</span><strong>Pro Tip:</strong> When searching for raids, check the Elixir Pumps, Gold Mines, and Dark Elixir Drills first. If they look visually full and overflowing, this is a dead base. Skip any base where all collectors appear empty — the owner was recently active and resources are safely in storage.</div>
+
+    <p class="article-p">On dead base raids you don't need a powerful army. A cheap, fast composition like Barch (Barbarians and Archers) or Giants + Healers can drain the loot in under a minute. Save your heavier armies for war.</p>
+
+    <div class="article-h2">Best Army Compositions for Farming</div>
+    <div class="article-h3">Barch (Barbarians + Archers)</div>
+    <p class="article-p">The classic farming army. Fill half your camps with Barbarians and the rest with Archers. It trains in under 10 minutes, making it ideal for rapid back-to-back raids. Use Barbs to tank while Archers target collectors. Works best on dead bases and open collector layouts up to about TH9.</p>
+
+    <div class="article-h3">Giants + Healers (GiHeal)</div>
+    <p class="article-p">A step up from Barch. Giants act as meat shields while Healers keep them alive and Archers or Wizards clean up collectors. Very effective at TH8–TH10 for farming bases that have slightly more defensive coverage. Trains in about 15–20 minutes — still relatively cheap.</p>
+
+    <div class="article-h3">Super Archers / Super Goblins</div>
+    <p class="article-p">At higher Town Halls, Super Troops become the backbone of efficient farming. Super Goblins deal double damage to resource buildings and move extremely fast. A popular TH12+ composition is 4 Wall Breakers, 10 Super Goblins, 2 Heal Spells, and filler Archers — training in under 10 minutes and highly cost-effective.</p>
+
+    <div class="ad-unit"><div class="ad-label">Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2624592165226987" data-ad-slot="SLOT_ID_A2" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div>
+
+    <div class="article-h2">Shield Management and Timing</div>
+    <p class="article-p">When you get attacked and a shield activates, <strong style="color:var(--gold)">you can still attack without breaking your shield</strong> — as long as you are not attacked again during that window. Use shield periods to raid aggressively. Plan your farming sessions around shield cycles: farm hard during a shield, log off when it drops, come back to collect loot and repeat.</p>
+    <p class="article-p">Using a powerful Clan Castle troop defensively (a Dragon, a P.E.K.K.A, or a few Balloons) also helps deter casual farmers from targeting your base during vulnerable windows.</p>
+
+    <div class="article-h2">Optimising Your Farming Base Layout</div>
+    <p class="article-p">A <strong style="color:var(--gold)">hybrid base</strong> is the best layout for farming. Unlike a pure trophy base, a hybrid design protects both the Town Hall and the Storages, while letting Collectors and Mines sit slightly outside the main wall ring. This means attackers can drain your collectors but will struggle to reach your main vault loot.</p>
+    <ul class="article-ul">
+      <li>Place your Town Hall centrally — losing it generates a shield which protects your base while you attack.</li>
+      <li>Surround Elixir Storage, Gold Storage, and Dark Elixir Storage with your strongest defenses.</li>
+      <li>Let Collectors sit slightly outside the inner wall ring — concede that 10–15% collector loot rather than letting attackers fight into your core.</li>
+      <li>Keep your Clan Castle filled with a defensive troop that activates when attackers get close.</li>
+    </ul>
+
+    <div class="article-h2">Using League Bonuses Strategically</div>
+    <p class="article-p">Every Multiplayer league from Bronze to Legend grants a loot bonus per win. At higher TH levels, particularly TH14+, this bonus can rival the in-base loot per raid. At Titan III, a single win bonus can deliver 300,000+ Gold and Elixir on top of what you steal. For serious farmers at the top TH levels, the league bonus is non-negotiable income.</p>
+
+    <div class="article-h2">Dark Elixir Farming at Higher Levels</div>
+    <p class="article-p">Dark Elixir is the most critical and scarce resource at TH9 and above — heroes consume it constantly. The best DE farming strategies focus on two sources: drilling opponents' full Dark Elixir Drills that sit outside walls, and raiding bases where the Dark Elixir Storage is accessible without too much penetration into the base.</p>
+    <p class="article-p">At TH10+, a small Giant + Goblin army is better than Barch for penetrating into the base to reach the Dark Elixir Storage. Always check whether the DE Storage is reachable before committing your army — if it is behind multiple layers of defenses, skip the base and find a better target.</p>
+
+    <div class="article-h2">Final Farming Checklist</div>
+    <ul class="article-ul">
+      <li>Drop to your ideal farming trophy bracket at the start of each week.</li>
+      <li>Always hunt dead bases — skip any base with empty collectors.</li>
+      <li>Use cheap, fast-training armies for farming — save expensive armies for war.</li>
+      <li>Never break your shield to attack unless you have a full army queued and ready.</li>
+      <li>Max your Collectors and Drills — passive income adds up significantly over days.</li>
+      <li>Keep your Clan Castle filled with a defensive troop to deter easy attacks on your base.</li>
+      <li>Use the ClashForge Farming Calculator to know exactly how many raids you need per upgrade.</li>
+    </ul>
+
+    <div class="article-cta">
+      <p>Calculate exactly how many raids stand between you and your next upgrade.</p>
+      <button onclick="showTool('farm')">💰 Open Farming Calculator</button>
+    </div>
+    <div class="article-nav">
+      <button class="article-nav-btn" onclick="showTool('blog')">← All Articles</button>
+      <button class="article-nav-btn" onclick="showTool('art2')">Upgrade Priority Guide →</button>
+    </div>
+    <div class="word-count">~1,100 words · ClashForge Fan Guide · Not affiliated with Supercell</div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     ARTICLE 2 — UPGRADE PRIORITY GUIDE (~1,050 words)
+══════════════════════════════════════════════ -->
+<div id="page-art2" class="tool-page" style="display:block">
+<div style="position:relative;z-index:1;max-width:600px;margin:0 auto;padding:24px 16px 60px">
+  <div class="article-wrap">
+    <div class="page-header">
+      <button class="back-btn" onclick="showTool('blog')">← Blog</button>
+      <span class="page-title">🏰 Upgrade Priority</span>
+    </div>
+    <div class="article-hero">
+      <div class="article-tag">🏰 Upgrading · Planning · Chief's Journey</div>
+      <div class="article-title">The Ultimate Upgrade Priority Guide: What to Build First at Every Town Hall</div>
+      <div class="article-meta">ClashForge · March 2025 · ~1,050 words · Unofficial Fan Guide</div>
+    </div>
+
+    <p class="article-lead">One of the most common mistakes new Clash of Clans players make is upgrading the wrong buildings first. Maxing every wall before touching heroes, or dumping resources into low-impact buildings, can set your progression back by months. This guide gives you the clearest possible upgrade priority framework — from TH8 all the way to TH18 — so every Builder hour is well spent.</p>
+
+    <div class="ad-unit"><div class="ad-label">Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2624592165226987" data-ad-slot="SLOT_ID_A3" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div>
+
+    <div class="article-h2">The Core Principle: Offense Enables Everything</div>
+    <p class="article-p">Clash of Clans rewards aggressive progression. Your <strong style="color:var(--gold)">heroes, Clan Castle, and key offensive unlocks</strong> generate far more value — in war, farming, and trophy pushing — than even the best defensive building at the same stage. A TH10 with Level 40 heroes will outperform a TH10 with maxed defenses and Level 5 heroes every single time.</p>
+    <p class="article-p">This is why Supercell's own <strong style="color:var(--gold)">Chief's Journey</strong> highlights offensive milestones as priorities. Follow those milestones and you'll have a well-rounded base that performs in war, Legend League, and casual play alike.</p>
+
+    <div class="article-h2">Universal Priority Rules (Any Town Hall)</div>
+    <ul class="article-ul">
+      <li><strong style="color:var(--text)">Heroes first, always.</strong> Every hero level scales exponentially in value. Never leave heroes idle — the moment they finish upgrading, queue the next level immediately.</li>
+      <li><strong style="color:var(--text)">Unlock new buildings before upgrading existing ones.</strong> A new Air Defense is worth more than upgrading an existing one by one level. New unlocks expand your capabilities; marginal upgrades offer diminishing returns.</li>
+      <li><strong style="color:var(--text)">Prioritise Chief's Journey milestones.</strong> These flags exist for a reason — they represent the highest-impact upgrades at each Town Hall level, chosen by the people who designed the game.</li>
+      <li><strong style="color:var(--text)">Walls last.</strong> Walls require enormous resources but have minimal impact on attacking power. Use excess Gold or Elixir on walls only when all other upgrades are running.</li>
+      <li><strong style="color:var(--text)">Never stop all five Builders.</strong> If you run out of resources for a major upgrade, queue a cheaper building or a trap to keep Builders active at all times. Idle Builders are wasted time.</li>
+    </ul>
+
+    <div class="article-h2">TH8 — Foundations of Warfare</div>
+    <p class="article-p">TH8 is where the game truly begins. The Dark Elixir economy opens fully, and you unlock the Blacksmith, Golem, Witch, and P.E.K.K.A. Your top priorities at TH8:</p>
+    <ul class="article-ul">
+      <li>Blacksmith — unlocks Hero Equipment, a massive immediate power spike.</li>
+      <li>Air Defenses — TH8 is Dragon-dominated in war. All four must be maxed before your first war attack.</li>
+      <li>Barbarian King — push him to at least Level 10 before considering TH9.</li>
+      <li>Dark Spell Factory — Earthquake and Poison spells dramatically change attack options.</li>
+    </ul>
+
+    <div class="article-h2">TH9 — The Archer Queen Changes Everything</div>
+    <p class="article-p">The single most impactful unlock in all of Clash of Clans happens at TH9: the <strong style="color:var(--gold)">Archer Queen</strong>. Build her the moment you upgrade your Town Hall. She fundamentally changes how your base attacks and defends. Simultaneously, build both X-Bows — they add significant defensive DPS and war weight.</p>
+    <p class="article-p">From TH9 onward, every piece of Dark Elixir you earn should go directly into hero levels. Max your Dark Elixir Drills to ensure passive income keeps heroes sleeping as little as possible.</p>
+
+    <div class="article-tip"><span class="article-tip-icon">⚠️</span><strong>Common TH9 Mistake:</strong> Many players rush to TH10 with heroes at Level 10/10. Entering TH10 with weak heroes means struggling in war for months. Aim for at least BK 20 / AQ 20 before upgrading to TH10. Many competitive players push to 30/30 before moving on.</div>
+
+    <div class="article-h2">TH10 — Infernos and the War Machine</div>
+    <p class="article-p">Inferno Towers define TH10 defense. Build both immediately and begin their upgrades before anything else. They add massive war weight — which is intentional. TH10 is where you are expected to pull your full weight in clan wars and begin contributing meaningfully to Legend League performance.</p>
+    <p class="article-p">Your hero target heading into TH11 should be BK 40 / AQ 40. These levels are the community benchmark for a competitive TH10 and will ensure you can 3-star in war without becoming a liability to your clan.</p>
+
+    <div class="ad-unit"><div class="ad-label">Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2624592165226987" data-ad-slot="SLOT_ID_A4" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div>
+
+    <div class="article-h2">TH11 — Grand Warden and Eagle Artillery</div>
+    <p class="article-p">TH11 introduces two game-changers: the <strong style="color:var(--gold)">Grand Warden</strong> (your third hero) and the <strong style="color:var(--gold)">Eagle Artillery</strong> (the most powerful defense at this level). Build both on day one. The Eagle Artillery's passive ability — triggering after 100 troops are deployed — is a raid-ender if left unchecked by attackers.</p>
+    <p class="article-p">Begin levelling the Grand Warden immediately. His aura ability that temporarily makes nearby troops invincible is the single biggest attack multiplier in Clash of Clans. Every single Warden level is meaningful — do not leave him idle.</p>
+
+    <div class="article-h2">TH12 — The Siege Workshop and Hero Marathon Begins</div>
+    <p class="article-p">TH12 brings the Giga Tesla (a Town Hall-mounted weapon that releases a death bomb), and access to the Workshop for crafting Siege Machines. Unlock the Workshop first so your clanmates can start benefiting from your Siege Machine production. Then focus on the Giga Tesla upgrades.</p>
+    <p class="article-p">Hero targets for a well-prepared TH12: BK 65 / AQ 65 / GW 40. This is the threshold at which all three heroes can pull their weight in TH12 war attacks and push through TH12 bases effectively.</p>
+
+    <div class="article-h2">TH13 — Royal Champion and Scattershots</div>
+    <p class="article-p">TH13 gives you a fourth hero — the <strong style="color:var(--gold)">Royal Champion</strong> — and two Scattershots, devastating splash-damage defenses that hit air and ground simultaneously. Both Scattershots should be built and begin upgrading on Day 1. The Royal Champion's unique ability to target defenses makes her essential for surgical attack strategies.</p>
+    <p class="article-p">Managing four heroes simultaneously is a Dark Elixir challenge. Prioritise the Archer Queen and Royal Champion over the Barbarian King at TH13 — their abilities have higher attack impact at this level. Target: BK 75 / AQ 75 / GW 50 / RC 25 before TH14.</p>
+
+    <div class="article-h2">TH14 to TH18 — Pet House, Merges, and End Game</div>
+    <p class="article-p">TH14 introduces the Pet House — possibly the biggest single power spike in the entire game after heroes. Pets assigned to heroes provide always-on passive bonuses and powerful active abilities. Unlock the Pet House immediately and begin upgrading it. At TH15 you unlock the Minion Prince (fifth hero), at TH18 the Dragon Duke (sixth hero). The same rule applies to all new heroes: build them first, level them continuously, never leave them idle.</p>
+    <p class="article-p">Use the ClashForge Hero Tracker and Base Maxing Guide to get the exact priority list and Dark Elixir estimates for your current Town Hall level. Planning your resource allocation removes the guesswork and keeps your progression on the fastest possible track.</p>
+
+    <div class="article-h2">Upgrade Priority Summary Table</div>
+    <ul class="article-ul">
+      <li><strong style="color:var(--text)">Priority 1:</strong> Heroes — never idle, queue next level the moment they finish.</li>
+      <li><strong style="color:var(--text)">Priority 2:</strong> New Chief's Journey unlocks — always before existing building upgrades.</li>
+      <li><strong style="color:var(--text)">Priority 3:</strong> Key defenses — Air Defense, Inferno, Eagle Artillery, Scattershot, Monolith.</li>
+      <li><strong style="color:var(--text)">Priority 4:</strong> Laboratory — queue troop upgrades constantly, they run in parallel.</li>
+      <li><strong style="color:var(--text)">Priority 5:</strong> Storages and resource buildings — upgrade when Builders are available.</li>
+      <li><strong style="color:var(--text)">Priority 6:</strong> Walls — last, use excess Gold/Elixir only when everything else is running.</li>
+    </ul>
+
+    <div class="article-cta">
+      <p>See the full priority list for your exact Town Hall level in the Base Maxing Guide.</p>
+      <button onclick="showTool('base')">🏰 Open Base Maxing Guide</button>
+    </div>
+    <div class="article-nav">
+      <button class="article-nav-btn" onclick="showTool('art1')">← Farming Guide</button>
+      <button class="article-nav-btn" onclick="showTool('art3')">TH18 Tips →</button>
+    </div>
+    <div class="word-count">~1,050 words · ClashForge Fan Guide · Not affiliated with Supercell</div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     ARTICLE 3 — TH18 TIPS (~1,050 words)
+══════════════════════════════════════════════ -->
+<div id="page-art3" class="tool-page" style="display:block">
+<div style="position:relative;z-index:1;max-width:600px;margin:0 auto;padding:24px 16px 60px">
+  <div class="article-wrap">
+    <div class="page-header">
+      <button class="back-btn" onclick="showTool('blog')">← Blog</button>
+      <span class="page-title">🐉 TH18 Tips</span>
+    </div>
+    <div class="article-hero">
+      <div class="article-tag">🐉 TH18 · End Game · Advanced Strategy</div>
+      <div class="article-title">TH18 Tips &amp; Tricks: How to Dominate at the Highest Town Hall Level</div>
+      <div class="article-meta">ClashForge · March 2025 · ~1,050 words · Unofficial Fan Guide</div>
+    </div>
+
+    <p class="article-lead">Town Hall 18 is the current pinnacle of Clash of Clans. It brings more complexity than any previous level — six heroes, the Dragon Duke, the Revenge Tower, Super Wizard Tower merges, new pet unlocks, and an entirely new tier of hero equipment. If you have just hit TH18, this guide will walk you through exactly what to prioritise, how to adapt your attack style, and how to build a base that genuinely resists the strongest attacks in the game.</p>
+
+    <div class="ad-unit"><div class="ad-label">Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2624592165226987" data-ad-slot="SLOT_ID_A5" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div>
+
+    <div class="article-h2">What's New at TH18</div>
+    <p class="article-p">Town Hall 18 introduces three major additions that completely reshape offense and defense:</p>
+    <ul class="article-ul">
+      <li><strong style="color:var(--text)">Dragon Duke (🐉):</strong> The sixth hero. A flying unit that provides aerial tanking and powers up air attack synergies through his passive aura and devastating active ability. He is immediately one of the most impactful heroes in the game.</li>
+      <li><strong style="color:var(--text)">Revenge Tower:</strong> A new defense that ramps up damage the longer it survives during an attack. Against slow ground armies or misplaced heroes, a maxed Revenge Tower can single-handedly end a raid. It must be built and upgraded immediately.</li>
+      <li><strong style="color:var(--text)">Super Wizard Tower Merge:</strong> Your two highest-level Wizard Towers can be permanently merged into a Super Wizard Tower — a devastating chain-damage defense that melts through grouped troops and Bat Spells simultaneously.</li>
+    </ul>
+
+    <div class="article-h2">First Week at TH18: Priority Order</div>
+    <p class="article-p">The moment you upgrade to TH18, follow this order without deviation:</p>
+    <ul class="article-ul">
+      <li>Build the Revenge Tower immediately — it contributes defensive power from day one.</li>
+      <li>Unlock and begin levelling the Dragon Duke — all Dark Elixir saved for the TH18 upgrade should funnel into him right away.</li>
+      <li>Merge your Super Wizard Towers — check the in-game Wizard Tower level requirements and get there as quickly as possible if not already met.</li>
+      <li>Continue upgrading all existing five heroes in parallel — never let any hero sit idle.</li>
+    </ul>
+
+    <div class="article-stat-grid">
+      <div class="article-stat"><span class="article-stat-val">6</span><span class="article-stat-lbl">Heroes available at TH18</span></div>
+      <div class="article-stat"><span class="article-stat-val">105/105</span><span class="article-stat-lbl">BK / AQ max levels</span></div>
+      <div class="article-stat"><span class="article-stat-val">25</span><span class="article-stat-lbl">Dragon Duke max level</span></div>
+      <div class="article-stat"><span class="article-stat-val">2×</span><span class="article-stat-lbl">Super Wizard Tower merges</span></div>
+    </div>
+
+    <div class="article-h2">Best Attack Strategies at TH18</div>
+    <div class="article-h3">Super Witch + Bat Spell (Super Witch Smash)</div>
+    <p class="article-p">The Super Witch Smash has dominated the high-TH meta for multiple seasons. Super Witches summon large numbers of Skeletons that overwhelm defenses through sheer numbers. The core is a Bat Spell barrage — dozens of Bats released into the base once defenses are distracted — which can shut down entire defensive sections in seconds. The Dragon Duke as an aerial tank at TH18 makes this strategy even more effective, absorbing air defense fire that would otherwise shred the Bat Spells on arrival.</p>
+    <p class="article-p">Typical composition: 10 Super Witches, 5–6 Bat Spells, 2 Rage Spells, 1 Haste Spell, 2 Freeze Spells, Wall Wrecker Siege Machine.</p>
+
+    <div class="article-h3">Dragon + Balloon Air Blitz</div>
+    <p class="article-p">The classic air attack gets significantly stronger at TH18 with the Dragon Duke. Deploy the Duke to absorb Air Defense fire while your Dragons spread across the base. Balloons follow behind to clean up defenses as they fall. The key is Freeze Spell timing on Multi-Target Inferno Towers — freeze them the moment they begin targeting your Dragons. With Warden ability active, a Rage Spell, and the Duke tanking, three stars are very achievable against most TH18 bases with good deployment.</p>
+
+    <div class="article-h3">Root Rider Rush</div>
+    <p class="article-p">The Root Rider is a ground troop that phases through walls entirely, making it one of the most unique troops in the game. A Root Rider rush uses 8–10 Root Riders supported by Healers and a Grand Warden walk, creating a nearly unstoppable funnel that drives straight through the base ignoring wall compartments. This strategy particularly excels against heavily-walled ring bases and asymmetric designs that rely on walls to stall ground armies.</p>
+
+    <div class="ad-unit"><div class="ad-label">Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2624592165226987" data-ad-slot="SLOT_ID_A6" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div>
+
+    <div class="article-h2">Building a Strong TH18 Defense</div>
+    <div class="article-h3">Revenge Tower Placement</div>
+    <p class="article-p">The Revenge Tower must be placed near the core of your base, surrounded by other defenses, to give it maximum survival time. The longer it lives, the more damage it accumulates — a Revenge Tower that survives 30+ seconds will have accumulated enough DPS to seriously threaten hero groups and slow down even the best-planned attacks. Protect it with a nearby Air Defense and Inferno Tower to discourage air or hero-kill squads from targeting it early.</p>
+
+    <div class="article-h3">Super Wizard Tower Positioning</div>
+    <p class="article-p">The merged Super Wizard Tower should cover the main traffic corridors — the paths attacking troops most commonly funnel through based on your base design. Its chain damage punishes grouped troops and Bat Spell clusters severely. Position it so its range overlaps with your Monolith and at least one Inferno Tower for maximum combined burst damage on arriving armies.</p>
+
+    <div class="article-h3">Monolith and Scattershot Coverage</div>
+    <p class="article-p">The Monolith from TH15 deals percentage-based damage, making it devastating against high-HP tanks. Position it centrally with a wide field of view so it engages armies as early as possible during the attack. Pair it near a Multi-Target Inferno Tower — together they apply both burst and sustained damage to the same target, shredding tanks faster than either building can alone. Scattershots should cover the outside perimeter where Balloons, Dragons, and Giants typically approach.</p>
+
+    <div class="article-h2">Hero Equipment Priorities at TH18</div>
+    <p class="article-p">With six heroes and a full equipment loadout, TH18 equipment decisions are among the most impactful strategic choices you'll make. Invest Starry Ores in this priority order:</p>
+    <ul class="article-ul">
+      <li><strong style="color:var(--text)">Eternal Tome (GW):</strong> Best-in-slot for almost every attack. The Warden's invincibility window at max level is the most powerful ability in the game.</li>
+      <li><strong style="color:var(--text)">Frozen Arrow (AQ):</strong> The freeze on the Archer Queen's walk makes her far more survivable in dangerous TH18 cores. Essential for hero-kill and Queen walk strategies.</li>
+      <li><strong style="color:var(--text)">Giant Gauntlet (BK):</strong> Transforms the Barbarian King into a super-tank capable of absorbing punishment that would eliminate him in seconds at stock equipment levels.</li>
+      <li><strong style="color:var(--text)">Rocket Spear (RC):</strong> The Royal Champion's Epic spear causes devastating burst damage on her ability — essential for surgical war attacks at this level.</li>
+    </ul>
+
+    <div class="article-tip"><span class="article-tip-icon">⚒️</span><strong>Ore Management:</strong> Starry Ores are the bottleneck for Epic equipment at TH18. Do not spread them thin across multiple pieces. Pick your single most-used Epic equipment and max it fully before touching the next one. Use the ClashForge Equip & Ores Calculator to plan exactly how many Ores each upgrade path requires.</div>
+
+    <div class="article-h2">Competing in Legend League at TH18</div>
+    <p class="article-p">Most serious TH18 players compete in Legend League, where you receive a fixed number of attacks and defenses per day and accumulate trophies for end-of-season rankings and substantial loot bonuses. Legend League demands a different mindset than regular multiplayer — consistency matters more than experimentation.</p>
+    <p class="article-p">Practice your two or three strongest attack strategies in regular Multiplayer until they are reliable enough to execute under Legend League pressure. A strategy that delivers consistent 2.5–3 stars every attack will always outperform one that delivers 3 stars occasionally but collapses unpredictably. Record your replays daily, identify what broke down, and refine your deployment until execution is second nature.</p>
+
+    <div class="article-h2">TH18 Quick-Reference Checklist</div>
+    <ul class="article-ul">
+      <li>Build Revenge Tower immediately upon upgrading to TH18.</li>
+      <li>Unlock Dragon Duke and start levelling on Day 1 with all saved Dark Elixir.</li>
+      <li>Merge Super Wizard Towers as soon as Wizard Tower level requirements are met.</li>
+      <li>Keep all 6 heroes upgrading simultaneously — never leave any hero idle.</li>
+      <li>Focus Starry Ore investment on 1–2 Epic equipment pieces only — never spread thin.</li>
+      <li>Practise 2–3 attack strategies in regular Multiplayer before committing to Legend League.</li>
+      <li>Place Revenge Tower centrally so it ramps up damage before being reached by attackers.</li>
+      <li>Track all hero upgrade costs with the ClashForge Hero Tracker to plan your Dark Elixir roadmap.</li>
+    </ul>
+
+    <div class="article-cta">
+      <p>Track your Dragon Duke and all 6 heroes with the ClashForge Hero Tracker.</p>
+      <button onclick="showTool('hero')">🦸 Open Hero Tracker</button>
+    </div>
+    <div class="article-nav">
+      <button class="article-nav-btn" onclick="showTool('art2')">← Upgrade Priority Guide</button>
+      <button class="article-nav-btn" onclick="showTool('blog')">All Articles →</button>
+    </div>
+    <div class="word-count">~1,050 words · ClashForge Fan Guide · Not affiliated with Supercell</div>
+  </div>
+</div>
+</div>
+
 <!-- ══════════ FOOTER ══════════ -->
 <footer class="site-footer">
   <!-- AD #9 · Footer sticky zone — every user reaches this on scroll -->
   <div class="ad-unit" style="max-width:560px;margin:0 auto 18px;border:none;background:none">
     <div class="ad-label">Advertisement</div>
     <ins class="adsbygoogle" style="display:block"
-         data-ad-client="ca-pub-643159142031"
+         data-ad-client="ca-pub-2624592165226987"
          data-ad-slot="SLOT_ID_9"
          data-ad-format="auto"
          data-full-width-responsive="true"></ins>
@@ -766,6 +1161,7 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
   <div class="footer-logo">⚔ ClashForge</div>
   <div class="footer-nav">
     <button class="footer-link" onclick="showHome()">Home</button>
+    <button class="footer-link" onclick="showTool('blog')">Blog</button>
     <button class="footer-link" onclick="showTool('about')">About Us</button>
     <button class="footer-link" onclick="showTool('policy')">Privacy Policy</button>
   </div>
@@ -789,8 +1185,8 @@ function setActivePage(pageId,navIndex){
 }
 function showHome(){setActivePage('page-home',0);window.scrollTo({top:0,behavior:'smooth'});}
 function showTool(id){
-  const m={build:1,hero:2,farm:3,war:4,base:5,equip:6,about:7,policy:8};
-  setActivePage('page-'+id,m[id]);
+  const m={build:1,hero:2,farm:3,war:4,base:5,equip:6,blog:7,about:8,policy:9,art1:7,art2:7,art3:7};
+  setActivePage('page-'+id,m[id]||7);
   window.scrollTo({top:0,behavior:'smooth'});
   if(id==='equip')eqPopulateEquips();
 }
