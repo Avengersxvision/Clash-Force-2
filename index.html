@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ClashForge — Clash of Clans Fan Toolkit</title>
+<title>ClashForge Clash of Clans Fan Toolkit</title>
 <meta name="description" content="Free unofficial Clash of Clans fan toolkit. Build timers, hero upgrades, farming calculator, war weight, base maxing guide and more.">
 
 <!--
   ╔══════════════════════════════════════════════╗
-  ║  GOOGLE ADSENSE — Publisher: ca-pub-2624592165226987
+  ║  GOOGLE ADSENSE Publisher: ca-pub-2624592165226987
   ║
   ║  ⚠️  ACTION REQUIRED BEFORE PUBLISHING:
   ║  Each ad unit below says SLOT_ID_X
@@ -39,16 +39,48 @@ body{background:var(--bg);color:var(--text);font-family:'IM Fell English',serif;
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 15% 10%,rgba(196,122,30,.07) 0%,transparent 55%),radial-gradient(ellipse at 85% 85%,rgba(100,60,10,.12) 0%,transparent 50%);pointer-events:none;z-index:0}
 
 /* NAV */
-nav{position:sticky;top:0;z-index:100;background:rgba(13,10,6,.96);border-bottom:1px solid var(--border);backdrop-filter:blur(8px);height:var(--nav-h);display:flex;align-items:center;padding:0 14px}
+nav{position:sticky;top:0;z-index:100;background:rgba(13,10,6,.96);border-bottom:1px solid var(--border);backdrop-filter:blur(8px);height:var(--nav-h);display:flex;align-items:center;padding:0 14px;gap:10px}
 .nav-logo{font-family:'Cinzel Decorative',serif;font-size:1.05rem;color:var(--gold);text-shadow:0 0 16px rgba(232,184,75,.4);animation:flicker 4s infinite;white-space:nowrap;margin-right:auto;cursor:pointer;border:none;background:none}
 .nav-logo span{color:var(--amber)}
-.nav-tabs{display:flex;gap:1px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
-.nav-tabs::-webkit-scrollbar{display:none}
-.nav-tab{background:none;border:none;color:var(--muted);font-family:'Cinzel',serif;font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:8px 9px;cursor:pointer;border-radius:4px 4px 0 0;transition:color .2s;white-space:nowrap;position:relative}
-.nav-tab::after{content:'';position:absolute;bottom:0;left:9px;right:9px;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .2s;border-radius:2px}
-.nav-tab:hover{color:var(--text)}
-.nav-tab.active{color:var(--gold)}
-.nav-tab.active::after{transform:scaleX(1)}
+
+/* Tools dropdown */
+.nav-dropdown-btn{background:none;border:none;color:var(--muted);font-family:'Cinzel',serif;font-size:.64rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:6px 8px;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:4px;transition:color .2s;border-radius:4px}
+.nav-dropdown-btn:hover,.nav-dropdown-btn.open{color:var(--text)}
+.nav-dropdown-arrow{font-size:.5rem;transition:transform .2s}
+.nav-dropdown-btn.open .nav-dropdown-arrow{transform:rotate(180deg)}
+.nav-dropdown-menu{position:absolute;top:calc(100% + 8px);right:0;background:rgba(13,10,6,.98);border:1px solid var(--border);border-radius:6px;padding:8px;display:none;grid-template-columns:1fr 1fr;gap:4px;min-width:220px;box-shadow:0 8px 32px rgba(0,0,0,.6);z-index:200}
+.nav-dropdown-menu.open{display:grid}
+.nav-dropdown-item{background:none;border:1px solid transparent;border-radius:4px;color:var(--muted);font-family:'Cinzel',serif;font-size:.85rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:10px 14px;cursor:pointer;text-align:left;transition:all .15s;white-space:nowrap}
+.nav-dropdown-item:hover{border-color:var(--border);background:var(--stone);color:var(--gold)}
+.nav-dropdown-item.active{color:var(--gold);border-color:var(--amber);background:rgba(196,122,30,.1)}
+
+/* Plain nav links */
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-dropdown{position:relative;display:inline-flex;align-items:center}
+.nav-link{background:none;border:none;color:var(--muted);font-family:'Cinzel',serif;font-size:.64rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:6px 8px;cursor:pointer;white-space:nowrap;border-radius:4px;transition:color .2s;position:relative}
+.nav-link::after{content:'';position:absolute;bottom:0;left:8px;right:8px;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .2s;border-radius:2px}
+.nav-link:hover{color:var(--text)}
+.nav-link.active{color:var(--gold)}
+.nav-link.active::after{transform:scaleX(1)}
+
+/* Gold Pass toggle */
+.gp-toggle-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:0}
+.gp-toggle-label{font-family:'Cinzel',serif;font-size:.78rem;font-weight:700;color:var(--gold);display:flex;align-items:center;gap:8px}
+.gp-toggle-label span{font-size:1rem}
+.toggle-switch{position:relative;width:42px;height:24px;cursor:pointer}
+.toggle-switch input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;inset:0;background:var(--border);border-radius:24px;transition:.3s}
+.toggle-slider::before{content:'';position:absolute;height:18px;width:18px;left:3px;bottom:3px;background:var(--muted);border-radius:50%;transition:.3s}
+.toggle-switch input:checked + .toggle-slider{background:var(--amber)}
+.toggle-switch input:checked + .toggle-slider::before{transform:translateX(18px);background:var(--gold2)}
+.gp-perk-box{background:rgba(232,184,75,.06);border:1px solid rgba(232,184,75,.2);border-radius:4px;padding:10px 12px;margin-top:10px;font-size:.75rem;color:var(--muted);line-height:1.6;display:none}
+.gp-perk-box.show{display:block}
+.gp-perk-box strong{color:var(--gold)}
+.gp-discount-row{display:flex;gap:6px;margin-top:10px}
+.gp-disc-btn{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:3px;color:var(--muted);font-family:'Cinzel',serif;font-size:.75rem;font-weight:700;padding:8px 4px;cursor:pointer;transition:all .15s;text-align:center}
+.gp-disc-btn:hover{border-color:var(--amber);color:var(--gold)}
+.gp-disc-btn.active{background:var(--amber);border-color:var(--gold);color:#0d0a06}
+.gp-badge{display:inline-block;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:1px;background:rgba(232,184,75,.15);border:1px solid var(--amber);border-radius:20px;padding:2px 8px;color:var(--gold);margin-left:6px}
 
 /* LAYOUT */
 main{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:24px 16px 60px}
@@ -254,23 +286,97 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
 .article-nav-btn{flex:1;background:var(--stone);border:1px solid var(--border);border-radius:4px;color:var(--muted);font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 12px;cursor:pointer;transition:all .2s;text-align:center}
 .article-nav-btn:hover{border-color:var(--amber);color:var(--gold)}
 .word-count{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:1px;color:var(--border);text-align:right;margin-top:16px;padding-top:10px;border-top:1px solid var(--border2)}
+/* ── PREMIUM HOME ── */
+.home-hero{text-align:center;padding:32px 0 24px;animation:rise .6s ease both}
+.home-hero-badge{display:inline-block;font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--amber);border:1px solid rgba(196,122,30,.4);border-radius:20px;padding:4px 14px;margin-bottom:14px;background:rgba(196,122,30,.06)}
+.home-hero-icon{font-size:2.8rem;animation:flicker 3s infinite;margin-bottom:8px}
+.home-hero-title{font-family:'Cinzel Decorative',serif;font-size:clamp(1.8rem,6vw,2.8rem);font-weight:700;background:linear-gradient(135deg,var(--amber),var(--gold2),var(--gold),var(--amber));background-size:300% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite;margin-bottom:8px}
+.home-hero-sub{color:var(--muted);font-size:.88rem;line-height:1.7;max-width:340px;margin:0 auto 20px}
+.home-stats-row{display:flex;align-items:center;justify-content:center;gap:0;background:rgba(255,255,255,.02);border:1px solid var(--border2);border-radius:8px;padding:12px 20px;max-width:300px;margin:0 auto}
+.home-stat{text-align:center;flex:1}
+.home-stat-val{display:block;font-family:'Cinzel',serif;font-size:1.1rem;font-weight:900;color:var(--gold2)}
+.home-stat-lbl{display:block;font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.home-stat-div{width:1px;height:30px;background:var(--border2);margin:0 8px}
+.home-section-label{font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin:18px 0 10px;display:flex;align-items:center;gap:10px}
+.home-section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
+.home-section-new{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:2px;background:var(--amber);color:#0d0a06;border-radius:20px;padding:2px 7px;font-weight:900}
+.tool-card-highlight{border-color:rgba(232,184,75,.25);background:linear-gradient(135deg,var(--stone),rgba(196,122,30,.06))}
+.tool-card-highlight:hover{border-color:var(--gold)}
+.home-blog-promo{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(196,122,30,.08),rgba(232,184,75,.04));border:1px solid rgba(232,184,75,.2);border-radius:8px;padding:14px 16px;margin:14px 0}
+.home-blog-icon{font-size:1.8rem;flex-shrink:0}
+.home-blog-title{font-family:'Cinzel',serif;font-size:.82rem;font-weight:700;color:var(--gold);margin-bottom:3px}
+.home-blog-sub{font-size:.72rem;color:var(--muted);line-height:1.5}
+.home-blog-btn{background:linear-gradient(135deg,#8b5e1a,#c47a1e);border:1px solid var(--gold);border-radius:4px;color:#0d0a06;font-family:'Cinzel',serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;cursor:pointer;flex-shrink:0;transition:all .2s}
+.home-blog-btn:hover{background:linear-gradient(135deg,#c47a1e,#e8b84b)}
+/* Score/rating display */
+.score-ring-wrap{text-align:center;padding:20px 0 10px}
+.score-ring{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;width:120px;height:120px;border-radius:50%;border:4px solid var(--border);background:var(--stone3);position:relative}
+.score-val{font-family:'Cinzel',serif;font-size:2.2rem;font-weight:900;color:var(--gold2);line-height:1}
+.score-lbl{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.score-rank{font-family:'Cinzel Decorative',serif;font-size:1rem;margin-top:8px}
+.score-bar-row{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.score-bar-item{display:flex;align-items:center;gap:10px}
+.score-bar-label{font-family:'Cinzel',serif;font-size:.68rem;color:var(--muted);width:100px;flex-shrink:0;letter-spacing:.04em}
+.score-bar-track{flex:1;height:8px;background:var(--bg);border:1px solid var(--border2);border-radius:20px;overflow:hidden}
+.score-bar-fill{height:100%;border-radius:20px;transition:width .6s ease}
+.score-bar-num{font-family:'Cinzel',serif;font-size:.65rem;color:var(--muted);width:28px;text-align:right;flex-shrink:0}
+/* Roadmap */
+.roadmap-week{background:var(--bg);border:1px solid var(--border);border-radius:6px;margin-bottom:10px;overflow:hidden}
+.roadmap-week-header{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;transition:background .2s}
+.roadmap-week-header:hover{background:rgba(196,122,30,.06)}
+.roadmap-week-num{font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;background:var(--amber);color:#0d0a06;border-radius:4px;padding:3px 8px;flex-shrink:0}
+.roadmap-week-title{font-family:'Cinzel',serif;font-size:.82rem;font-weight:700;color:var(--gold);flex:1}
+.roadmap-week-chevron{color:var(--border);font-size:.7rem;transition:transform .2s;flex-shrink:0}
+.roadmap-week-body{padding:0 14px 14px;display:none}
+.roadmap-week-body.open{display:block}
+.roadmap-item{font-size:.78rem;color:var(--muted);line-height:1.8;padding:3px 0 3px 18px;position:relative}
+.roadmap-item::before{content:'⚔';position:absolute;left:0;top:5px;font-size:.5rem;color:var(--amber)}
+/* Loot efficiency */
+.loot-army-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.loot-army-card{background:var(--bg);border:2px solid var(--border);border-radius:6px;padding:12px 10px;cursor:pointer;text-align:center;transition:all .2s}
+.loot-army-card.selected{border-color:var(--amber);background:rgba(196,122,30,.08)}
+.loot-army-icon{font-size:1.6rem;margin-bottom:4px}
+.loot-army-name{font-family:'Cinzel',serif;font-size:.72rem;font-weight:700;color:var(--gold);letter-spacing:.04em}
+.loot-army-cost{font-size:.65rem;color:var(--muted);margin-top:2px}
+.loot-result-table{width:100%;border-collapse:collapse;margin-top:12px}
+.loot-result-table th{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--amber);border-bottom:1px solid var(--border);padding:6px 8px;text-align:left}
+.loot-result-table td{font-size:.78rem;color:var(--muted);padding:8px 8px;border-bottom:1px solid var(--border2)}
+.loot-result-table tr:last-child td{border-bottom:none}
+.loot-winner{color:var(--green);font-weight:700}
 </style>
 </head>
 <body>
 
 <nav>
   <button class="nav-logo" onclick="showHome()">⚔ Clash<span>Forge</span></button>
-  <div class="nav-tabs">
-    <button class="nav-tab active"  onclick="showHome()">Home</button>
-    <button class="nav-tab"        onclick="showTool('build')">⏱ Build</button>
-    <button class="nav-tab"        onclick="showTool('hero')">🦸 Heroes</button>
-    <button class="nav-tab"        onclick="showTool('farm')">💰 Farm</button>
-    <button class="nav-tab"        onclick="showTool('war')">⚔ War</button>
-    <button class="nav-tab"        onclick="showTool('base')">🏰 Base</button>
-    <button class="nav-tab"        onclick="showTool('equip')">⚒️ Equip</button>
-    <button class="nav-tab"        onclick="showTool('blog')">📰 Blog</button>
-    <button class="nav-tab"        onclick="showTool('about')">👤 About</button>
-    <button class="nav-tab"        onclick="showTool('policy')">📜 Policy</button>
+
+  <!-- Plain links + Tools dropdown -->
+  <div class="nav-links">
+    <button class="nav-link" id="nl-home"   onclick="showHome()">Home</button>
+
+    <div class="nav-dropdown" id="nav-tools-wrap">
+      <button class="nav-dropdown-btn" id="nav-tools-btn" onclick="toggleToolsMenu()">
+        Tools <span class="nav-dropdown-arrow">▼</span>
+      </button>
+      <div class="nav-dropdown-menu" id="nav-tools-menu">
+        <button class="nav-dropdown-item" onclick="navGo('build')">Build</button>
+        <button class="nav-dropdown-item" onclick="navGo('hero')">Heroes</button>
+        <button class="nav-dropdown-item" onclick="navGo('farm')">Farm</button>
+        <button class="nav-dropdown-item" onclick="navGo('war')">War</button>
+        <button class="nav-dropdown-item" onclick="navGo('base')">Base</button>
+        <button class="nav-dropdown-item" onclick="navGo('equip')">Equip</button>
+        <button class="nav-dropdown-item" onclick="navGo('gems')">Gems</button>
+        <button class="nav-dropdown-item" onclick="navGo('wall')">Walls</button>
+        <button class="nav-dropdown-item" onclick="navGo('score')">Strength</button>
+        <button class="nav-dropdown-item" onclick="navGo('roadmap')">Roadmap</button>
+        <button class="nav-dropdown-item" onclick="navGo('loot')">Loot Calc</button>
+      </div>
+    </div>
+
+    <button class="nav-link" id="nl-blog"   onclick="navGo('blog')">Blog</button>
+    <button class="nav-link" id="nl-about"  onclick="navGo('about')">About</button>
+    <button class="nav-link" id="nl-policy" onclick="navGo('policy')">Policy</button>
+    <button class="nav-link" id="nl-support" onclick="navGo('support')" style="color:var(--amber)">Support</button>
   </div>
 </nav>
 
@@ -278,70 +384,55 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
 
 <!-- ══════════ HOME ══════════ -->
 <div id="page-home" class="tool-page active is-visible">
-  <div class="hero">
-    <div class="hero-icon">⚔</div>
-    <h1>ClashForge</h1>
-    <p>Your unofficial Clash of Clans fan toolkit. Calculate, plan and dominate — all in one place. Free, always.</p>
+
+  <div class="home-hero">
+    <div class="home-hero-badge">Fan Toolkit</div>
+    <div class="home-hero-icon">⚔</div>
+    <h1 class="home-hero-title">ClashForge</h1>
+    <p class="home-hero-sub">The unofficial Clash of Clans toolkit chiefs actually use. Free. No account needed.</p>
+    <div class="home-stats-row">
+      <div class="home-stat"><span class="home-stat-val">10+</span><span class="home-stat-lbl">Tools</span></div>
+      <div class="home-stat-div"></div>
+      <div class="home-stat"><span class="home-stat-val">Free</span><span class="home-stat-lbl">Always</span></div>
+      <div class="home-stat-div"></div>
+      <div class="home-stat"><span class="home-stat-val">TH18</span><span class="home-stat-lbl">Updated</span></div>
+    </div>
   </div>
 
-  <!-- AD #1 · Home above-fold — highest impression zone -->
-  <div class="ad-unit">
-    <div class="ad-label">Advertisement</div>
-    <ins class="adsbygoogle" style="display:block"
-         data-ad-client="ca-pub-2624592165226987"
-         data-ad-slot="SLOT_ID_1"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle=window.adsbygoogle||[]).push({})</script>
-  </div>
+  <div class="ad-unit"><div class="ad-label">Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2624592165226987" data-ad-slot="3236789652" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div>
 
+  <div class="home-section-label">Core Calculators</div>
   <div class="tool-grid">
-    <div class="tool-card" onclick="showTool('build')">
-      <div class="tc-icon">⏱</div>
-      <div class="tc-name">Build Timer</div>
-      <div class="tc-desc">Speed boost calculator with booster time tracking</div>
-    </div>
-    <div class="tool-card" onclick="showTool('hero')">
-      <div class="tc-icon">🦸</div>
-      <div class="tc-name">Hero Tracker</div>
-      <div class="tc-desc">Track upgrade progress for all 6 heroes</div>
-    </div>
-    <div class="tool-card" onclick="showTool('farm')">
-      <div class="tc-icon">💰</div>
-      <div class="tc-name">Farming Calc</div>
-      <div class="tc-desc">Calculate raids needed to fund your next upgrade</div>
-    </div>
-    <div class="tool-card" onclick="showTool('war')">
-      <div class="tc-icon">⚔</div>
-      <div class="tc-name">War Weight</div>
-      <div class="tc-desc">Estimate your war weight by building levels</div>
-    </div>
-    <div class="tool-card" onclick="showTool('base')" style="grid-column:span 2">
-      <div class="tc-icon">🏰</div>
-      <div class="tc-name">Base Maxing Guide</div>
-      <div class="tc-desc">Smart upgrade priority list aligned to the Chief's Journey</div>
-    </div>
-    <div class="tool-card" onclick="showTool('equip')" style="grid-column:span 2">
-      <div class="tc-icon">⚒️</div>
-      <div class="tc-name">Equip &amp; Ores</div>
-      <div class="tc-desc">Manage Ores &amp; find upgrade paths for Hero Equipment</div>
-    </div>
+    <div class="tool-card" onclick="showTool('build')"><div class="tc-icon">⏱</div><div class="tc-name">Build Timer</div><div class="tc-desc">Speed boost calculator with booster tracking</div></div>
+    <div class="tool-card" onclick="showTool('hero')"><div class="tc-icon">🦸</div><div class="tc-name">Hero Tracker</div><div class="tc-desc">Cost to max any hero at your TH</div></div>
+    <div class="tool-card" onclick="showTool('farm')"><div class="tc-icon">💰</div><div class="tc-name">Farming Calc</div><div class="tc-desc">How many raids to fund your next upgrade</div></div>
+    <div class="tool-card" onclick="showTool('war')"><div class="tc-icon">⚔</div><div class="tc-name">War Weight</div><div class="tc-desc">Estimate war weight by building levels</div></div>
+    <div class="tool-card" onclick="showTool('gems')"><div class="tc-icon">💎</div><div class="tc-name">Gem Calc</div><div class="tc-desc">Gems needed to skip any build timer</div></div>
+    <div class="tool-card" onclick="showTool('wall')"><div class="tc-icon">🧱</div><div class="tc-name">Wall Calc</div><div class="tc-desc">Gold/Elixir to max all walls at your TH</div></div>
   </div>
 
-  <!-- AD #2 · Home bottom — users who scrolled past the grid are engaged -->
-  <div class="ad-unit">
-    <div class="ad-label">Advertisement</div>
-    <ins class="adsbygoogle" style="display:block"
-         data-ad-client="ca-pub-2624592165226987"
-         data-ad-slot="SLOT_ID_2"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle=window.adsbygoogle||[]).push({})</script>
+  <div class="home-section-label">Guides</div>
+  <div class="tool-grid">
+    <div class="tool-card" onclick="showTool('base')" style="grid-column:span 2"><div class="tc-icon">🏰</div><div class="tc-name">Base Maxing Guide</div><div class="tc-desc">Priority upgrade list for every TH</div></div>
+    <div class="tool-card" onclick="showTool('equip')" style="grid-column:span 2"><div class="tc-icon">⚒️</div><div class="tc-name">Equip &amp; Ores</div><div class="tc-desc">Ore cost for all Hero Equipment upgrades</div></div>
   </div>
 
-  <div class="bottom-hint">— select a tool above —</div>
+  <div class="ad-unit"><div class="ad-label">Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2624592165226987" data-ad-slot="3236789652" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div>
+
+  <div class="home-section-label">New Tools <span class="home-section-new">NEW</span></div>
+  <div class="tool-grid">
+    <div class="tool-card tool-card-highlight" onclick="showTool('score')" style="grid-column:span 2"><div class="tc-icon">🏆</div><div class="tc-name">Base Strength Score</div><div class="tc-desc">Get a 0-100 strength score with a Chief rank</div></div>
+    <div class="tool-card tool-card-highlight" onclick="showTool('roadmap')" style="grid-column:span 2"><div class="tc-icon">🗺️</div><div class="tc-name">Upgrade Roadmap</div><div class="tc-desc">Week-by-week upgrade priority plan for your TH</div></div>
+    <div class="tool-card tool-card-highlight" onclick="showTool('loot')" style="grid-column:span 2"><div class="tc-icon">⚖️</div><div class="tc-name">Loot Efficiency</div><div class="tc-desc">Compare army training cost vs loot return</div></div>
+  </div>
+
+  <div class="home-blog-promo">
+    <div class="home-blog-icon">📰</div>
+    <div><div class="home-blog-title">Chief's Blog</div><div class="home-blog-sub">Farming guides, TH18 tips, upgrade deep-dives</div></div>
+    <button onclick="navGo('blog')" class="home-blog-btn">Read</button>
+  </div>
+
 </div>
-
 <!-- ══════════ BUILD TIMER ══════════ -->
 <div id="page-build" class="tool-page">
   <div class="page-header">
@@ -360,7 +451,7 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
       <div class="t-block"><label>Secs</label><input type="text" inputmode="numeric" id="b-secs" maxlength="2" placeholder="00" oninput="this.value=this.value.replace(/[^0-9]/g,'')"><div class="t-unit">SS</div></div>
     </div>
   </div>
-  <div class="ornament">— ✦ —</div>
+  <div class="ornament">✦</div>
   <div class="card">
     <div class="card-label">Speed Multiplier</div>
     <div class="speed-grid">
@@ -379,7 +470,7 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
       <span class="x-lbl">×</span>
     </div>
   </div>
-  <div class="ornament">— ✦ —</div>
+  <div class="ornament">✦</div>
   <div class="card">
     <div class="card-label">⚡ Booster Time Remaining</div>
     <div class="time-inputs">
@@ -391,27 +482,18 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
   </div>
   <div class="err" id="b-err">⚠ Enter at least one time value and a speed.</div>
   <button class="btn" onclick="buildCalc()">⚔ Calculate Remaining Time</button>
-  <!-- AD #3 · Post-result — user just got their answer, receptive moment -->
+  <!-- AD #3 · Post-result user just got their answer, receptive moment -->
   <div id="b-ad" style="display:none">
-    <div class="ad-unit" style="margin-top:16px">
-      <div class="ad-label">Advertisement</div>
-      <ins class="adsbygoogle" style="display:block"
-           data-ad-client="ca-pub-2624592165226987"
-           data-ad-slot="SLOT_ID_3"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle=window.adsbygoogle||[]).push({})</script>
-    </div>
   </div>
   <div class="result-card" id="b-result">
     <div class="card-label">Boosted Completion In</div>
-    <div class="res-big" id="b-res-big">—</div>
+    <div class="res-big" id="b-res-big">  </div>
     <div class="res-rows">
-      <div class="res-row"><span class="rk">Original build time</span><span class="rv" id="b-original">—</span></div>
-      <div class="res-row"><span class="rk">Speed multiplier</span><span class="rv" id="b-speed">—</span></div>
-      <div class="res-row"><span class="rk">Time saved</span><span class="rv green" id="b-saved">—</span></div>
-      <div class="res-row" id="b-row-after" style="display:none"><span class="rk">Remaining at 1× after boost</span><span class="rv red" id="b-after">—</span></div>
-      <div class="res-row" id="b-row-bleft" style="display:none"><span class="rk">⚡ Booster left after upgrade</span><span class="rv green" id="b-bleft">—</span></div>
+      <div class="res-row"><span class="rk">Original build time</span><span class="rv" id="b-original">  </span></div>
+      <div class="res-row"><span class="rk">Speed multiplier</span><span class="rv" id="b-speed">  </span></div>
+      <div class="res-row"><span class="rk">Time saved</span><span class="rv green" id="b-saved">  </span></div>
+      <div class="res-row" id="b-row-after" style="display:none"><span class="rk">Remaining at 1× after boost</span><span class="rv red" id="b-after">  </span></div>
+      <div class="res-row" id="b-row-bleft" style="display:none"><span class="rk">⚡ Booster left after upgrade</span><span class="rv green" id="b-bleft">  </span></div>
     </div>
   </div>
 </div>
@@ -422,109 +504,108 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
     <button class="back-btn" onclick="showHome()">← Back</button>
     <span class="page-title">🦸 Hero Upgrade Tracker</span>
   </div>
+  <div class="boost-note" style="margin-bottom:12px">
+    <strong>Note:</strong> Cost values are based on community data and may not reflect the latest in-game values. Always verify in-game before planning upgrades.
+  </div>
+
+  <!-- Step 1: Select TH -->
   <div class="card">
-    <div class="card-label">Select Hero</div>
-    <div class="hero-tabs">
-      <button class="hero-tab active" onclick="hSelectHero(0,this)">👑 BK</button>
-      <button class="hero-tab" onclick="hSelectHero(1,this)">🏹 AQ</button>
-      <button class="hero-tab" onclick="hSelectHero(2,this)">🔵 GW</button>
-      <button class="hero-tab" onclick="hSelectHero(3,this)">⚡ RC</button>
-      <button class="hero-tab" onclick="hSelectHero(4,this)">🦇 MP</button>
-      <button class="hero-tab" onclick="hSelectHero(5,this)">🐉 DD</button>
+    <div class="card-label">Your Town Hall</div>
+    <div class="th-select-wrap">
+      <label>Select TH Level</label>
+      <select id="h-th" onchange="hOnThChange()">
+        <option value="">Choose your TH</option>
+        <option value="7">Town Hall 7</option>
+        <option value="8">Town Hall 8</option>
+        <option value="9">Town Hall 9</option>
+        <option value="10">Town Hall 10</option>
+        <option value="11">Town Hall 11</option>
+        <option value="12">Town Hall 12</option>
+        <option value="13">Town Hall 13</option>
+        <option value="14">Town Hall 14</option>
+        <option value="15">Town Hall 15</option>
+        <option value="16">Town Hall 16</option>
+        <option value="17">Town Hall 17</option>
+        <option value="18">Town Hall 18</option>
+      </select>
     </div>
-    <div class="hero-info">
-      <div class="hero-emoji" id="h-emoji">👑</div>
+  </div>
+
+  <!-- Step 2: Select Hero (only available ones shown) -->
+  <div class="card" id="h-hero-card" style="display:none">
+    <div class="card-label">Select Hero</div>
+    <div class="hero-tabs" id="h-hero-tabs"></div>
+    <div class="hero-info" id="h-hero-info" style="display:none">
+      <div class="hero-emoji" id="h-emoji"></div>
       <div>
-        <div class="hero-name" id="h-name">Barbarian King</div>
-        <div class="hero-max" id="h-max">Max Level: 105 · TH 18</div>
+        <div class="hero-name" id="h-name"></div>
+        <div class="hero-max" id="h-max"></div>
       </div>
     </div>
   </div>
-  <div class="card">
+
+  <!-- Step 3: Current Level -->
+  <div class="card" id="h-level-card" style="display:none">
     <div class="card-label">Your Progress</div>
-    <div class="level-row"><label>Current Lvl</label><input type="number" id="h-cur" min="0" placeholder="0" oninput="hCalc()"></div>
-    <div class="level-row"><label>Target Lvl</label><input type="number" id="h-tar" min="1" placeholder="105" oninput="hCalc()"></div>
+    <div class="level-row">
+      <label>Current Lvl</label>
+      <input type="number" id="h-cur" min="0" placeholder="0" oninput="hCalc()">
+    </div>
     <div class="prog-bar-wrap" id="h-prog-wrap" style="display:none">
       <div class="prog-label"><span id="h-prog-pct">0%</span><span id="h-prog-lbl">0 / 0 levels</span></div>
       <div class="prog-bar"><div class="prog-fill" id="h-prog-fill" style="width:0%"></div></div>
     </div>
   </div>
-  <!-- AD #4 · Hero page mid — high dwell time, users plan long hero grinds here -->
-  <div class="ad-unit">
-    <div class="ad-label">Advertisement</div>
-    <ins class="adsbygoogle" style="display:block"
-         data-ad-client="ca-pub-2624592165226987"
-         data-ad-slot="SLOT_ID_4"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle=window.adsbygoogle||[]).push({})</script>
-  </div>
-  <div class="result-card" id="h-result">
-    <div class="card-label">Upgrade Summary</div>
-    <div class="res-big" id="h-res-big">—</div>
-    <div class="res-rows">
-      <div class="res-row"><span class="rk">Levels to go</span><span class="rv" id="h-levels">—</span></div>
-      <div class="res-row"><span class="rk">Dark Elixir / Elixir needed</span><span class="rv purple" id="h-de">—</span></div>
-      <div class="res-row"><span class="rk">Est. total upgrade time</span><span class="rv blue" id="h-time">—</span></div>
-      <div class="res-row"><span class="rk">Hero</span><span class="rv" id="h-hero-name">—</span></div>
+
+
+  <!-- AD -->
+  <div class="result-card show" id="eq-result" style="margin-top:4px">
+    <div class="card-label">Ore Cost &amp; Strategy</div>
+    <div class="ww-total" id="eq-total-cost" style="font-size:1.4rem">0 Ores</div>
+    <div class="res-rows" style="margin-top:14px">
+      <div class="res-row"><span class="rk">Shiny Ore needed</span><span class="rv blue" id="eq-shiny">  </span></div>
+      <div class="res-row"><span class="rk">Glowy Ore needed</span><span class="rv purple" id="eq-glowy">  </span></div>
+      <div class="res-row"><span class="rk">Starry Ore needed</span><span class="rv" id="eq-starry" style="color:var(--gold2)">  </span></div>
     </div>
+    <div class="boost-note" id="eq-suggestion" style="margin-top:14px;text-align:left">Select an equipment to see upgrade recommendations.</div>
   </div>
 </div>
 
+
 <!-- ══════════ FARMING CALC ══════════ -->
 <div id="page-farm" class="tool-page">
-  <div class="page-header">
-    <button class="back-btn" onclick="showHome()">← Back</button>
-    <span class="page-title">💰 Resource Farming Calculator</span>
-  </div>
-  <div class="card">
-    <div class="card-label">Upgrade Cost</div>
-    <div class="res-grid">
-      <div class="res-input-block"><label>Gold needed</label><input type="number" id="f-gold-need" min="0" placeholder="0"></div>
-      <div class="res-input-block"><label>Elixir needed</label><input type="number" id="f-elix-need" min="0" placeholder="0"></div>
-    </div>
+  <div class="page-header"><button class="back-btn" onclick="showHome()">← Back</button><span class="page-title">💰 Resource Farming Calculator</span></div>
+  <div class="card"><div class="card-label">Upgrade Cost</div>
+    <div class="res-grid"><div class="res-input-block"><label>Gold needed</label><input type="number" id="f-gold-need" min="0" placeholder="0"></div><div class="res-input-block"><label>Elixir needed</label><input type="number" id="f-elix-need" min="0" placeholder="0"></div></div>
     <div class="res-input-block" style="margin-bottom:0"><label>Dark Elixir needed</label><input type="number" id="f-de-need" min="0" placeholder="0" style="font-size:1.1rem;padding:10px 8px"></div>
   </div>
-  <div class="ornament">— ✦ —</div>
-  <div class="card">
-    <div class="card-label">You Currently Have</div>
-    <div class="res-grid">
-      <div class="res-input-block"><label>Gold stored</label><input type="number" id="f-gold-have" min="0" placeholder="0"></div>
-      <div class="res-input-block"><label>Elixir stored</label><input type="number" id="f-elix-have" min="0" placeholder="0"></div>
-    </div>
+  <div class="ornament">✦</div>
+  <div class="card"><div class="card-label">You Currently Have</div>
+    <div class="res-grid"><div class="res-input-block"><label>Gold stored</label><input type="number" id="f-gold-have" min="0" placeholder="0"></div><div class="res-input-block"><label>Elixir stored</label><input type="number" id="f-elix-have" min="0" placeholder="0"></div></div>
     <div class="res-input-block" style="margin-top:10px;margin-bottom:0"><label>Dark Elixir stored</label><input type="number" id="f-de-have" min="0" placeholder="0" style="font-size:1.1rem;padding:10px 8px"></div>
   </div>
-  <div class="ornament">— ✦ —</div>
-  <div class="card">
-    <div class="card-label">Average Raid Loot</div>
-    <div class="res-grid">
-      <div class="res-input-block"><label>Gold / raid</label><input type="number" id="f-gold-raid" min="0" placeholder="200000"></div>
-      <div class="res-input-block"><label>Elixir / raid</label><input type="number" id="f-elix-raid" min="0" placeholder="200000"></div>
-    </div>
+  <div class="ornament">✦</div>
+  <div class="card"><div class="card-label">Average Raid Loot</div>
+    <div class="res-grid"><div class="res-input-block"><label>Gold / raid</label><input type="number" id="f-gold-raid" min="0" placeholder="200000"></div><div class="res-input-block"><label>Elixir / raid</label><input type="number" id="f-elix-raid" min="0" placeholder="200000"></div></div>
     <div class="res-input-block" style="margin-top:10px;margin-bottom:0"><label>Dark Elixir / raid</label><input type="number" id="f-de-raid" min="0" placeholder="1500" style="font-size:1.1rem;padding:10px 8px"></div>
   </div>
   <div class="err" id="f-err">⚠ Fill in upgrade cost and at least one raid loot value.</div>
   <button class="btn" onclick="farmCalc()">💰 Calculate Raids Needed</button>
   <div class="result-card" id="f-result">
-    <div class="card-label">Farming Plan</div>
-    <div class="res-big" id="f-res-big">— raids</div>
+    <div class="card-label">Farming Plan</div><div class="res-big" id="f-res-big">  raids</div>
     <div class="res-rows">
-      <div class="res-row" id="f-row-gold" style="display:none"><span class="rk">Gold raids needed</span><span class="rv" id="f-gold-raids">—</span></div>
-      <div class="res-row" id="f-row-elix" style="display:none"><span class="rk">Elixir raids needed</span><span class="rv" id="f-elix-raids">—</span></div>
-      <div class="res-row" id="f-row-de" style="display:none"><span class="rk">Dark Elixir raids needed</span><span class="rv purple" id="f-de-raids">—</span></div>
-      <div class="res-row"><span class="rk">Est. farming time (15 min/raid)</span><span class="rv blue" id="f-time">—</span></div>
+      <div class="res-row" id="f-row-gold" style="display:none"><span class="rk">Gold raids needed</span><span class="rv" id="f-gold-raids"></span></div>
+      <div class="res-row" id="f-row-elix" style="display:none"><span class="rk">Elixir raids needed</span><span class="rv" id="f-elix-raids"></span></div>
+      <div class="res-row" id="f-row-de" style="display:none"><span class="rk">Dark Elixir raids needed</span><span class="rv purple" id="f-de-raids"></span></div>
+      <div class="res-row"><span class="rk">Est. farming time (15 min/raid)</span><span class="rv blue" id="f-time"></span></div>
     </div>
   </div>
 </div>
 
 <!-- ══════════ WAR WEIGHT ══════════ -->
 <div id="page-war" class="tool-page">
-  <div class="page-header">
-    <button class="back-btn" onclick="showHome()">← Back</button>
-    <span class="page-title">⚔ War Weight Calculator</span>
-  </div>
-  <div class="card">
-    <div class="card-label">Your Building Levels</div>
+  <div class="page-header"><button class="back-btn" onclick="showHome()">← Back</button><span class="page-title">⚔ War Weight Calculator</span></div>
+  <div class="card"><div class="card-label">Your Building Levels</div>
     <div class="building-list">
       <div class="building-row"><label>Town Hall</label><input type="number" id="ww-th" min="1" max="18" placeholder="18" oninput="warCalc()"></div>
       <div class="building-row"><label>Barbarian King</label><input type="number" id="ww-bk" min="0" max="105" placeholder="0" oninput="warCalc()"></div>
@@ -539,112 +620,279 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
       <div class="building-row"><label>X-Bow</label><input type="number" id="ww-xb" min="0" max="12" placeholder="0" oninput="warCalc()"></div>
     </div>
   </div>
-  <!-- AD #5 · War weight — between inputs and live result, users see this while reading -->
-  <div class="ad-unit">
-    <div class="ad-label">Advertisement</div>
-    <ins class="adsbygoogle" style="display:block"
-         data-ad-client="ca-pub-2624592165226987"
-         data-ad-slot="SLOT_ID_5"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle=window.adsbygoogle||[]).push({})</script>
-  </div>
-  <div class="result-card show" id="ww-result" style="margin-top:4px">
+  <div class="result-card show" id="ww-result" style="margin-top:12px">
     <div class="card-label">War Weight Estimate</div>
-    <div class="ww-total" id="ww-total">0</div>
-    <div class="ww-tier" id="ww-tier" style="color:var(--muted)">Enter your levels above</div>
+    <div class="ww-total" id="ww-total">0</div><div class="ww-tier" id="ww-tier" style="color:var(--muted)">Enter your levels above</div>
     <div class="res-rows" style="margin-top:14px">
-      <div class="res-row"><span class="rk">Town Hall contribution</span><span class="rv" id="ww-th-val">—</span></div>
-      <div class="res-row"><span class="rk">Heroes contribution</span><span class="rv purple" id="ww-hero-val">—</span></div>
-      <div class="res-row"><span class="rk">Defense contribution</span><span class="rv red" id="ww-def-val">—</span></div>
-      <div class="res-row"><span class="rk">Matchmaking bracket</span><span class="rv blue" id="ww-bracket">—</span></div>
+      <div class="res-row"><span class="rk">Town Hall contribution</span><span class="rv" id="ww-th-val"></span></div>
+      <div class="res-row"><span class="rk">Heroes contribution</span><span class="rv purple" id="ww-hero-val"></span></div>
+      <div class="res-row"><span class="rk">Defense contribution</span><span class="rv red" id="ww-def-val"></span></div>
+      <div class="res-row"><span class="rk">Matchmaking bracket</span><span class="rv blue" id="ww-bracket"></span></div>
     </div>
   </div>
 </div>
 
 <!-- ══════════ BASE MAXING GUIDE ══════════ -->
 <div id="page-base" class="tool-page">
-  <div class="page-header">
-    <button class="back-btn" onclick="showHome()">← Back</button>
-    <span class="page-title">🏰 Base Maxing Guide</span>
-  </div>
-  <div class="card">
-    <div class="card-label">Your Town Hall Level</div>
-    <div class="th-select-wrap">
-      <label>Select TH</label>
+  <div class="page-header"><button class="back-btn" onclick="showHome()">← Back</button><span class="page-title">🏰 Base Maxing Guide</span></div>
+  <div class="card"><div class="card-label">Your Town Hall Level</div>
+    <div class="th-select-wrap"><label>Select TH</label>
       <select id="base-th" onchange="baseGuide()">
-        <option value="">— Choose your TH —</option>
-        <option value="8">Town Hall 8</option><option value="9">Town Hall 9</option>
-        <option value="10">Town Hall 10</option><option value="11">Town Hall 11</option>
-        <option value="12">Town Hall 12</option><option value="13">Town Hall 13</option>
-        <option value="14">Town Hall 14</option><option value="15">Town Hall 15</option>
-        <option value="16">Town Hall 16</option><option value="17">Town Hall 17</option>
-        <option value="18">Town Hall 18</option>
+        <option value="">Choose your TH</option>
+        <option value="8">TH8</option><option value="9">TH9</option><option value="10">TH10</option><option value="11">TH11</option>
+        <option value="12">TH12</option><option value="13">TH13</option><option value="14">TH14</option><option value="15">TH15</option>
+        <option value="16">TH16</option><option value="17">TH17</option><option value="18">TH18</option>
       </select>
     </div>
   </div>
   <div id="base-result" style="display:none">
-    <div class="card">
-      <div class="card-label" id="base-title">Priority List</div>
-      <div class="priority-list" id="base-list"></div>
-    </div>
-    <!-- AD #6 · After Base Guide loads — highest dwell time on the entire site -->
-    <div class="ad-unit">
-      <div class="ad-label">Advertisement</div>
-      <ins class="adsbygoogle" style="display:block"
-           data-ad-client="ca-pub-2624592165226987"
-           data-ad-slot="SLOT_ID_6"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle=window.adsbygoogle||[]).push({})</script>
-    </div>
+    <div class="card"><div class="card-label" id="base-title">Priority List</div><div class="priority-list" id="base-list"></div></div>
   </div>
 </div>
 
 <!-- ══════════ EQUIP & ORES ══════════ -->
 <div id="page-equip" class="tool-page">
-  <div class="page-header">
-    <button class="back-btn" onclick="showHome()">← Back</button>
-    <span class="page-title">⚒️ Equipment &amp; Ores</span>
-  </div>
-  <div class="card">
-    <div class="card-label">Select Hero &amp; Equipment</div>
+  <div class="page-header"><button class="back-btn" onclick="showHome()">← Back</button><span class="page-title">⚒️ Equipment &amp; Ores</span></div>
+  <div class="card"><div class="card-label">Select Hero &amp; Equipment</div>
     <div class="th-select-wrap"><label>Hero</label>
       <select id="eq-hero" onchange="eqPopulateEquips()">
-        <option value="bk">👑 Barbarian King</option>
-        <option value="aq">🏹 Archer Queen</option>
-        <option value="gw">🔵 Grand Warden</option>
-        <option value="rc">⚡ Royal Champion</option>
+        <option value="bk">👑 Barbarian King</option><option value="aq">🏹 Archer Queen</option>
+        <option value="gw">🔵 Grand Warden</option><option value="rc">⚡ Royal Champion</option>
       </select>
     </div>
     <div class="th-select-wrap"><label>Equipment</label><select id="eq-item" onchange="eqCalc()"></select></div>
   </div>
-  <div class="card">
-    <div class="card-label">Upgrade Target</div>
+  <div class="card"><div class="card-label">Upgrade Target</div>
     <div class="level-row"><label>Current Lvl</label><input type="number" id="eq-cur" min="1" placeholder="1" oninput="eqCalc()"></div>
     <div class="level-row"><label>Target Lvl</label><input type="number" id="eq-tar" min="2" placeholder="Max" oninput="eqCalc()"></div>
-  </div>
-  <!-- AD #7 · Equip page — users spend time here calculating expensive ore investments -->
-  <div class="ad-unit">
-    <div class="ad-label">Advertisement</div>
-    <ins class="adsbygoogle" style="display:block"
-         data-ad-client="ca-pub-2624592165226987"
-         data-ad-slot="SLOT_ID_7"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle=window.adsbygoogle||[]).push({})</script>
   </div>
   <div class="result-card show" id="eq-result" style="margin-top:4px">
     <div class="card-label">Ore Cost &amp; Strategy</div>
     <div class="ww-total" id="eq-total-cost" style="font-size:1.4rem">0 Ores</div>
     <div class="res-rows" style="margin-top:14px">
-      <div class="res-row"><span class="rk">Shiny Ore needed</span><span class="rv blue" id="eq-shiny">—</span></div>
-      <div class="res-row"><span class="rk">Glowy Ore needed</span><span class="rv purple" id="eq-glowy">—</span></div>
-      <div class="res-row"><span class="rk">Starry Ore needed</span><span class="rv" id="eq-starry" style="color:var(--gold2)">—</span></div>
+      <div class="res-row"><span class="rk">Shiny Ore needed</span><span class="rv blue" id="eq-shiny"></span></div>
+      <div class="res-row"><span class="rk">Glowy Ore needed</span><span class="rv purple" id="eq-glowy"></span></div>
+      <div class="res-row"><span class="rk">Starry Ore needed</span><span class="rv" id="eq-starry" style="color:var(--gold2)"></span></div>
     </div>
     <div class="boost-note" id="eq-suggestion" style="margin-top:14px;text-align:left">Select an equipment to see upgrade recommendations.</div>
   </div>
 </div>
+
+<!-- ══════════ GEM CALCULATOR ══════════ -->
+<div id="page-gems" class="tool-page" style="display:block">
+<div style="position:relative;z-index:1;max-width:560px;margin:0 auto;padding:24px 16px 60px">
+  <div class="page-header"><button class="back-btn" onclick="showHome()">← Back</button><span class="page-title">💎 Gem Calculator</span></div>
+  <div class="boost-note" style="margin-bottom:12px"><strong>Note:</strong> Gem costs use Supercell's official formula. Costs may vary slightly due to rounding.</div>
+  <div class="card"><div class="card-label">Remaining Build / Upgrade Time</div>
+    <div class="time-inputs four-fields">
+      <div class="t-block"><label>Days</label><input type="text" inputmode="numeric" id="gem-d" maxlength="3" placeholder="0" oninput="this.value=this.value.replace(/[^0-9]/g,'');gemCalc()"><div class="t-unit">DD</div></div>
+      <div class="t-sep">:</div>
+      <div class="t-block"><label>Hours</label><input type="text" inputmode="numeric" id="gem-h" maxlength="2" placeholder="0" oninput="this.value=this.value.replace(/[^0-9]/g,'');gemCalc()"><div class="t-unit">HH</div></div>
+      <div class="t-sep">:</div>
+      <div class="t-block"><label>Mins</label><input type="text" inputmode="numeric" id="gem-m" maxlength="2" placeholder="0" oninput="this.value=this.value.replace(/[^0-9]/g,'');gemCalc()"><div class="t-unit">MM</div></div>
+      <div class="t-sep">:</div>
+      <div class="t-block"><label>Secs</label><input type="text" inputmode="numeric" id="gem-s" maxlength="2" placeholder="0" oninput="this.value=this.value.replace(/[^0-9]/g,'');gemCalc()"><div class="t-unit">SS</div></div>
+    </div>
+  </div>
+  <div class="result-card" id="gem-result">
+    <div class="card-label">Gem Cost</div><div class="res-big" id="gem-res-big"></div>
+    <div class="res-rows">
+      <div class="res-row"><span class="rk">Time remaining</span><span class="rv" id="gem-time-lbl"></span></div>
+      <div class="res-row"><span class="rk">Gems needed</span><span class="rv green" id="gem-gems"></span></div>
+      <div class="res-row"><span class="rk">Gem pack suggestion</span><span class="rv blue" id="gem-packs"></span></div>
+    </div>
+    <div class="boost-note" style="margin-top:12px;text-align:left"><strong>Tip:</strong> Save gems for Builder Huts only. Never gem walls, troops, or resources.</div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════ WALL CALCULATOR ══════════ -->
+<div id="page-wall" class="tool-page" style="display:block">
+<div style="position:relative;z-index:1;max-width:560px;margin:0 auto;padding:24px 16px 60px">
+  <div class="page-header"><button class="back-btn" onclick="showHome()">← Back</button><span class="page-title">🧱 Wall Calculator</span></div>
+  <div class="boost-note" style="margin-bottom:12px"><strong>Note:</strong> Wall data from community sources. Costs are in Gold/Elixir (both equal). Verify in-game.</div>
+  <div class="card"><div class="card-label">Your Town Hall</div>
+    <div class="th-select-wrap"><label>Select TH</label>
+      <select id="wall-th" onchange="wallOnThChange()">
+        <option value="">Choose your TH</option>
+        <option value="3">TH3</option><option value="4">TH4</option><option value="5">TH5</option><option value="6">TH6</option>
+        <option value="7">TH7</option><option value="8">TH8</option><option value="9">TH9</option><option value="10">TH10</option>
+        <option value="11">TH11</option><option value="12">TH12</option><option value="13">TH13</option><option value="14">TH14</option>
+        <option value="15">TH15</option><option value="16">TH16</option><option value="17">TH17</option><option value="18">TH18</option>
+      </select>
+    </div>
+    <div id="wall-th-info" style="display:none;margin-top:10px" class="boost-note"></div>
+  </div>
+  <div id="wall-groups-card" style="display:none" class="card">
+    <div class="card-label">Your Current Walls</div>
+    <div style="font-size:.75rem;color:var(--muted);margin-bottom:12px;line-height:1.6">Enter how many walls you have at each level. Any unaccounted walls are assumed Level 1.</div>
+    <div id="wall-fields"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px">
+      <button onclick="wallAddField()" style="background:var(--bg);border:1px solid var(--border);border-radius:4px;color:var(--amber);font-family:'Cinzel',serif;font-size:.72rem;font-weight:700;padding:8px 14px;cursor:pointer;letter-spacing:.05em;text-transform:uppercase">+ Add Level Group</button>
+      <span id="wall-count-label" style="font-family:'Cinzel',serif;font-size:.7rem;color:var(--muted)"></span>
+    </div>
+    <div class="err" id="wall-err" style="margin-top:8px">⚠ Total walls exceed your TH limit.</div>
+    <button class="btn" onclick="wallCalc()" style="margin-top:14px">🧱 Calculate Cost to Max</button>
+  </div>
+  <div class="result-card" id="wall-result">
+    <div class="card-label">Wall Cost to Max</div><div class="res-big" id="wall-res-big"></div>
+    <div class="res-rows">
+      <div class="res-row"><span class="rk">Total walls at TH</span><span class="rv" id="wall-total-count"></span></div>
+      <div class="res-row"><span class="rk">Max wall level at TH</span><span class="rv" id="wall-max-lv"></span></div>
+      <div class="res-row"><span class="rk">Walls already maxed</span><span class="rv green" id="wall-already-max"></span></div>
+      <div class="res-row"><span class="rk">Walls still to upgrade</span><span class="rv blue" id="wall-to-upgrade"></span></div>
+      <div class="res-row"><span class="rk">Total Gold/Elixir needed</span><span class="rv purple" id="wall-cost-total"></span></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════ BASE STRENGTH SCORE ══════════ -->
+<div id="page-score" class="tool-page" style="display:block">
+<div style="position:relative;z-index:1;max-width:560px;margin:0 auto;padding:24px 16px 60px">
+  <div class="page-header"><button class="back-btn" onclick="showHome()">← Back</button><span class="page-title">🏆 Base Strength Score</span></div>
+  <div class="boost-note" style="margin-bottom:12px"><strong>Note:</strong> This is a fun estimate based on community data. Not an official Supercell metric.</div>
+  <div class="card"><div class="card-label">Your Town Hall &amp; Heroes</div>
+    <div class="building-list">
+      <div class="building-row"><label>Town Hall</label><input type="number" id="sc-th" min="1" max="18" placeholder="18" oninput="scoreCalc()"></div>
+      <div class="building-row"><label>Barbarian King</label><input type="number" id="sc-bk" min="0" max="105" placeholder="0" oninput="scoreCalc()"></div>
+      <div class="building-row"><label>Archer Queen</label><input type="number" id="sc-aq" min="0" max="105" placeholder="0" oninput="scoreCalc()"></div>
+      <div class="building-row"><label>Grand Warden</label><input type="number" id="sc-gw" min="0" max="80" placeholder="0" oninput="scoreCalc()"></div>
+      <div class="building-row"><label>Royal Champion</label><input type="number" id="sc-rc" min="0" max="55" placeholder="0" oninput="scoreCalc()"></div>
+    </div>
+  </div>
+  <div class="card"><div class="card-label">Key Defenses</div>
+    <div class="building-list">
+      <div class="building-row"><label>Eagle Artillery</label><input type="number" id="sc-ea" min="0" max="8" placeholder="0" oninput="scoreCalc()"></div>
+      <div class="building-row"><label>Inferno Tower</label><input type="number" id="sc-it" min="0" max="11" placeholder="0" oninput="scoreCalc()"></div>
+      <div class="building-row"><label>Scattershot</label><input type="number" id="sc-ss" min="0" max="6" placeholder="0" oninput="scoreCalc()"></div>
+      <div class="building-row"><label>X-Bow</label><input type="number" id="sc-xb" min="0" max="12" placeholder="0" oninput="scoreCalc()"></div>
+      <div class="building-row"><label>Air Defense</label><input type="number" id="sc-ad" min="0" max="16" placeholder="0" oninput="scoreCalc()"></div>
+    </div>
+  </div>
+  <div class="result-card" id="sc-result">
+    <div class="card-label">Strength Analysis</div>
+    <div class="score-ring-wrap"><div class="score-ring" id="sc-ring"><span class="score-val" id="sc-val">0</span><span class="score-lbl">/ 100</span></div><div class="score-rank" id="sc-rank"></div></div>
+    <div class="score-bar-row" id="sc-bars"></div>
+    <div class="boost-note" id="sc-advice" style="margin-top:14px;text-align:left"></div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════ UPGRADE ROADMAP ══════════ -->
+<div id="page-roadmap" class="tool-page" style="display:block">
+<div style="position:relative;z-index:1;max-width:560px;margin:0 auto;padding:24px 16px 60px">
+  <div class="page-header"><button class="back-btn" onclick="showHome()">← Back</button><span class="page-title">🗺️ Upgrade Roadmap</span></div>
+  <div class="card"><div class="card-label">Your Town Hall</div>
+    <div class="th-select-wrap"><label>Select TH</label>
+      <select id="rm-th" onchange="roadmapLoad()">
+        <option value="">Choose your TH</option>
+        <option value="8">TH8</option><option value="9">TH9</option><option value="10">TH10</option><option value="11">TH11</option>
+        <option value="12">TH12</option><option value="13">TH13</option><option value="14">TH14</option><option value="15">TH15</option>
+        <option value="16">TH16</option><option value="17">TH17</option><option value="18">TH18</option>
+      </select>
+    </div>
+  </div>
+  <div id="rm-output" style="display:none">
+    <div class="card"><div class="card-label" id="rm-title">Roadmap</div>
+      <p style="font-size:.78rem;color:var(--muted);line-height:1.7;margin-bottom:14px">Tap any week to expand. Times assume 5 Builders active.</p>
+      <div id="rm-weeks"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════ LOOT EFFICIENCY ══════════ -->
+<div id="page-loot" class="tool-page" style="display:block">
+<div style="position:relative;z-index:1;max-width:560px;margin:0 auto;padding:24px 16px 60px">
+  <div class="page-header"><button class="back-btn" onclick="showHome()">← Back</button><span class="page-title">⚖️ Loot Efficiency Calculator</span></div>
+  <div class="boost-note" style="margin-bottom:12px"><strong>Note:</strong> Loot estimates are community averages. Results vary by trophy range and matchup.</div>
+  <div class="card"><div class="card-label">Your Town Hall</div>
+    <div class="th-select-wrap"><label>Select TH</label>
+      <select id="loot-th" onchange="lootLoad()">
+        <option value="">Choose your TH</option>
+        <option value="8">TH8</option><option value="9">TH9</option><option value="10">TH10</option><option value="11">TH11</option>
+        <option value="12">TH12</option><option value="13">TH13</option><option value="14">TH14</option><option value="15">TH15</option>
+        <option value="16">TH16</option><option value="17">TH17</option><option value="18">TH18</option>
+      </select>
+    </div>
+  </div>
+  <div id="loot-armies-card" style="display:none" class="card">
+    <div class="card-label">Select Armies to Compare</div>
+    <div class="loot-army-grid" id="loot-army-grid"></div>
+    <button class="btn" onclick="lootCalc()" style="margin-top:6px">⚖️ Compare Efficiency</button>
+  </div>
+  <div class="result-card" id="loot-result">
+    <div class="card-label">Efficiency Comparison</div>
+    <div id="loot-winner-banner" style="text-align:center;margin-bottom:14px">
+      <div style="font-size:1.4rem" id="loot-winner-icon"></div>
+      <div style="font-family:'Cinzel',serif;font-size:.9rem;color:var(--gold);margin-top:4px" id="loot-winner-name"></div>
+      <div style="font-size:.75rem;color:var(--muted);margin-top:2px" id="loot-winner-reason"></div>
+    </div>
+    <table class="loot-result-table"><thead><tr><th>Army</th><th>Train Cost</th><th>Avg Loot</th><th>Efficiency</th></tr></thead><tbody id="loot-result-body"></tbody></table>
+    <div class="boost-note" id="loot-advice" style="margin-top:14px;text-align:left"></div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════ SUPPORT ══════════ -->
+<div id="page-support" class="tool-page" style="display:block">
+<div style="position:relative;z-index:1;max-width:560px;margin:0 auto;padding:24px 16px 60px">
+  <div class="page-header"><button class="back-btn" onclick="showHome()">← Back</button><span class="page-title">❤️ Support ClashForge</span></div>
+
+  <div class="card" style="text-align:center;padding:28px 20px">
+    <div style="font-size:2.4rem;margin-bottom:12px">⚔</div>
+    <div style="font-family:'Cinzel Decorative',serif;font-size:1.1rem;color:var(--gold);margin-bottom:12px">Keep ClashForge Free</div>
+    <p style="font-size:.84rem;color:var(--muted);line-height:1.85;margin-bottom:20px">ClashForge is built by one person, completely free, with no login, no tracking, and no premium paywall. If it's saved you time or helped you make better upgrade decisions, consider buying me a coffee. It means a lot and keeps the site running.</p>
+    <a href="https://ko-fi.com/clashforge" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#8b5e1a,#c47a1e);border:1px solid var(--gold);border-radius:6px;color:#0d0a06;font-family:'Cinzel',serif;font-size:.85rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:13px 28px;text-decoration:none;transition:all .2s">
+      ☕ Buy Me a Coffee
+    </a>
+    <p style="font-size:.72rem;color:var(--border);margin-top:14px;font-family:'Cinzel',serif;letter-spacing:1px">No account needed. One-time or recurring. Any amount helps.</p>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="card-label">Contact / Report an Issue</div>
+    <p style="font-size:.8rem;color:var(--muted);line-height:1.7;margin-bottom:16px">Found a bug? Have a suggestion? Want to report incorrect data? Send a message and I'll get back to you.</p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div>
+        <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Your Name (optional)</div>
+        <input type="text" id="sup-name" placeholder="Chief" style="font-size:.9rem;padding:10px 12px;text-align:left;font-family:'IM Fell English',serif">
+      </div>
+      <div>
+        <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Your Email</div>
+        <input type="email" id="sup-email" placeholder="your@email.com" style="font-size:.9rem;padding:10px 12px;text-align:left;font-family:'IM Fell English',serif">
+      </div>
+      <div>
+        <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Message</div>
+        <textarea id="sup-msg" rows="4" placeholder="Describe your issue or suggestion..." style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:3px;color:var(--gold2);font-family:'IM Fell English',serif;font-size:.85rem;padding:10px 12px;outline:none;resize:vertical;transition:border-color .2s"></textarea>
+      </div>
+      <button class="btn" onclick="supportSend()" style="margin-top:4px">📨 Send Message</button>
+      <div id="sup-success" style="display:none;text-align:center;font-family:'Cinzel',serif;font-size:.78rem;color:var(--green);padding:10px;letter-spacing:1px">✓ Message sent! I will get back to you soon.</div>
+      <div id="sup-error" style="display:none;text-align:center;font-family:'Cinzel',serif;font-size:.78rem;color:var(--red2);padding:10px;letter-spacing:1px">⚠ Please enter an email and message.</div>
+    </div>
+    <div class="boost-note" style="margin-top:14px">
+      <strong>Powered by Formspree.</strong> Replace the form action URL below in the code with your own Formspree endpoint from formspree.io — free for up to 50 submissions/month.
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px;text-align:center">
+    <div class="card-label">Other Ways to Support</div>
+    <div style="display:flex;gap:10px;margin-top:4px;flex-wrap:wrap">
+      <div style="flex:1;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:14px 10px;text-align:center">
+        <div style="font-size:1.4rem;margin-bottom:6px">⭐</div>
+        <div style="font-family:'Cinzel',serif;font-size:.72rem;color:var(--gold);font-weight:700;margin-bottom:4px">Share the Site</div>
+        <div style="font-size:.7rem;color:var(--muted);line-height:1.5">Share clashforce.vercel.app with your clan — word of mouth helps more than anything</div>
+      </div>
+      <div style="flex:1;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:14px 10px;text-align:center">
+        <div style="font-size:1.4rem;margin-bottom:6px">💡</div>
+        <div style="font-family:'Cinzel',serif;font-size:.72rem;color:var(--gold);font-weight:700;margin-bottom:4px">Suggest a Tool</div>
+        <div style="font-size:.7rem;color:var(--muted);line-height:1.5">Have an idea for a new calculator or guide? Send it via the contact form above</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
 
 <!-- ══════════ ABOUT US ══════════ -->
 <div id="page-about" class="tool-page">
@@ -657,25 +905,16 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
       <div style="font-size:2.4rem;margin-bottom:8px">⚔</div>
       <div class="about-badge">Unofficial Fan Guide</div>
       <div style="font-family:'Cinzel Decorative',serif;font-size:1.1rem;color:var(--gold);margin:8px 0 14px">Who We Are</div>
-      <p style="text-align:left">ClashForge is an independent fan-made toolkit built by a solo developer and Clash of Clans enthusiast. This site is not affiliated with, endorsed by, or connected to Supercell in any way — it is a labour of love from one chief to another.</p>
-      <p style="text-align:left">After several years of playing Clash of Clans, the mental math never stopped — how long will this upgrade take with a boost? How many raids do I need? Which hero should I prioritise first? ClashForge was built to answer all of those questions, for free.</p>
+      <p style="text-align:left">ClashForge is an independent fan-made toolkit built by a solo developer and Clash of Clans enthusiast. This site is not affiliated with, endorsed by, or connected to Supercell in any way it is a labour of love from one chief to another.</p>
+      <p style="text-align:left">After several years of playing Clash of Clans, the mental math never stopped how long will this upgrade take with a boost? How many raids do I need? Which hero should I prioritise first? ClashForge was built to answer all of those questions, for free.</p>
     </div>
 
-    <!-- AD #8 · About page — trust-building section with longer read time -->
-    <div class="ad-unit">
-      <div class="ad-label">Advertisement</div>
-      <ins class="adsbygoogle" style="display:block"
-           data-ad-client="ca-pub-2624592165226987"
-           data-ad-slot="SLOT_ID_8"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle=window.adsbygoogle||[]).push({})</script>
-    </div>
+    <!-- AD #8 · About page trust-building section with longer read time -->
 
     <div class="card">
       <div class="card-label">Our Mission</div>
-      <p>ClashForge exists to help chiefs at every Town Hall level make smarter upgrade decisions — saving time, resources, and frustration. Every tool is completely free, no account required, no data collected.</p>
-      <div class="prose-divider">— ✦ —</div>
+      <p>ClashForge exists to help chiefs at every Town Hall level make smarter upgrade decisions saving time, resources, and frustration. Every tool is completely free, no account required, no data collected.</p>
+      <div class="prose-divider">✦</div>
       <div class="feature-row">
         <div class="feature-icon">⏱</div>
         <div><div class="feature-title">Progress Faster</div><div class="feature-desc">Calculate exactly how long upgrades take with boosters so you never waste a gem.</div></div>
@@ -691,7 +930,7 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
     </div>
     <div class="card">
       <div class="card-label">Important Notice</div>
-      <p>ClashForge is a <strong class="hl">fan guide</strong> — an unofficial, community-created resource. All game data, names, and mechanics referenced belong to Supercell. This site earns revenue through advertising to cover hosting and development costs.</p>
+      <p>ClashForge is a <strong class="hl">fan guide</strong> an unofficial, community-created resource. All game data, names, and mechanics referenced belong to Supercell. This site earns revenue through advertising to cover hosting and development costs.</p>
       <p>All calculated values are estimates based on publicly available game data and community research. Results may vary in-game.</p>
       <div style="border-top:1px solid var(--border2);margin-top:14px;padding-top:12px;text-align:center">
         <p style="font-size:.72rem;color:var(--border);font-family:'Cinzel',serif;letter-spacing:1px">Content Creator · Independent Developer · CoC Enthusiast</p>
@@ -718,30 +957,30 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
       <div class="section-title"><span class="section-num">01</span>Who We Are</div>
       <p>ClashForge (<strong class="hl">"we"</strong>, <strong class="hl">"us"</strong>) is an independent fan-made website providing free Clash of Clans calculators and guides. We are not affiliated with Supercell Oy. By using this site you agree to the practices described below.</p>
 
-      <div class="prose-divider">— ✦ —</div>
+      <div class="prose-divider">✦</div>
 
       <div class="section-title"><span class="section-num">02</span>Information We Collect</div>
       <p>ClashForge does <strong class="hl">not</strong> require an account or personal information to use any tool. We may receive limited non-personal technical data via analytics:</p>
       <ul>
         <li>Pages visited and approximate time on site</li>
-        <li>General geographic region (country/city level — never precise location)</li>
+        <li>General geographic region (country/city level never precise location)</li>
         <li>Browser type, operating system, and device category</li>
         <li>Referring website or search engine</li>
       </ul>
       <p>This data is aggregated and anonymised and <strong class="hl2">cannot identify you personally</strong>.</p>
 
-      <div class="prose-divider">— ✦ —</div>
+      <div class="prose-divider">✦</div>
 
       <div class="section-title"><span class="section-num">03</span>Cookies</div>
       <p>This site uses cookies for the following purposes:</p>
       <ul>
-        <li><strong class="hl2">Analytics cookies</strong> — to understand visitor behaviour (e.g. Google Analytics).</li>
-        <li><strong class="hl2">Advertising cookies</strong> — to serve relevant ads via Google AdSense. These may track activity across other sites to show interest-based ads.</li>
-        <li><strong class="hl2">Functional cookies</strong> — to retain in-session preferences. No data is stored beyond your visit.</li>
+        <li><strong class="hl2">Analytics cookies</strong> to understand visitor behaviour (e.g. Google Analytics).</li>
+        <li><strong class="hl2">Advertising cookies</strong> to serve relevant ads via Google AdSense. These may track activity across other sites to show interest-based ads.</li>
+        <li><strong class="hl2">Functional cookies</strong> to retain in-session preferences. No data is stored beyond your visit.</li>
       </ul>
       <p>You can manage or disable cookies via your browser settings at any time.</p>
 
-      <div class="prose-divider">— ✦ —</div>
+      <div class="prose-divider">✦</div>
 
       <div class="section-title"><span class="section-num">04</span>Advertising (Google AdSense)</div>
       <p>ClashForge uses <strong class="hl">Google AdSense</strong> to display advertisements, helping cover hosting and development costs.</p>
@@ -753,38 +992,38 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
       </ul>
       <div class="info-box"><strong>Note:</strong> ClashForge has no direct control over which specific ads appear. Report inappropriate ads to Google via the AdChoices icon on the ad unit.</div>
 
-      <div class="prose-divider">— ✦ —</div>
+      <div class="prose-divider">✦</div>
 
       <div class="section-title"><span class="section-num">05</span>Third-Party Services</div>
       <ul>
-        <li><strong class="hl2">Google Analytics</strong> — anonymous site usage statistics.</li>
-        <li><strong class="hl2">Google AdSense</strong> — serving advertisements.</li>
-        <li><strong class="hl2">Google Fonts</strong> — web font loading (your IP may be sent to Google servers).</li>
+        <li><strong class="hl2">Google Analytics</strong> anonymous site usage statistics.</li>
+        <li><strong class="hl2">Google AdSense</strong> serving advertisements.</li>
+        <li><strong class="hl2">Google Fonts</strong> web font loading (your IP may be sent to Google servers).</li>
         <li>External links to the official Clash of Clans website and community resources.</li>
       </ul>
       <p>We are not responsible for the privacy practices of third-party services.</p>
 
-      <div class="prose-divider">— ✦ —</div>
+      <div class="prose-divider">✦</div>
 
       <div class="section-title"><span class="section-num">06</span>Children's Privacy</div>
       <p>ClashForge is not directed at children under 13. We do not knowingly collect personal information from children. If you believe a child has submitted data here, contact us and we will delete it promptly.</p>
 
-      <div class="prose-divider">— ✦ —</div>
+      <div class="prose-divider">✦</div>
 
       <div class="section-title"><span class="section-num">07</span>Your Rights</div>
       <p>Under <strong class="hl2">GDPR</strong> (EU) or <strong class="hl2">CCPA</strong> (California), you may have rights over personal data. As ClashForge does not collect personal data directly, most rights apply to data held by Google. Exercise rights via <strong class="hl2">myaccount.google.com</strong>.</p>
 
-      <div class="prose-divider">— ✦ —</div>
+      <div class="prose-divider">✦</div>
 
       <div class="section-title"><span class="section-num">08</span>Data Security</div>
       <p>ClashForge operates no user database. As no personal data is collected or stored on our servers, the risk of a data breach affecting your personal information is minimal.</p>
 
-      <div class="prose-divider">— ✦ —</div>
+      <div class="prose-divider">✦</div>
 
       <div class="section-title"><span class="section-num">09</span>Changes to This Policy</div>
       <p>We may update this policy from time to time. Changes will appear on this page with a revised "Last updated" date. Continued use of ClashForge after changes constitutes acceptance of the updated policy.</p>
 
-      <div class="prose-divider">— ✦ —</div>
+      <div class="prose-divider">✦</div>
 
       <div class="section-title"><span class="section-num">10</span>Contact</div>
       <p>For questions about this Privacy Policy, contact us via the email or contact form on this site. We aim to respond within a reasonable timeframe.</p>
@@ -806,43 +1045,13 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
   </div>
   <div class="blog-hero">
     <h2>Chief's Blog</h2>
-    <p>In-depth guides and strategies written by a real Clash of Clans player. No filler — just knowledge that wins wars and fills storages.</p>
-  </div>
-  <div class="ad-unit">
-    <div class="ad-label">Advertisement</div>
-    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2624592165226987" data-ad-slot="SLOT_ID_B1" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle=window.adsbygoogle||[]).push({})</script>
-  </div>
-  <div class="blog-grid">
-    <div class="blog-card" onclick="showTool('art1')">
-      <div class="blog-card-tag">💰 Farming · Strategy</div>
-      <div class="blog-card-title">The Complete Clash of Clans Farming Guide: Best Strategies to Max Your Resources Fast</div>
-      <div class="blog-card-excerpt">From trophy manipulation to dead base hunting and shield cycling — everything a serious farmer needs to fund back-to-back upgrades without grinding for weeks.</div>
-      <div class="blog-card-meta"><span>March 2025 · ~1,100 words</span><span class="blog-card-read">Read Article</span></div>
-    </div>
-    <div class="blog-card" onclick="showTool('art2')">
-      <div class="blog-card-tag">🏰 Upgrading · Planning</div>
-      <div class="blog-card-title">The Ultimate Upgrade Priority Guide: What to Build First at Every Town Hall</div>
-      <div class="blog-card-excerpt">Stop wasting months on the wrong buildings. This guide covers the optimal upgrade order from TH8 to TH18, aligned with the Chief's Journey and war weight math.</div>
-      <div class="blog-card-meta"><span>March 2025 · ~1,050 words</span><span class="blog-card-read">Read Article</span></div>
-    </div>
-    <div class="blog-card" onclick="showTool('art3')">
-      <div class="blog-card-tag">🐉 TH18 · End Game</div>
-      <div class="blog-card-title">TH18 Tips &amp; Tricks: How to Dominate at the Highest Town Hall Level</div>
-      <div class="blog-card-excerpt">Dragon Duke, Revenge Tower, Super Wizard Tower merges — TH18 is the most complex meta in CoC history. Here's your complete playbook.</div>
-      <div class="blog-card-meta"><span>March 2025 · ~1,050 words</span><span class="blog-card-read">Read Article</span></div>
-    </div>
-  </div>
-  <div class="ad-unit" style="margin-top:18px">
-    <div class="ad-label">Advertisement</div>
-    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2624592165226987" data-ad-slot="SLOT_ID_B2" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle=window.adsbygoogle||[]).push({})</script>
+    <p>In-depth guides and strategies written by a real Clash of Clans player. No filler just knowledge that wins wars and fills storages.</p>
   </div>
 </div>
 </div>
 
 <!-- ══════════════════════════════════════════════
-     ARTICLE 1 — FARMING GUIDE (~1,100 words)
+     ARTICLE 1 FARMING GUIDE (~1,100 words)
 ══════════════════════════════════════════════ -->
 <div id="page-art1" class="tool-page" style="display:block">
 <div style="position:relative;z-index:1;max-width:600px;margin:0 auto;padding:24px 16px 60px">
@@ -857,60 +1066,20 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
       <div class="article-meta">ClashForge · March 2025 · ~1,100 words · Unofficial Fan Guide</div>
     </div>
 
-    <p class="article-lead">Farming in Clash of Clans is the heartbeat of progression. Without a steady flow of Gold, Elixir, and Dark Elixir, your upgrade queue grinds to a halt. Whether you are a casual raider or a dedicated grinder, this guide covers everything you need to maximise loot every single day — from base layout choices to army compositions and trophy management.</p>
+    <p class="article-lead">Farming in Clash of Clans is the heartbeat of progression. Without a steady flow of Gold, Elixir, and Dark Elixir, your upgrade queue grinds to a halt. Whether you are a casual raider or a dedicated grinder, this guide covers everything you need to maximise loot every single day from base layout choices to army compositions and trophy management.</p>
+  <div class="ad-unit"><div class="ad-label">Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2624592165226987" data-ad-slot="3236789652" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div>
 
-    <div class="ad-unit"><div class="ad-label">Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2624592165226987" data-ad-slot="SLOT_ID_A1" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div>
-
-    <div class="article-h2">Understanding the Farming Mindset</div>
-    <p class="article-p">The first thing every serious farmer must understand is that <strong style="color:var(--gold)">loot is tied to trophy range</strong>. The higher you push, the tougher your opponents — and tougher bases often mean less accessible loot. For most players the sweet spot is a trophy range slightly below their natural level, where bases hold large resources but defenses are weaker than what you'd face higher up.</p>
-    <p class="article-p">This technique is called <strong style="color:var(--gold)">trophy dropping</strong>. Intentionally losing a few defenses to land in a lower bracket can dramatically increase loot per raid. Many veteran players do this at the start of each season to farm aggressively before pushing back up for end-of-season rewards.</p>
-
-    <div class="article-stat-grid">
-      <div class="article-stat"><span class="article-stat-val">3–5×</span><span class="article-stat-lbl">More loot in ideal trophy range vs. over-pushed</span></div>
-      <div class="article-stat"><span class="article-stat-val">~15 min</span><span class="article-stat-lbl">Average time per raid including search</span></div>
-      <div class="article-stat"><span class="article-stat-val">200K+</span><span class="article-stat-lbl">Gold/Elixir per raid in a good bracket</span></div>
-      <div class="article-stat"><span class="article-stat-val">1,500–3,000</span><span class="article-stat-lbl">Dark Elixir per raid at TH10+</span></div>
-    </div>
-
-    <div class="article-h2">Best Farming Trophy Ranges by TH Level</div>
-    <p class="article-p">Each Town Hall has a sweet spot. These are general community benchmarks — your ideal range may shift slightly based on league bonus preferences:</p>
-    <ul class="article-ul">
-      <li><strong style="color:var(--text)">TH8–TH9:</strong> Gold I to Crystal III (1,800–2,200 trophies). Bases are full and poorly defended.</li>
-      <li><strong style="color:var(--text)">TH10–TH11:</strong> Crystal I to Master III (2,400–2,800). Strong Elixir and Dark Elixir availability.</li>
-      <li><strong style="color:var(--text)">TH12–TH13:</strong> Master I to Champion III (2,900–3,400). Dead bases with full storages are common.</li>
-      <li><strong style="color:var(--text)">TH14–TH16:</strong> Champion I to Titan III (3,400–4,200). Large storages and frequent dead base spawns.</li>
-      <li><strong style="color:var(--text)">TH17–TH18:</strong> Titan I to Legend (4,400+). Focus on league bonuses alongside raid loot.</li>
-    </ul>
-
-    <div class="article-h2">Hunting Dead Bases</div>
-    <p class="article-p">A <strong style="color:var(--gold)">dead base</strong> is one whose owner has been offline for many hours, letting their collectors and mines fill to maximum capacity. These are the most valuable farming targets because all resources sit exposed in the collectors — not locked inside vaults — making them easy to steal without needing to destroy the full base.</p>
-
-    <div class="article-tip"><span class="article-tip-icon">💡</span><strong>Pro Tip:</strong> When searching for raids, check the Elixir Pumps, Gold Mines, and Dark Elixir Drills first. If they look visually full and overflowing, this is a dead base. Skip any base where all collectors appear empty — the owner was recently active and resources are safely in storage.</div>
-
-    <p class="article-p">On dead base raids you don't need a powerful army. A cheap, fast composition like Barch (Barbarians and Archers) or Giants + Healers can drain the loot in under a minute. Save your heavier armies for war.</p>
-
-    <div class="article-h2">Best Army Compositions for Farming</div>
-    <div class="article-h3">Barch (Barbarians + Archers)</div>
-    <p class="article-p">The classic farming army. Fill half your camps with Barbarians and the rest with Archers. It trains in under 10 minutes, making it ideal for rapid back-to-back raids. Use Barbs to tank while Archers target collectors. Works best on dead bases and open collector layouts up to about TH9.</p>
-
-    <div class="article-h3">Giants + Healers (GiHeal)</div>
-    <p class="article-p">A step up from Barch. Giants act as meat shields while Healers keep them alive and Archers or Wizards clean up collectors. Very effective at TH8–TH10 for farming bases that have slightly more defensive coverage. Trains in about 15–20 minutes — still relatively cheap.</p>
-
-    <div class="article-h3">Super Archers / Super Goblins</div>
-    <p class="article-p">At higher Town Halls, Super Troops become the backbone of efficient farming. Super Goblins deal double damage to resource buildings and move extremely fast. A popular TH12+ composition is 4 Wall Breakers, 10 Super Goblins, 2 Heal Spells, and filler Archers — training in under 10 minutes and highly cost-effective.</p>
-
-    <div class="ad-unit"><div class="ad-label">Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2624592165226987" data-ad-slot="SLOT_ID_A2" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div>
 
     <div class="article-h2">Shield Management and Timing</div>
-    <p class="article-p">When you get attacked and a shield activates, <strong style="color:var(--gold)">you can still attack without breaking your shield</strong> — as long as you are not attacked again during that window. Use shield periods to raid aggressively. Plan your farming sessions around shield cycles: farm hard during a shield, log off when it drops, come back to collect loot and repeat.</p>
+    <p class="article-p">When you get attacked and a shield activates, <strong style="color:var(--gold)">you can still attack without breaking your shield</strong> as long as you are not attacked again during that window. Use shield periods to raid aggressively. Plan your farming sessions around shield cycles: farm hard during a shield, log off when it drops, come back to collect loot and repeat.</p>
     <p class="article-p">Using a powerful Clan Castle troop defensively (a Dragon, a P.E.K.K.A, or a few Balloons) also helps deter casual farmers from targeting your base during vulnerable windows.</p>
 
     <div class="article-h2">Optimising Your Farming Base Layout</div>
     <p class="article-p">A <strong style="color:var(--gold)">hybrid base</strong> is the best layout for farming. Unlike a pure trophy base, a hybrid design protects both the Town Hall and the Storages, while letting Collectors and Mines sit slightly outside the main wall ring. This means attackers can drain your collectors but will struggle to reach your main vault loot.</p>
     <ul class="article-ul">
-      <li>Place your Town Hall centrally — losing it generates a shield which protects your base while you attack.</li>
+      <li>Place your Town Hall centrally losing it generates a shield which protects your base while you attack.</li>
       <li>Surround Elixir Storage, Gold Storage, and Dark Elixir Storage with your strongest defenses.</li>
-      <li>Let Collectors sit slightly outside the inner wall ring — concede that 10–15% collector loot rather than letting attackers fight into your core.</li>
+      <li>Let Collectors sit slightly outside the inner wall ring concede that 10–15% collector loot rather than letting attackers fight into your core.</li>
       <li>Keep your Clan Castle filled with a defensive troop that activates when attackers get close.</li>
     </ul>
 
@@ -918,16 +1087,16 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
     <p class="article-p">Every Multiplayer league from Bronze to Legend grants a loot bonus per win. At higher TH levels, particularly TH14+, this bonus can rival the in-base loot per raid. At Titan III, a single win bonus can deliver 300,000+ Gold and Elixir on top of what you steal. For serious farmers at the top TH levels, the league bonus is non-negotiable income.</p>
 
     <div class="article-h2">Dark Elixir Farming at Higher Levels</div>
-    <p class="article-p">Dark Elixir is the most critical and scarce resource at TH9 and above — heroes consume it constantly. The best DE farming strategies focus on two sources: drilling opponents' full Dark Elixir Drills that sit outside walls, and raiding bases where the Dark Elixir Storage is accessible without too much penetration into the base.</p>
-    <p class="article-p">At TH10+, a small Giant + Goblin army is better than Barch for penetrating into the base to reach the Dark Elixir Storage. Always check whether the DE Storage is reachable before committing your army — if it is behind multiple layers of defenses, skip the base and find a better target.</p>
+    <p class="article-p">Dark Elixir is the most critical and scarce resource at TH9 and above heroes consume it constantly. The best DE farming strategies focus on two sources: drilling opponents' full Dark Elixir Drills that sit outside walls, and raiding bases where the Dark Elixir Storage is accessible without too much penetration into the base.</p>
+    <p class="article-p">At TH10+, a small Giant + Goblin army is better than Barch for penetrating into the base to reach the Dark Elixir Storage. Always check whether the DE Storage is reachable before committing your army if it is behind multiple layers of defenses, skip the base and find a better target.</p>
 
     <div class="article-h2">Final Farming Checklist</div>
     <ul class="article-ul">
       <li>Drop to your ideal farming trophy bracket at the start of each week.</li>
-      <li>Always hunt dead bases — skip any base with empty collectors.</li>
-      <li>Use cheap, fast-training armies for farming — save expensive armies for war.</li>
+      <li>Always hunt dead bases skip any base with empty collectors.</li>
+      <li>Use cheap, fast-training armies for farming save expensive armies for war.</li>
       <li>Never break your shield to attack unless you have a full army queued and ready.</li>
-      <li>Max your Collectors and Drills — passive income adds up significantly over days.</li>
+      <li>Max your Collectors and Drills passive income adds up significantly over days.</li>
       <li>Keep your Clan Castle filled with a defensive troop to deter easy attacks on your base.</li>
       <li>Use the ClashForge Farming Calculator to know exactly how many raids you need per upgrade.</li>
     </ul>
@@ -946,7 +1115,7 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
 </div>
 
 <!-- ══════════════════════════════════════════════
-     ARTICLE 2 — UPGRADE PRIORITY GUIDE (~1,050 words)
+     ARTICLE 2 UPGRADE PRIORITY GUIDE (~1,050 words)
 ══════════════════════════════════════════════ -->
 <div id="page-art2" class="tool-page" style="display:block">
 <div style="position:relative;z-index:1;max-width:600px;margin:0 auto;padding:24px 16px 60px">
@@ -961,68 +1130,34 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
       <div class="article-meta">ClashForge · March 2025 · ~1,050 words · Unofficial Fan Guide</div>
     </div>
 
-    <p class="article-lead">One of the most common mistakes new Clash of Clans players make is upgrading the wrong buildings first. Maxing every wall before touching heroes, or dumping resources into low-impact buildings, can set your progression back by months. This guide gives you the clearest possible upgrade priority framework — from TH8 all the way to TH18 — so every Builder hour is well spent.</p>
+    <p class="article-lead">One of the most common mistakes new Clash of Clans players make is upgrading the wrong buildings first. Maxing every wall before touching heroes, or dumping resources into low-impact buildings, can set your progression back by months. This guide gives you the clearest possible upgrade priority framework from TH8 all the way to TH18 so every Builder hour is well spent.</p>
+  <div class="ad-unit"><div class="ad-label">Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2624592165226987" data-ad-slot="3236789652" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div>
 
-    <div class="ad-unit"><div class="ad-label">Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2624592165226987" data-ad-slot="SLOT_ID_A3" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div>
 
-    <div class="article-h2">The Core Principle: Offense Enables Everything</div>
-    <p class="article-p">Clash of Clans rewards aggressive progression. Your <strong style="color:var(--gold)">heroes, Clan Castle, and key offensive unlocks</strong> generate far more value — in war, farming, and trophy pushing — than even the best defensive building at the same stage. A TH10 with Level 40 heroes will outperform a TH10 with maxed defenses and Level 5 heroes every single time.</p>
-    <p class="article-p">This is why Supercell's own <strong style="color:var(--gold)">Chief's Journey</strong> highlights offensive milestones as priorities. Follow those milestones and you'll have a well-rounded base that performs in war, Legend League, and casual play alike.</p>
+    <div class="article-h2">TH11 Grand Warden and Eagle Artillery</div>
+    <p class="article-p">TH11 introduces two game-changers: the <strong style="color:var(--gold)">Grand Warden</strong> (your third hero) and the <strong style="color:var(--gold)">Eagle Artillery</strong> (the most powerful defense at this level). Build both on day one. The Eagle Artillery's passive ability triggering after 100 troops are deployed is a raid-ender if left unchecked by attackers.</p>
+    <p class="article-p">Begin levelling the Grand Warden immediately. His aura ability that temporarily makes nearby troops invincible is the single biggest attack multiplier in Clash of Clans. Every single Warden level is meaningful do not leave him idle.</p>
 
-    <div class="article-h2">Universal Priority Rules (Any Town Hall)</div>
-    <ul class="article-ul">
-      <li><strong style="color:var(--text)">Heroes first, always.</strong> Every hero level scales exponentially in value. Never leave heroes idle — the moment they finish upgrading, queue the next level immediately.</li>
-      <li><strong style="color:var(--text)">Unlock new buildings before upgrading existing ones.</strong> A new Air Defense is worth more than upgrading an existing one by one level. New unlocks expand your capabilities; marginal upgrades offer diminishing returns.</li>
-      <li><strong style="color:var(--text)">Prioritise Chief's Journey milestones.</strong> These flags exist for a reason — they represent the highest-impact upgrades at each Town Hall level, chosen by the people who designed the game.</li>
-      <li><strong style="color:var(--text)">Walls last.</strong> Walls require enormous resources but have minimal impact on attacking power. Use excess Gold or Elixir on walls only when all other upgrades are running.</li>
-      <li><strong style="color:var(--text)">Never stop all five Builders.</strong> If you run out of resources for a major upgrade, queue a cheaper building or a trap to keep Builders active at all times. Idle Builders are wasted time.</li>
-    </ul>
-
-    <div class="article-h2">TH8 — Foundations of Warfare</div>
-    <p class="article-p">TH8 is where the game truly begins. The Dark Elixir economy opens fully, and you unlock the Blacksmith, Golem, Witch, and P.E.K.K.A. Your top priorities at TH8:</p>
-    <ul class="article-ul">
-      <li>Blacksmith — unlocks Hero Equipment, a massive immediate power spike.</li>
-      <li>Air Defenses — TH8 is Dragon-dominated in war. All four must be maxed before your first war attack.</li>
-      <li>Barbarian King — push him to at least Level 10 before considering TH9.</li>
-      <li>Dark Spell Factory — Earthquake and Poison spells dramatically change attack options.</li>
-    </ul>
-
-    <div class="article-h2">TH9 — The Archer Queen Changes Everything</div>
-    <p class="article-p">The single most impactful unlock in all of Clash of Clans happens at TH9: the <strong style="color:var(--gold)">Archer Queen</strong>. Build her the moment you upgrade your Town Hall. She fundamentally changes how your base attacks and defends. Simultaneously, build both X-Bows — they add significant defensive DPS and war weight.</p>
-    <p class="article-p">From TH9 onward, every piece of Dark Elixir you earn should go directly into hero levels. Max your Dark Elixir Drills to ensure passive income keeps heroes sleeping as little as possible.</p>
-
-    <div class="article-tip"><span class="article-tip-icon">⚠️</span><strong>Common TH9 Mistake:</strong> Many players rush to TH10 with heroes at Level 10/10. Entering TH10 with weak heroes means struggling in war for months. Aim for at least BK 20 / AQ 20 before upgrading to TH10. Many competitive players push to 30/30 before moving on.</div>
-
-    <div class="article-h2">TH10 — Infernos and the War Machine</div>
-    <p class="article-p">Inferno Towers define TH10 defense. Build both immediately and begin their upgrades before anything else. They add massive war weight — which is intentional. TH10 is where you are expected to pull your full weight in clan wars and begin contributing meaningfully to Legend League performance.</p>
-    <p class="article-p">Your hero target heading into TH11 should be BK 40 / AQ 40. These levels are the community benchmark for a competitive TH10 and will ensure you can 3-star in war without becoming a liability to your clan.</p>
-
-    <div class="ad-unit"><div class="ad-label">Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2624592165226987" data-ad-slot="SLOT_ID_A4" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div>
-
-    <div class="article-h2">TH11 — Grand Warden and Eagle Artillery</div>
-    <p class="article-p">TH11 introduces two game-changers: the <strong style="color:var(--gold)">Grand Warden</strong> (your third hero) and the <strong style="color:var(--gold)">Eagle Artillery</strong> (the most powerful defense at this level). Build both on day one. The Eagle Artillery's passive ability — triggering after 100 troops are deployed — is a raid-ender if left unchecked by attackers.</p>
-    <p class="article-p">Begin levelling the Grand Warden immediately. His aura ability that temporarily makes nearby troops invincible is the single biggest attack multiplier in Clash of Clans. Every single Warden level is meaningful — do not leave him idle.</p>
-
-    <div class="article-h2">TH12 — The Siege Workshop and Hero Marathon Begins</div>
+    <div class="article-h2">TH12 The Siege Workshop and Hero Marathon Begins</div>
     <p class="article-p">TH12 brings the Giga Tesla (a Town Hall-mounted weapon that releases a death bomb), and access to the Workshop for crafting Siege Machines. Unlock the Workshop first so your clanmates can start benefiting from your Siege Machine production. Then focus on the Giga Tesla upgrades.</p>
     <p class="article-p">Hero targets for a well-prepared TH12: BK 65 / AQ 65 / GW 40. This is the threshold at which all three heroes can pull their weight in TH12 war attacks and push through TH12 bases effectively.</p>
 
-    <div class="article-h2">TH13 — Royal Champion and Scattershots</div>
-    <p class="article-p">TH13 gives you a fourth hero — the <strong style="color:var(--gold)">Royal Champion</strong> — and two Scattershots, devastating splash-damage defenses that hit air and ground simultaneously. Both Scattershots should be built and begin upgrading on Day 1. The Royal Champion's unique ability to target defenses makes her essential for surgical attack strategies.</p>
-    <p class="article-p">Managing four heroes simultaneously is a Dark Elixir challenge. Prioritise the Archer Queen and Royal Champion over the Barbarian King at TH13 — their abilities have higher attack impact at this level. Target: BK 75 / AQ 75 / GW 50 / RC 25 before TH14.</p>
+    <div class="article-h2">TH13 Royal Champion and Scattershots</div>
+    <p class="article-p">TH13 gives you a fourth hero the <strong style="color:var(--gold)">Royal Champion</strong> and two Scattershots, devastating splash-damage defenses that hit air and ground simultaneously. Both Scattershots should be built and begin upgrading on Day 1. The Royal Champion's unique ability to target defenses makes her essential for surgical attack strategies.</p>
+    <p class="article-p">Managing four heroes simultaneously is a Dark Elixir challenge. Prioritise the Archer Queen and Royal Champion over the Barbarian King at TH13 their abilities have higher attack impact at this level. Target: BK 75 / AQ 75 / GW 50 / RC 25 before TH14.</p>
 
-    <div class="article-h2">TH14 to TH18 — Pet House, Merges, and End Game</div>
-    <p class="article-p">TH14 introduces the Pet House — possibly the biggest single power spike in the entire game after heroes. Pets assigned to heroes provide always-on passive bonuses and powerful active abilities. Unlock the Pet House immediately and begin upgrading it. At TH15 you unlock the Minion Prince (fifth hero), at TH18 the Dragon Duke (sixth hero). The same rule applies to all new heroes: build them first, level them continuously, never leave them idle.</p>
+    <div class="article-h2">TH14 to TH18 Pet House, Merges, and End Game</div>
+    <p class="article-p">TH14 introduces the Pet House possibly the biggest single power spike in the entire game after heroes. Pets assigned to heroes provide always-on passive bonuses and powerful active abilities. Unlock the Pet House immediately and begin upgrading it. At TH15 you unlock the Minion Prince (fifth hero), at TH18 the Dragon Duke (sixth hero). The same rule applies to all new heroes: build them first, level them continuously, never leave them idle.</p>
     <p class="article-p">Use the ClashForge Hero Tracker and Base Maxing Guide to get the exact priority list and Dark Elixir estimates for your current Town Hall level. Planning your resource allocation removes the guesswork and keeps your progression on the fastest possible track.</p>
 
     <div class="article-h2">Upgrade Priority Summary Table</div>
     <ul class="article-ul">
-      <li><strong style="color:var(--text)">Priority 1:</strong> Heroes — never idle, queue next level the moment they finish.</li>
-      <li><strong style="color:var(--text)">Priority 2:</strong> New Chief's Journey unlocks — always before existing building upgrades.</li>
-      <li><strong style="color:var(--text)">Priority 3:</strong> Key defenses — Air Defense, Inferno, Eagle Artillery, Scattershot, Monolith.</li>
-      <li><strong style="color:var(--text)">Priority 4:</strong> Laboratory — queue troop upgrades constantly, they run in parallel.</li>
-      <li><strong style="color:var(--text)">Priority 5:</strong> Storages and resource buildings — upgrade when Builders are available.</li>
-      <li><strong style="color:var(--text)">Priority 6:</strong> Walls — last, use excess Gold/Elixir only when everything else is running.</li>
+      <li><strong style="color:var(--text)">Priority 1:</strong> Heroes never idle, queue next level the moment they finish.</li>
+      <li><strong style="color:var(--text)">Priority 2:</strong> New Chief's Journey unlocks always before existing building upgrades.</li>
+      <li><strong style="color:var(--text)">Priority 3:</strong> Key defenses Air Defense, Inferno, Eagle Artillery, Scattershot, Monolith.</li>
+      <li><strong style="color:var(--text)">Priority 4:</strong> Laboratory queue troop upgrades constantly, they run in parallel.</li>
+      <li><strong style="color:var(--text)">Priority 5:</strong> Storages and resource buildings upgrade when Builders are available.</li>
+      <li><strong style="color:var(--text)">Priority 6:</strong> Walls last, use excess Gold/Elixir only when everything else is running.</li>
     </ul>
 
     <div class="article-cta">
@@ -1039,7 +1174,7 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
 </div>
 
 <!-- ══════════════════════════════════════════════
-     ARTICLE 3 — TH18 TIPS (~1,050 words)
+     ARTICLE 3 TH18 TIPS (~1,050 words)
 ══════════════════════════════════════════════ -->
 <div id="page-art3" class="tool-page" style="display:block">
 <div style="position:relative;z-index:1;max-width:600px;margin:0 auto;padding:24px 16px 60px">
@@ -1054,56 +1189,19 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
       <div class="article-meta">ClashForge · March 2025 · ~1,050 words · Unofficial Fan Guide</div>
     </div>
 
-    <p class="article-lead">Town Hall 18 is the current pinnacle of Clash of Clans. It brings more complexity than any previous level — six heroes, the Dragon Duke, the Revenge Tower, Super Wizard Tower merges, new pet unlocks, and an entirely new tier of hero equipment. If you have just hit TH18, this guide will walk you through exactly what to prioritise, how to adapt your attack style, and how to build a base that genuinely resists the strongest attacks in the game.</p>
+    <p class="article-lead">Town Hall 18 is the current pinnacle of Clash of Clans. It brings more complexity than any previous level six heroes, the Dragon Duke, the Revenge Tower, Super Wizard Tower merges, new pet unlocks, and an entirely new tier of hero equipment. If you have just hit TH18, this guide will walk you through exactly what to prioritise, how to adapt your attack style, and how to build a base that genuinely resists the strongest attacks in the game.</p>
+  <div class="ad-unit"><div class="ad-label">Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2624592165226987" data-ad-slot="3236789652" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div>
 
-    <div class="ad-unit"><div class="ad-label">Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2624592165226987" data-ad-slot="SLOT_ID_A5" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div>
-
-    <div class="article-h2">What's New at TH18</div>
-    <p class="article-p">Town Hall 18 introduces three major additions that completely reshape offense and defense:</p>
-    <ul class="article-ul">
-      <li><strong style="color:var(--text)">Dragon Duke (🐉):</strong> The sixth hero. A flying unit that provides aerial tanking and powers up air attack synergies through his passive aura and devastating active ability. He is immediately one of the most impactful heroes in the game.</li>
-      <li><strong style="color:var(--text)">Revenge Tower:</strong> A new defense that ramps up damage the longer it survives during an attack. Against slow ground armies or misplaced heroes, a maxed Revenge Tower can single-handedly end a raid. It must be built and upgraded immediately.</li>
-      <li><strong style="color:var(--text)">Super Wizard Tower Merge:</strong> Your two highest-level Wizard Towers can be permanently merged into a Super Wizard Tower — a devastating chain-damage defense that melts through grouped troops and Bat Spells simultaneously.</li>
-    </ul>
-
-    <div class="article-h2">First Week at TH18: Priority Order</div>
-    <p class="article-p">The moment you upgrade to TH18, follow this order without deviation:</p>
-    <ul class="article-ul">
-      <li>Build the Revenge Tower immediately — it contributes defensive power from day one.</li>
-      <li>Unlock and begin levelling the Dragon Duke — all Dark Elixir saved for the TH18 upgrade should funnel into him right away.</li>
-      <li>Merge your Super Wizard Towers — check the in-game Wizard Tower level requirements and get there as quickly as possible if not already met.</li>
-      <li>Continue upgrading all existing five heroes in parallel — never let any hero sit idle.</li>
-    </ul>
-
-    <div class="article-stat-grid">
-      <div class="article-stat"><span class="article-stat-val">6</span><span class="article-stat-lbl">Heroes available at TH18</span></div>
-      <div class="article-stat"><span class="article-stat-val">105/105</span><span class="article-stat-lbl">BK / AQ max levels</span></div>
-      <div class="article-stat"><span class="article-stat-val">25</span><span class="article-stat-lbl">Dragon Duke max level</span></div>
-      <div class="article-stat"><span class="article-stat-val">2×</span><span class="article-stat-lbl">Super Wizard Tower merges</span></div>
-    </div>
-
-    <div class="article-h2">Best Attack Strategies at TH18</div>
-    <div class="article-h3">Super Witch + Bat Spell (Super Witch Smash)</div>
-    <p class="article-p">The Super Witch Smash has dominated the high-TH meta for multiple seasons. Super Witches summon large numbers of Skeletons that overwhelm defenses through sheer numbers. The core is a Bat Spell barrage — dozens of Bats released into the base once defenses are distracted — which can shut down entire defensive sections in seconds. The Dragon Duke as an aerial tank at TH18 makes this strategy even more effective, absorbing air defense fire that would otherwise shred the Bat Spells on arrival.</p>
-    <p class="article-p">Typical composition: 10 Super Witches, 5–6 Bat Spells, 2 Rage Spells, 1 Haste Spell, 2 Freeze Spells, Wall Wrecker Siege Machine.</p>
-
-    <div class="article-h3">Dragon + Balloon Air Blitz</div>
-    <p class="article-p">The classic air attack gets significantly stronger at TH18 with the Dragon Duke. Deploy the Duke to absorb Air Defense fire while your Dragons spread across the base. Balloons follow behind to clean up defenses as they fall. The key is Freeze Spell timing on Multi-Target Inferno Towers — freeze them the moment they begin targeting your Dragons. With Warden ability active, a Rage Spell, and the Duke tanking, three stars are very achievable against most TH18 bases with good deployment.</p>
-
-    <div class="article-h3">Root Rider Rush</div>
-    <p class="article-p">The Root Rider is a ground troop that phases through walls entirely, making it one of the most unique troops in the game. A Root Rider rush uses 8–10 Root Riders supported by Healers and a Grand Warden walk, creating a nearly unstoppable funnel that drives straight through the base ignoring wall compartments. This strategy particularly excels against heavily-walled ring bases and asymmetric designs that rely on walls to stall ground armies.</p>
-
-    <div class="ad-unit"><div class="ad-label">Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2624592165226987" data-ad-slot="SLOT_ID_A6" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div>
 
     <div class="article-h2">Building a Strong TH18 Defense</div>
     <div class="article-h3">Revenge Tower Placement</div>
-    <p class="article-p">The Revenge Tower must be placed near the core of your base, surrounded by other defenses, to give it maximum survival time. The longer it lives, the more damage it accumulates — a Revenge Tower that survives 30+ seconds will have accumulated enough DPS to seriously threaten hero groups and slow down even the best-planned attacks. Protect it with a nearby Air Defense and Inferno Tower to discourage air or hero-kill squads from targeting it early.</p>
+    <p class="article-p">The Revenge Tower must be placed near the core of your base, surrounded by other defenses, to give it maximum survival time. The longer it lives, the more damage it accumulates a Revenge Tower that survives 30+ seconds will have accumulated enough DPS to seriously threaten hero groups and slow down even the best-planned attacks. Protect it with a nearby Air Defense and Inferno Tower to discourage air or hero-kill squads from targeting it early.</p>
 
     <div class="article-h3">Super Wizard Tower Positioning</div>
-    <p class="article-p">The merged Super Wizard Tower should cover the main traffic corridors — the paths attacking troops most commonly funnel through based on your base design. Its chain damage punishes grouped troops and Bat Spell clusters severely. Position it so its range overlaps with your Monolith and at least one Inferno Tower for maximum combined burst damage on arriving armies.</p>
+    <p class="article-p">The merged Super Wizard Tower should cover the main traffic corridors the paths attacking troops most commonly funnel through based on your base design. Its chain damage punishes grouped troops and Bat Spell clusters severely. Position it so its range overlaps with your Monolith and at least one Inferno Tower for maximum combined burst damage on arriving armies.</p>
 
     <div class="article-h3">Monolith and Scattershot Coverage</div>
-    <p class="article-p">The Monolith from TH15 deals percentage-based damage, making it devastating against high-HP tanks. Position it centrally with a wide field of view so it engages armies as early as possible during the attack. Pair it near a Multi-Target Inferno Tower — together they apply both burst and sustained damage to the same target, shredding tanks faster than either building can alone. Scattershots should cover the outside perimeter where Balloons, Dragons, and Giants typically approach.</p>
+    <p class="article-p">The Monolith from TH15 deals percentage-based damage, making it devastating against high-HP tanks. Position it centrally with a wide field of view so it engages armies as early as possible during the attack. Pair it near a Multi-Target Inferno Tower together they apply both burst and sustained damage to the same target, shredding tanks faster than either building can alone. Scattershots should cover the outside perimeter where Balloons, Dragons, and Giants typically approach.</p>
 
     <div class="article-h2">Hero Equipment Priorities at TH18</div>
     <p class="article-p">With six heroes and a full equipment loadout, TH18 equipment decisions are among the most impactful strategic choices you'll make. Invest Starry Ores in this priority order:</p>
@@ -1111,13 +1209,13 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
       <li><strong style="color:var(--text)">Eternal Tome (GW):</strong> Best-in-slot for almost every attack. The Warden's invincibility window at max level is the most powerful ability in the game.</li>
       <li><strong style="color:var(--text)">Frozen Arrow (AQ):</strong> The freeze on the Archer Queen's walk makes her far more survivable in dangerous TH18 cores. Essential for hero-kill and Queen walk strategies.</li>
       <li><strong style="color:var(--text)">Giant Gauntlet (BK):</strong> Transforms the Barbarian King into a super-tank capable of absorbing punishment that would eliminate him in seconds at stock equipment levels.</li>
-      <li><strong style="color:var(--text)">Rocket Spear (RC):</strong> The Royal Champion's Epic spear causes devastating burst damage on her ability — essential for surgical war attacks at this level.</li>
+      <li><strong style="color:var(--text)">Rocket Spear (RC):</strong> The Royal Champion's Epic spear causes devastating burst damage on her ability essential for surgical war attacks at this level.</li>
     </ul>
 
     <div class="article-tip"><span class="article-tip-icon">⚒️</span><strong>Ore Management:</strong> Starry Ores are the bottleneck for Epic equipment at TH18. Do not spread them thin across multiple pieces. Pick your single most-used Epic equipment and max it fully before touching the next one. Use the ClashForge Equip & Ores Calculator to plan exactly how many Ores each upgrade path requires.</div>
 
     <div class="article-h2">Competing in Legend League at TH18</div>
-    <p class="article-p">Most serious TH18 players compete in Legend League, where you receive a fixed number of attacks and defenses per day and accumulate trophies for end-of-season rankings and substantial loot bonuses. Legend League demands a different mindset than regular multiplayer — consistency matters more than experimentation.</p>
+    <p class="article-p">Most serious TH18 players compete in Legend League, where you receive a fixed number of attacks and defenses per day and accumulate trophies for end-of-season rankings and substantial loot bonuses. Legend League demands a different mindset than regular multiplayer consistency matters more than experimentation.</p>
     <p class="article-p">Practice your two or three strongest attack strategies in regular Multiplayer until they are reliable enough to execute under Legend League pressure. A strategy that delivers consistent 2.5–3 stars every attack will always outperform one that delivers 3 stars occasionally but collapses unpredictably. Record your replays daily, identify what broke down, and refine your deployment until execution is second nature.</p>
 
     <div class="article-h2">TH18 Quick-Reference Checklist</div>
@@ -1125,8 +1223,8 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
       <li>Build Revenge Tower immediately upon upgrading to TH18.</li>
       <li>Unlock Dragon Duke and start levelling on Day 1 with all saved Dark Elixir.</li>
       <li>Merge Super Wizard Towers as soon as Wizard Tower level requirements are met.</li>
-      <li>Keep all 6 heroes upgrading simultaneously — never leave any hero idle.</li>
-      <li>Focus Starry Ore investment on 1–2 Epic equipment pieces only — never spread thin.</li>
+      <li>Keep all 6 heroes upgrading simultaneously never leave any hero idle.</li>
+      <li>Focus Starry Ore investment on 1–2 Epic equipment pieces only never spread thin.</li>
       <li>Practise 2–3 attack strategies in regular Multiplayer before committing to Legend League.</li>
       <li>Place Revenge Tower centrally so it ramps up damage before being reached by attackers.</li>
       <li>Track all hero upgrade costs with the ClashForge Hero Tracker to plan your Dark Elixir roadmap.</li>
@@ -1147,16 +1245,6 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
 
 <!-- ══════════ FOOTER ══════════ -->
 <footer class="site-footer">
-  <!-- AD #9 · Footer sticky zone — every user reaches this on scroll -->
-  <div class="ad-unit" style="max-width:560px;margin:0 auto 18px;border:none;background:none">
-    <div class="ad-label">Advertisement</div>
-    <ins class="adsbygoogle" style="display:block"
-         data-ad-client="ca-pub-2624592165226987"
-         data-ad-slot="SLOT_ID_9"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle=window.adsbygoogle||[]).push({})</script>
-  </div>
 
   <div class="footer-logo">⚔ ClashForge</div>
   <div class="footer-nav">
@@ -1164,6 +1252,7 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
     <button class="footer-link" onclick="showTool('blog')">Blog</button>
     <button class="footer-link" onclick="showTool('about')">About Us</button>
     <button class="footer-link" onclick="showTool('policy')">Privacy Policy</button>
+    <button class="footer-link" onclick="navGo('support')" style="color:var(--amber)">Support</button>
   </div>
   <p class="footer-disclaimer">
     <strong>ClashForge is an unofficial fan guide and is not affiliated with, endorsed by, or connected to Supercell Oy.</strong><br>
@@ -1175,20 +1264,67 @@ select{font-size:1rem;cursor:pointer;appearance:none;padding:10px;text-align:lef
 
 <script>
 // ── NAVIGATION ──
-function setActivePage(pageId,navIndex){
-  document.querySelectorAll('.tool-page').forEach(p=>p.classList.remove('active','is-visible'));
-  const t=document.getElementById(pageId);
-  if(t){t.classList.add('active');requestAnimationFrame(()=>t.classList.add('is-visible'));}
-  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-  const tab=document.querySelectorAll('.nav-tab')[navIndex];
-  if(tab)tab.classList.add('active');
+let gpDiscount = 20;
+
+function toggleToolsMenu() {
+  const btn  = document.getElementById('nav-tools-btn');
+  const menu = document.getElementById('nav-tools-menu');
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
 }
-function showHome(){setActivePage('page-home',0);window.scrollTo({top:0,behavior:'smooth'});}
-function showTool(id){
-  const m={build:1,hero:2,farm:3,war:4,base:5,equip:6,blog:7,about:8,policy:9,art1:7,art2:7,art3:7};
-  setActivePage('page-'+id,m[id]||7);
-  window.scrollTo({top:0,behavior:'smooth'});
-  if(id==='equip')eqPopulateEquips();
+
+document.addEventListener('click', function(e) {
+  const wrap = document.getElementById('nav-tools-wrap');
+  if(wrap && !wrap.contains(e.target)) {
+    document.getElementById('nav-tools-btn').classList.remove('open');
+    document.getElementById('nav-tools-menu').classList.remove('open');
+  }
+});
+
+function navGo(id) {
+  // Close dropdown
+  document.getElementById('nav-tools-btn').classList.remove('open');
+  document.getElementById('nav-tools-menu').classList.remove('open');
+
+  // Highlight plain links
+  ['home','blog','about','policy','support'].forEach(k => {
+    const el = document.getElementById('nl-'+k);
+    if(el) el.classList.toggle('active', k === id);
+  });
+
+  // Highlight dropdown items
+  document.querySelectorAll('.nav-dropdown-item').forEach(el => {
+    el.classList.toggle('active', el.textContent.toLowerCase().trim() === id ||
+      (id==='heroes' && el.textContent.trim()==='Heroes') ||
+      (id==='build'  && el.textContent.trim()==='Build')
+    );
+  });
+
+  showTool(id);
+}
+
+function setActivePage(pageId, navIndex) {
+  document.querySelectorAll('.tool-page').forEach(p => p.classList.remove('active','is-visible'));
+  const t = document.getElementById(pageId);
+  if(t) { t.classList.add('active'); requestAnimationFrame(() => t.classList.add('is-visible')); }
+}
+
+function showHome() {
+  setActivePage('page-home', 0);
+  window.scrollTo({top:0, behavior:'smooth'});
+  ['home','blog','about','policy','support'].forEach(k => {
+    const el = document.getElementById('nl-'+k);
+    if(el) el.classList.toggle('active', k === 'home');
+  });
+  document.querySelectorAll('.nav-dropdown-item').forEach(el => el.classList.remove('active'));
+}
+
+function showTool(id) {
+  const toolPages = ['build','hero','farm','war','base','equip','lab'];
+  const isToolPage = toolPages.includes(id) || ['art1','art2','art3'].includes(id);
+  setActivePage('page-'+id, 0);
+  window.scrollTo({top:0, behavior:'smooth'});
+  if(id === 'equip') eqPopulateEquips();
 }
 
 // ── UTILS ──
@@ -1224,23 +1360,114 @@ function buildCalc(){
 }
 
 // ── HERO TRACKER ──
-const HEROES=[
-  {name:'Barbarian King',emoji:'👑',maxLvl:105,dePerLvl:5500,hoursPerLvl:7},
-  {name:'Archer Queen',emoji:'🏹',maxLvl:105,dePerLvl:6000,hoursPerLvl:7},
-  {name:'Grand Warden',emoji:'🔵',maxLvl:80,dePerLvl:0,hoursPerLvl:8,elixPerLvl:7500000},
-  {name:'Royal Champion',emoji:'⚡',maxLvl:55,dePerLvl:6500,hoursPerLvl:8},
-  {name:'Minion Prince',emoji:'🦇',maxLvl:95,dePerLvl:4500,hoursPerLvl:6},
-  {name:'Dragon Duke',emoji:'🐉',maxLvl:25,dePerLvl:8000,hoursPerLvl:8}
+// Tiered cost data per hero [upToLevel, costPerLevel]
+const HERO_TIERS = {
+  bk: [[10,5000],[20,20000],[30,50000],[40,90000],[50,130000],[60,170000],[70,210000],[80,260000],[90,310000],[100,365000],[105,430000]],
+  aq: [[10,5000],[20,22000],[30,55000],[40,95000],[50,135000],[60,175000],[70,220000],[80,270000],[90,320000],[100,375000],[105,440000]],
+  gw: [[10,6000000],[20,8000000],[30,10000000],[40,12000000],[50,14000000],[60,16000000],[70,18000000],[80,20000000]],
+  rc: [[10,80000],[20,150000],[30,220000],[40,290000],[50,340000],[55,390000]],
+  mp: [[10,30000],[20,80000],[30,130000],[40,180000],[50,230000],[60,270000],[70,310000],[80,340000],[90,370000],[95,400000]],
+  dd: [[5,50000],[10,120000],[15,200000],[20,300000],[25,420000]]
+};
+
+// Hero definitions with max level per TH
+const HEROES = [
+  {id:'bk', name:'Barbarian King', emoji:'👑', thUnlock:7,  isElixir:false,
+   maxByTh:{7:5,8:10,9:30,10:40,11:50,12:65,13:75,14:80,15:90,16:95,17:100,18:105}},
+  {id:'aq', name:'Archer Queen',   emoji:'🏹', thUnlock:8,  isElixir:false,
+   maxByTh:{8:5,9:30,10:40,11:50,12:65,13:75,14:80,15:90,16:95,17:100,18:105}},
+  {id:'gw', name:'Grand Warden',   emoji:'🔵', thUnlock:11, isElixir:true,
+   maxByTh:{11:20,12:40,13:50,14:55,15:65,16:70,17:75,18:80}},
+  {id:'rc', name:'Royal Champion', emoji:'⚡', thUnlock:13, isElixir:false,
+   maxByTh:{13:25,14:30,15:40,16:45,17:50,18:55}},
+  {id:'mp', name:'Minion Prince',  emoji:'🦇', thUnlock:15, isElixir:false,
+   maxByTh:{15:10,16:30,17:70,18:95}},
+  {id:'dd', name:'Dragon Duke',    emoji:'🐉', thUnlock:18, isElixir:false,
+   maxByTh:{18:25}}
 ];
-let hIdx=0;
-function hSelectHero(i,el){hIdx=i;const h=HEROES[i];document.querySelectorAll('.hero-tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');document.getElementById('h-emoji').textContent=h.emoji;document.getElementById('h-name').textContent=h.name;document.getElementById('h-max').textContent='Max Level: '+h.maxLvl+' · TH 18';document.getElementById('h-tar').placeholder=h.maxLvl;hCalc();}
-function hCalc(){
-  const h=HEROES[hIdx],cur=parseInt(document.getElementById('h-cur').value)||0,tar=parseInt(document.getElementById('h-tar').value)||0;
-  const res=document.getElementById('h-result'),pw=document.getElementById('h-prog-wrap');
-  if(!tar||tar<=cur||tar>h.maxLvl){res.classList.remove('show');pw.style.display='none';return;}
-  const lvls=tar-cur,de=h.dePerLvl?lvls*h.dePerLvl:0,el=h.elixPerLvl?lvls*h.elixPerLvl:0,ts=lvls*h.hoursPerLvl*3600,pct=Math.round((cur/h.maxLvl)*100);
-  pw.style.display='block';document.getElementById('h-prog-fill').style.width=pct+'%';document.getElementById('h-prog-pct').textContent=pct+'%';document.getElementById('h-prog-lbl').textContent='Lv '+cur+' / '+h.maxLvl;
-  document.getElementById('h-res-big').textContent=lvls+' levels';document.getElementById('h-levels').textContent=cur+' → '+tar;document.getElementById('h-de').textContent=de?fmtNum(de)+' DE':fmtNum(el)+' Elixir';document.getElementById('h-time').textContent=fmt(ts);document.getElementById('h-hero-name').textContent=h.name;res.classList.add('show');
+
+let hIdx = 0;
+let hCurrentTh = 0;
+
+function heroLevelCost(heroId, level) {
+  for(const [upTo, cost] of HERO_TIERS[heroId]) {
+    if(level <= upTo) return cost;
+  }
+  return HERO_TIERS[heroId].slice(-1)[0][1];
+}
+
+function hOnThChange() {
+  const th = parseInt(document.getElementById('h-th').value);
+  hCurrentTh = th || 0;
+  const heroCard  = document.getElementById('h-hero-card');
+  const levelCard = document.getElementById('h-level-card');
+  const result    = document.getElementById('h-result');
+  if(!th) {
+    heroCard.style.display = levelCard.style.display = 'none';
+    result.classList.remove('show'); return;
+  }
+  const tabs = document.getElementById('h-hero-tabs');
+  tabs.innerHTML = '';
+  let firstAvailable = -1;
+  HEROES.forEach((h, i) => {
+    if(th < h.thUnlock) return;
+    if(firstAvailable === -1) firstAvailable = i;
+    const btn = document.createElement('button');
+    btn.className = 'hero-tab' + (firstAvailable === i ? ' active' : '');
+    btn.onclick = function() { hSelectHero(i, this); };
+    btn.textContent = h.emoji + ' ' + h.id.toUpperCase();
+    tabs.appendChild(btn);
+  });
+  heroCard.style.display = firstAvailable >= 0 ? 'block' : 'none';
+  levelCard.style.display = firstAvailable >= 0 ? 'block' : 'none';
+  if(firstAvailable >= 0) hSelectHero(firstAvailable, tabs.querySelector('.hero-tab.active'));
+  document.getElementById('h-cur').value = '';
+  result.classList.remove('show');
+  document.getElementById('h-prog-wrap').style.display = 'none';
+}
+
+function hSelectHero(i, el) {
+  hIdx = i;
+  const h = HEROES[i];
+  document.querySelectorAll('#h-hero-tabs .hero-tab').forEach(t => t.classList.remove('active'));
+  if(el) el.classList.add('active');
+  const thKeys = Object.keys(h.maxByTh).map(Number).filter(k=>k<=hCurrentTh);
+  const maxAtTh = thKeys.length ? h.maxByTh[Math.max(...thKeys)] : 0;
+  document.getElementById('h-emoji').textContent = h.emoji;
+  document.getElementById('h-name').textContent  = h.name;
+  document.getElementById('h-max').textContent   = 'Max at TH' + hCurrentTh + ': Level ' + maxAtTh;
+  document.getElementById('h-hero-info').style.display = 'flex';
+  document.getElementById('h-cur').value = '';
+  document.getElementById('h-result').classList.remove('show');
+  document.getElementById('h-prog-wrap').style.display = 'none';
+}
+
+function hCalc() {
+  const h = HEROES[hIdx];
+  if(!hCurrentTh || !h) return;
+  const thKeys = Object.keys(h.maxByTh).map(Number).filter(k=>k<=hCurrentTh);
+  if(!thKeys.length) return;
+  const maxAtTh = h.maxByTh[Math.max(...thKeys)];
+  const cur = parseInt(document.getElementById('h-cur').value) || 0;
+  const res = document.getElementById('h-result');
+  const pw  = document.getElementById('h-prog-wrap');
+  if(cur >= maxAtTh || cur < 0) { res.classList.remove('show'); pw.style.display='none'; return; }
+  let totalCost = 0;
+  for(let lv = cur + 1; lv <= maxAtTh; lv++) totalCost += heroLevelCost(h.id, lv);
+  const levels = maxAtTh - cur;
+  const pct = Math.round((cur / maxAtTh) * 100);
+  const resLabel = h.isElixir ? 'Elixir' : 'Dark Elixir';
+  pw.style.display = 'block';
+  document.getElementById('h-prog-fill').style.width = pct + '%';
+  document.getElementById('h-prog-pct').textContent  = pct + '%';
+  document.getElementById('h-prog-lbl').textContent  = 'Lv ' + cur + ' / ' + maxAtTh;
+  document.getElementById('h-res-big').textContent  = levels + ' level' + (levels>1?'s':'') + ' to go';
+  document.getElementById('h-cur-lbl').textContent  = 'Level ' + cur;
+  document.getElementById('h-max-lbl').textContent  = 'Level ' + maxAtTh;
+  document.getElementById('h-levels').textContent   = levels + ' level' + (levels>1?'s':'');
+  document.getElementById('h-de').textContent       = fmtNum(totalCost) + ' ' + resLabel;
+  document.getElementById('h-res-type').textContent = resLabel;
+  res.classList.add('show');
 }
 
 // ── FARMING CALC ──
@@ -1256,7 +1483,7 @@ function farmCalc(){
   if(gS>0&&gR>0){rG.style.display='flex';document.getElementById('f-gold-raids').textContent=gr+' raids ('+fmtNum(gS)+' needed)';}else rG.style.display='none';
   if(eS>0&&eR>0){rE.style.display='flex';document.getElementById('f-elix-raids').textContent=er+' raids ('+fmtNum(eS)+' needed)';}else rE.style.display='none';
   if(dS>0&&dR>0){rD.style.display='flex';document.getElementById('f-de-raids').textContent=dr+' raids ('+fmtNum(dS)+' needed)';}else rD.style.display='none';
-  if(max===0){document.getElementById('f-res-big').textContent="You're ready!";document.getElementById('f-time').textContent='0m — start upgrading!';}
+  if(max===0){document.getElementById('f-res-big').textContent="You're ready!";document.getElementById('f-time').textContent='0m start upgrading!';}
   else{document.getElementById('f-res-big').textContent=max+' raids';document.getElementById('f-time').textContent=fmt(max*15*60);}
   res.classList.add('show');res.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
@@ -1268,7 +1495,7 @@ function warCalc(){
   const tw=th>0&&th<thW.length?thW[th]:0,hw=bk*200+aq*220+gw*180+rc*200+mp*150+dd*300,dw=ea*3000+ss*2500+it*800+xb*600,tot=tw+hw+dw;
   document.getElementById('ww-total').textContent=tot.toLocaleString();document.getElementById('ww-th-val').textContent=tw.toLocaleString();document.getElementById('ww-hero-val').textContent=hw.toLocaleString();document.getElementById('ww-def-val').textContent=dw.toLocaleString();
   let tier='',bracket='';
-  if(tot===0){tier='Enter your levels';bracket='—';}else if(tot<10000){tier='Light Weight 🟢';bracket='TH6–TH8 range';}else if(tot<25000){tier='Mid Weight 🟡';bracket='TH9–TH10 range';}else if(tot<55000){tier='Heavy Weight 🟠';bracket='TH11–TH12 range';}else if(tot<90000){tier='War Machine 🔴';bracket='TH13–TH14 range';}else if(tot<130000){tier='Legendary ⚔';bracket='TH15–TH16 range';}else{tier='Mythic 🐉';bracket='TH17–TH18 range';}
+  if(tot===0){tier='Enter your levels';bracket='  ';}else if(tot<10000){tier='Light Weight 🟢';bracket='TH6–TH8 range';}else if(tot<25000){tier='Mid Weight 🟡';bracket='TH9–TH10 range';}else if(tot<55000){tier='Heavy Weight 🟠';bracket='TH11–TH12 range';}else if(tot<90000){tier='War Machine 🔴';bracket='TH13–TH14 range';}else if(tot<130000){tier='Legendary ⚔';bracket='TH15–TH16 range';}else{tier='Mythic 🐉';bracket='TH17–TH18 range';}
   document.getElementById('ww-tier').textContent=tier;document.getElementById('ww-bracket').textContent=bracket;
 }
 
@@ -1276,13 +1503,13 @@ function warCalc(){
 const BASE_GUIDE={
   8:[{title:"Chief's Journey: Blacksmith Unlock",desc:"Unlock the Blacksmith to gain access to powerful Hero Equipment. Upgrading it is a critical priority.",badge:"critical"},{title:"Chief's Journey: Dark Spells",desc:"Unlock Poison and Earthquake spells by upgrading your Dark Spell Factory.",badge:"high"},{title:"Air Defenses & Dragons",desc:"TH8 is dominated by Dragon attacks. Max all 4 Air Defenses.",badge:"high"},{title:"Barbarian King",desc:"Push your BK levels up continuously. Every stat point matters.",badge:"medium"}],
   9:[{title:"Chief's Journey: Archer Queen Unlock",desc:"The AQ dictates TH9 attacks. Build her immediately and keep her upgrading.",badge:"critical"},{title:"Chief's Journey: X-Bows (×2)",desc:"Brand new rapid-fire defenses. Huge war weight but massive DPS. Max immediately.",badge:"critical"},{title:"Dark Elixir Drills",desc:"You need massive amounts of DE for two heroes now. Max your drills.",badge:"high"},{title:"Lava Hound & Balloon",desc:"LavaLoon is arguably the strongest TH9 attack strategy. Upgrade them in the lab.",badge:"medium"}],
-  10:[{title:"Chief's Journey: Inferno Towers (×2)",desc:"The single biggest defensive upgrade at TH10. Max both before anything else.",badge:"critical"},{title:"Chief's Journey: Siege Machines",desc:"Prepare your Clan Castle to receive Siege Machines from clanmates.",badge:"critical"},{title:"Miner & Bowler troops",desc:"Unlock Miners and Bowlers — they power the best TH10 attack strategies.",badge:"high"},{title:"Heroes to 40/40",desc:"BK 40, AQ 40 — the benchmark for competitive TH10 attacks.",badge:"high"}],
+  10:[{title:"Chief's Journey: Inferno Towers (×2)",desc:"The single biggest defensive upgrade at TH10. Max both before anything else.",badge:"critical"},{title:"Chief's Journey: Siege Machines",desc:"Prepare your Clan Castle to receive Siege Machines from clanmates.",badge:"critical"},{title:"Miner & Bowler troops",desc:"Unlock Miners and Bowlers they power the best TH10 attack strategies.",badge:"high"},{title:"Heroes to 40/40",desc:"BK 40, AQ 40 the benchmark for competitive TH10 attacks.",badge:"high"}],
   11:[{title:"Chief's Journey: Grand Warden Unlock",desc:"The Warden's aura and ability completely alter attacks. Get him ASAP.",badge:"critical"},{title:"Chief's Journey: Eagle Artillery",desc:"Highest weight, highest DPS defense in the game at this level. Priority build.",badge:"critical"},{title:"Electro Dragon (unlock)",desc:"EDragon + Balloons = dominant 3-star TH11 strategy.",badge:"high"},{title:"Heroes to 50/50/20",desc:"Balance all 3 heroes and keep them sleeping.",badge:"high"}],
   12:[{title:"Chief's Journey: Town Hall Weapon",desc:"Your TH now fights back. Max the Giga Tesla to trigger its death bomb.",badge:"critical"},{title:"Chief's Journey: Workshop Unlock",desc:"Unlock the ability to build your own Siege Machines (Wall Wrecker & Blimp).",badge:"critical"},{title:"Heroes to 65/65/40",desc:"Hero levels snowball. Never stop upgrading.",badge:"high"},{title:"Yeti troops",desc:"Yeti Smash is the top TH12 strategy. Max them first.",badge:"medium"}],
-  13:[{title:"Chief's Journey: Royal Champion Unlock",desc:"New hero! Start leveling the RC immediately — her defense-targeting is game-changing.",badge:"critical"},{title:"Chief's Journey: Scattershots (×2)",desc:"Devastating splash damage that hits air and ground. Build and max instantly.",badge:"critical"},{title:"Giga Inferno upgrades",desc:"The TH13 weapon is a Multi-Inferno. Upgrade it fully.",badge:"high"},{title:"Heroes to 75/75/50/25",desc:"Four heroes to manage now. Prioritize AQ and RC.",badge:"high"}],
+  13:[{title:"Chief's Journey: Royal Champion Unlock",desc:"New hero! Start leveling the RC immediately her defense-targeting is game-changing.",badge:"critical"},{title:"Chief's Journey: Scattershots (×2)",desc:"Devastating splash damage that hits air and ground. Build and max instantly.",badge:"critical"},{title:"Giga Inferno upgrades",desc:"The TH13 weapon is a Multi-Inferno. Upgrade it fully.",badge:"high"},{title:"Heroes to 75/75/50/25",desc:"Four heroes to manage now. Prioritize AQ and RC.",badge:"high"}],
   14:[{title:"Chief's Journey: Pet House Unlock",desc:"Pets are a massive power spike. Unlock L.A.S.S.I, Electro Owl, Mighty Yak, and Unicorn.",badge:"critical"},{title:"Chief's Journey: Builder's Huts Weaponized",desc:"Builders now repair buildings during combat and shoot back. Upgrade them all.",badge:"critical"},{title:"Giga Inferno max",desc:"TH14 adds a powerful poison bomb on death. Keep it maxed.",badge:"high"},{title:"Pets to level 10",desc:"Each pet level meaningfully improves your attack. Farm DE aggressively.",badge:"medium"}],
   15:[{title:"Chief's Journey: Monolith Unlock",desc:"Deals percentage-based damage to heroes/tanks. Extremely powerful.",badge:"critical"},{title:"Chief's Journey: Spell Towers",desc:"Select between Rage, Poison, or Invisibility to cast defensively.",badge:"critical"},{title:"Minion Prince (unlock 🦇)",desc:"New hero. Start leveling immediately alongside other heroes.",badge:"critical"},{title:"Root Rider (unlock)",desc:"One of the strongest ground troops ever added. Max it.",badge:"high"}],
-  16:[{title:"Chief's Journey: Merged Defenses",desc:"Merge your Archer Towers and Cannons into Multi-Archer Towers and Ricochet Cannons.",badge:"critical"},{title:"Chief's Journey: Fox Pet",desc:"Unlock the Spirit Fox for amazing invisibility synergy.",badge:"critical"},{title:"Giga Inferno upgrades",desc:"New TH upgrade levels — each adds meaningful death damage.",badge:"high"},{title:"Super Witch max",desc:"Super Witch Bats strategy is highly reliable.",badge:"medium"}],
+  16:[{title:"Chief's Journey: Merged Defenses",desc:"Merge your Archer Towers and Cannons into Multi-Archer Towers and Ricochet Cannons.",badge:"critical"},{title:"Chief's Journey: Fox Pet",desc:"Unlock the Spirit Fox for amazing invisibility synergy.",badge:"critical"},{title:"Giga Inferno upgrades",desc:"New TH upgrade levels each adds meaningful death damage.",badge:"high"},{title:"Super Witch max",desc:"Super Witch Bats strategy is highly reliable.",badge:"medium"}],
   17:[{title:"Chief's Journey: Inferno Artillery",desc:"Merge Inferno Towers into massive artillery cannons. Top priority.",badge:"critical"},{title:"Heroes to max",desc:"Push your 5 heroes. This is end-game hero investment.",badge:"critical"},{title:"New troops & spells",desc:"Any new troop/spell unlocks at TH17 should be researched immediately.",badge:"high"},{title:"Walls to Level 17",desc:"Max walls to stall massive ground armies.",badge:"medium"}],
   18:[{title:"Chief's Journey: Dragon Duke (🐉)",desc:"New flying hero! Unlocks massive air attack synergies and provides aerial tanking.",badge:"critical"},{title:"Chief's Journey: Revenge Tower",desc:"Extremely powerful new defense that ramps up damage over time.",badge:"critical"},{title:"Chief's Journey: Super Wizard Towers",desc:"Merge your highest Wizard Towers into Super Wizard Towers for devastating chain damage.",badge:"critical"},{title:"Heroes to 105/105/95/80/55/25",desc:"Max out your 6 heroes. Focus on the new Dragon Duke.",badge:"high"}]
 };
@@ -1313,7 +1540,646 @@ function eqCalc(){
   document.getElementById('eq-shiny').textContent=c.shiny.toLocaleString();document.getElementById('eq-glowy').textContent=c.glowy.toLocaleString();document.getElementById('eq-starry').textContent=eq.tier==='epic'?c.starry.toLocaleString():'0 (Common item)';document.getElementById('eq-total-cost').textContent='Levels '+cur+' ➔ '+tar;
   let s='';if(eq.name==='Giant Gauntlet'||eq.name==='Eternal Tome'||eq.name==='Frozen Arrow'){s=`<strong>Top Tier Pick:</strong> ${eq.name} is best-in-slot for competitive attacks. Prioritize your Ores here.`;}else if(eq.tier==='epic'){s=`<strong>Epic Investment:</strong> Save your Starry Ores carefully. ${eq.name} scales heavily at levels 18, 21, and 27.`;}else{s=`<strong>Common Item:</strong> Park ${eq.name} at level 12–15 to save Glowy Ores for Epic equipment unless this is your main strategy.`;}
   document.getElementById('eq-suggestion').innerHTML=s;document.getElementById('eq-result').classList.add('show');
+}// ── GEM CALCULATOR ──
+// Official Supercell gem cost formula: first minute=1 gem, then brackets
+function gemCostForSecs(totalSecs) {
+  if(totalSecs <= 0) return 0;
+  const mins = totalSecs / 60;
+  if(mins <= 1)   return 1;
+  if(mins <= 60)  return Math.ceil(mins / 5) + 1;
+  if(mins <= 1440) { // up to 24h
+    const hrs = mins / 60;
+    return Math.ceil(hrs * 20) + 2;
+  }
+  if(mins <= 10080) { // up to 7 days
+    const days = mins / 1440;
+    return Math.ceil(days * 260) + 2;
+  }
+  const days = mins / 1440;
+  return Math.ceil(days * 260 + (days - 7) * 60);
 }
+
+function gemCalc() {
+  const d = parseInt(document.getElementById('gem-d').value)||0;
+  const h = parseInt(document.getElementById('gem-h').value)||0;
+  const m = parseInt(document.getElementById('gem-m').value)||0;
+  const s = parseInt(document.getElementById('gem-s').value)||0;
+  const totalSecs = d*86400 + h*3600 + m*60 + s;
+  const res = document.getElementById('gem-result');
+  if(totalSecs <= 0) { res.classList.remove('show'); return; }
+  const gems = gemCostForSecs(totalSecs);
+  document.getElementById('gem-res-big').textContent = gems + ' Gems';
+  document.getElementById('gem-time-lbl').textContent = fmt(totalSecs);
+  document.getElementById('gem-gems').textContent = gems.toLocaleString() + ' gems';
+  let packStr = '';
+  if(gems <= 80) packStr = '80 Gem pack (cheapest)';
+  else if(gems <= 500) packStr = '500 Gem pack';
+  else if(gems <= 1200) packStr = '1,200 Gem pack';
+  else if(gems <= 2500) packStr = '2,500 Gem pack';
+  else if(gems <= 6500) packStr = '6,500 Gem pack';
+  else packStr = Math.ceil(gems/6500) + ' × 6,500 Gem pack';
+  document.getElementById('gem-packs').textContent = packStr;
+  res.classList.add('show');
+}
+
+// ── WALL CALCULATOR ──
+// Cost to upgrade wall from level X to X+1 (Gold/Elixir)
+const WALL_UPGRADE_COST = {
+  1:1000, 2:2000, 3:5000, 4:10000, 5:30000, 6:50000, 7:75000,
+  8:100000, 9:200000, 10:500000, 11:1000000, 12:1500000,
+  13:2000000, 14:3000000, 15:4000000, 16:8000000, 17:9000000, 18:10000000
+};
+
+// Total walls and max level per TH
+const WALL_TH_DATA = {
+  3:{count:25,maxLv:3}, 4:{count:50,maxLv:4}, 5:{count:75,maxLv:5},
+  6:{count:100,maxLv:6}, 7:{count:150,maxLv:7}, 8:{count:200,maxLv:8},
+  9:{count:225,maxLv:9}, 10:{count:250,maxLv:10}, 11:{count:275,maxLv:11},
+  12:{count:300,maxLv:12}, 13:{count:300,maxLv:13}, 14:{count:325,maxLv:14},
+  15:{count:350,maxLv:15}, 16:{count:375,maxLv:16}, 17:{count:400,maxLv:17},
+  18:{count:425,maxLv:19}
+};
+
+let wallFieldCount = 0;
+
+function wallOnThChange() {
+  const th = parseInt(document.getElementById('wall-th').value);
+  const gc = document.getElementById('wall-groups-card');
+  const res = document.getElementById('wall-result');
+  res.classList.remove('show');
+  if(!th || !WALL_TH_DATA[th]) { gc.style.display='none'; return; }
+  const d = WALL_TH_DATA[th];
+  document.getElementById('wall-th-info').style.display='block';
+  document.getElementById('wall-th-info').innerHTML = 'TH'+th+': <strong style="color:var(--gold)">'+d.count+' walls</strong> total. Max wall level: <strong style="color:var(--gold)">'+d.maxLv+'</strong>.';
+  gc.style.display = 'block';
+  // Reset fields
+  wallFieldCount = 0;
+  document.getElementById('wall-fields').innerHTML = '';
+  document.getElementById('wall-err').classList.remove('show');
+  wallAddField();
+  wallUpdateCount();
+}
+
+function wallAddField() {
+  const th = parseInt(document.getElementById('wall-th').value);
+  if(!th) return;
+  const d = WALL_TH_DATA[th];
+  wallFieldCount++;
+  const id = 'wf-' + wallFieldCount;
+  const div = document.createElement('div');
+  div.id = id;
+  div.style.cssText = 'display:flex;gap:8px;align-items:center;margin-bottom:8px';
+  div.innerHTML = `
+    <div style="flex:1">
+      <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Wall Level</div>
+      <select onchange="wallUpdateCount()" style="font-size:1rem;padding:8px;width:100%">
+        ${Array.from({length:d.maxLv},(_,i)=>`<option value="${i+1}">Level ${i+1}</option>`).join('')}
+      </select>
+    </div>
+    <div style="flex:1">
+      <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Count</div>
+      <input type="number" min="0" placeholder="0" oninput="wallUpdateCount()" style="font-size:1rem;padding:10px 8px">
+    </div>
+    <button onclick="wallRemoveField('${id}')" style="background:none;border:1px solid var(--border2);border-radius:3px;color:var(--muted);font-size:1.2rem;padding:4px 10px;cursor:pointer;flex-shrink:0;margin-top:14px">×</button>
+  `;
+  document.getElementById('wall-fields').appendChild(div);
+  wallUpdateCount();
+}
+
+function wallRemoveField(id) {
+  const el = document.getElementById(id);
+  if(el) el.remove();
+  wallUpdateCount();
+}
+
+function wallUpdateCount() {
+  const th = parseInt(document.getElementById('wall-th').value);
+  if(!th) return;
+  const d = WALL_TH_DATA[th];
+  let total = 0;
+  document.querySelectorAll('#wall-fields > div').forEach(row => {
+    const inp = row.querySelector('input');
+    if(inp) total += parseInt(inp.value)||0;
+  });
+  const label = document.getElementById('wall-count-label');
+  label.textContent = total + ' / ' + d.count + ' walls entered';
+  label.style.color = total > d.count ? 'var(--red2)' : 'var(--muted)';
+  const err = document.getElementById('wall-err');
+  err.classList.toggle('show', total > d.count);
+}
+
+function wallCalc() {
+  const th = parseInt(document.getElementById('wall-th').value);
+  if(!th || !WALL_TH_DATA[th]) return;
+  const d = WALL_TH_DATA[th];
+  let totalInput = 0, totalCost = 0, alreadyMax = 0;
+  const groups = [];
+  document.querySelectorAll('#wall-fields > div').forEach(row => {
+    const sel = row.querySelector('select');
+    const inp = row.querySelector('input');
+    if(!sel || !inp) return;
+    const lv = parseInt(sel.value)||1;
+    const cnt = parseInt(inp.value)||0;
+    if(cnt > 0) { groups.push({lv, cnt}); totalInput += cnt; }
+  });
+  if(totalInput > d.count) { document.getElementById('wall-err').classList.add('show'); return; }
+  // Any unaccounted walls assumed to be level 1
+  const accounted = totalInput;
+  const remaining = d.count - accounted;
+  if(remaining > 0) groups.push({lv:1, cnt:remaining});
+  groups.forEach(({lv, cnt}) => {
+    if(lv >= d.maxLv) { alreadyMax += cnt; return; }
+    for(let from = lv; from < d.maxLv; from++) {
+      totalCost += (WALL_UPGRADE_COST[from] || 0) * cnt;
+    }
+  });
+  const toUpgrade = d.count - alreadyMax;
+  document.getElementById('wall-res-big').textContent = fmtNum(totalCost);
+  document.getElementById('wall-total-count').textContent = d.count + ' walls';
+  document.getElementById('wall-max-lv').textContent = 'Level ' + d.maxLv;
+  document.getElementById('wall-already-max').textContent = alreadyMax + ' walls';
+  document.getElementById('wall-to-upgrade').textContent = toUpgrade + ' walls';
+  document.getElementById('wall-cost-total').textContent = fmtNum(totalCost) + ' Gold/Elixir';
+  document.getElementById('wall-result').classList.add('show');
+  document.getElementById('wall-result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── TH UPGRADE CHECKLIST ──
+const CHECK_DATA = {
+  8:[
+    {label:'Blacksmith (unlock)',priority:'critical'},
+    {label:'Air Defense x4 (max)',priority:'critical'},
+    {label:'Barbarian King to Lv 10',priority:'high'},
+    {label:'Dark Spell Factory (unlock)',priority:'high'},
+    {label:'All Elixir Troops upgraded',priority:'medium'},
+    {label:'All Army Camps upgraded',priority:'medium'},
+    {label:'X-Bow x2 (unlock at TH9, prep DE)',priority:'medium'},
+    {label:'Walls to Level 8',priority:'optional'},
+  ],
+  9:[
+    {label:'Archer Queen (build immediately)',priority:'critical'},
+    {label:'X-Bow x2 (build + upgrade)',priority:'critical'},
+    {label:'Dark Elixir Drills (max)',priority:'high'},
+    {label:'BK to Lv 20 / AQ to Lv 20',priority:'high'},
+    {label:'Lava Hound (unlock)',priority:'medium'},
+    {label:'Poison Spell (max)',priority:'medium'},
+    {label:'Walls to Level 9',priority:'optional'},
+  ],
+  10:[
+    {label:'Inferno Tower x2 (build + max)',priority:'critical'},
+    {label:'BK 40 / AQ 40',priority:'critical'},
+    {label:'Miner (unlock + upgrade)',priority:'high'},
+    {label:'Bowler (unlock)',priority:'high'},
+    {label:'Siege Workshop (prep for TH11)',priority:'medium'},
+    {label:'Walls to Level 10',priority:'optional'},
+  ],
+  11:[
+    {label:'Grand Warden (build immediately)',priority:'critical'},
+    {label:'Eagle Artillery (build + upgrade)',priority:'critical'},
+    {label:'BK 50 / AQ 50 / GW 20',priority:'high'},
+    {label:'Electro Dragon (unlock)',priority:'high'},
+    {label:'Siege Workshop (build all machines)',priority:'medium'},
+    {label:'Walls to Level 11',priority:'optional'},
+  ],
+  12:[
+    {label:'Giga Tesla (Town Hall weapon, max)',priority:'critical'},
+    {label:'Workshop (unlock Siege Machines)',priority:'critical'},
+    {label:'BK 65 / AQ 65 / GW 40',priority:'high'},
+    {label:'Yeti (unlock + upgrade)',priority:'high'},
+    {label:'Walls to Level 12',priority:'optional'},
+  ],
+  13:[
+    {label:'Royal Champion (build immediately)',priority:'critical'},
+    {label:'Scattershot x2 (build + upgrade)',priority:'critical'},
+    {label:'Giga Inferno (max all levels)',priority:'high'},
+    {label:'BK 75 / AQ 75 / GW 50 / RC 25',priority:'high'},
+    {label:'Walls to Level 13',priority:'optional'},
+  ],
+  14:[
+    {label:'Pet House (build + unlock pets)',priority:'critical'},
+    {label:'Builder Huts (weaponize all 5)',priority:'critical'},
+    {label:'All Pets to Level 5+',priority:'high'},
+    {label:'BK 80 / AQ 80 / GW 55 / RC 35',priority:'high'},
+    {label:'Walls to Level 14',priority:'optional'},
+  ],
+  15:[
+    {label:'Monolith (build + max)',priority:'critical'},
+    {label:'Spell Towers x2 (build + upgrade)',priority:'critical'},
+    {label:'Minion Prince (build immediately)',priority:'critical'},
+    {label:'Root Rider (unlock + max)',priority:'high'},
+    {label:'BK 90 / AQ 90 / GW 65 / RC 40 / MP 10',priority:'high'},
+    {label:'Walls to Level 15',priority:'optional'},
+  ],
+  16:[
+    {label:'Merge Cannons (Ricochet Cannon)',priority:'critical'},
+    {label:'Merge Archer Towers (Multi-Archer)',priority:'critical'},
+    {label:'Spirit Fox Pet (unlock)',priority:'high'},
+    {label:'BK 95 / AQ 95 / GW 70 / RC 45 / MP 30',priority:'high'},
+    {label:'Walls to Level 16',priority:'optional'},
+  ],
+  17:[
+    {label:'Inferno Artillery (merge + upgrade)',priority:'critical'},
+    {label:'Multi-Gear Tower (merge)',priority:'critical'},
+    {label:'BK 100 / AQ 100 / GW 75 / RC 50 / MP 70',priority:'high'},
+    {label:'New troops and spells (upgrade all)',priority:'high'},
+    {label:'Walls to Level 17',priority:'optional'},
+  ],
+  18:[
+    {label:'Revenge Tower (build immediately)',priority:'critical'},
+    {label:'Dragon Duke (build + start levelling)',priority:'critical'},
+    {label:'Super Wizard Tower (merge 2)',priority:'critical'},
+    {label:'BK 105 / AQ 105 / GW 80 / RC 55 / MP 95 / DD 25',priority:'high'},
+    {label:'Epic Equipment (Eternal Tome, Frozen Arrow)',priority:'high'},
+    {label:'Walls to Level 19 (125 pieces)',priority:'optional'},
+  ],
+};
+
+let checkStorage = {};
+
+function checkOnThChange() {
+  const th = parseInt(document.getElementById('check-th').value);
+  const wrap = document.getElementById('check-list-wrap');
+  if(!th || !CHECK_DATA[th]) { wrap.style.display='none'; return; }
+  wrap.style.display = 'block';
+  checkStorage[th] = checkStorage[th] || {};
+  renderCheckList(th);
+}
+
+function renderCheckList(th) {
+  const items = CHECK_DATA[th];
+  document.getElementById('check-title').textContent = 'TH' + th + ' Priority Checklist';
+  const container = document.getElementById('check-items');
+  container.innerHTML = '';
+  items.forEach((item, i) => {
+    const done = checkStorage[th][i] || false;
+    const div = document.createElement('div');
+    div.style.cssText = 'display:flex;align-items:flex-start;gap:12px;padding:10px 12px;background:var(--bg);border:1px solid '+(done?'var(--amber)':'var(--border)')+';border-radius:4px;cursor:pointer;transition:border-color .2s';
+    div.onclick = () => { checkToggle(th, i, div, items[i]); };
+    const badge = item.priority === 'critical' ? '<span style="color:var(--red2);font-family:Cinzel,serif;font-size:.55rem;letter-spacing:1px;border:1px solid var(--red2);border-radius:20px;padding:2px 6px;flex-shrink:0;margin-top:2px">CRITICAL</span>'
+      : item.priority === 'high' ? '<span style="color:var(--gold);font-family:Cinzel,serif;font-size:.55rem;letter-spacing:1px;border:1px solid var(--amber);border-radius:20px;padding:2px 6px;flex-shrink:0;margin-top:2px">HIGH</span>'
+      : '<span style="color:var(--muted);font-family:Cinzel,serif;font-size:.55rem;letter-spacing:1px;border:1px solid var(--border);border-radius:20px;padding:2px 6px;flex-shrink:0;margin-top:2px">OPTIONAL</span>';
+    div.innerHTML = `
+      <div style="width:20px;height:20px;border:2px solid ${done?'var(--amber)':'var(--border)'};border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:${done?'var(--amber)':'transparent'};margin-top:1px">
+        ${done?'<span style="color:#0d0a06;font-size:.75rem;font-weight:900">✓</span>':''}
+      </div>
+      <div style="flex:1;font-size:.82rem;color:${done?'var(--muted)':'var(--text)'};line-height:1.5;${done?'text-decoration:line-through':''}">
+        ${item.label}
+      </div>
+      ${badge}
+    `;
+    container.appendChild(div);
+  });
+  checkUpdateProgress(th);
+}
+
+function checkToggle(th, i, div, item) {
+  checkStorage[th][i] = !checkStorage[th][i];
+  renderCheckList(th);
+}
+
+function checkReset() {
+  const th = parseInt(document.getElementById('check-th').value);
+  if(!th) return;
+  checkStorage[th] = {};
+  renderCheckList(th);
+}
+
+function checkUpdateProgress(th) {
+  const items = CHECK_DATA[th];
+  const done = Object.values(checkStorage[th]||{}).filter(Boolean).length;
+  const total = items.length;
+  const pct = Math.round((done/total)*100);
+  document.getElementById('check-progress-lbl').textContent = done + ' / ' + total + ' done (' + pct + '%)';
+  document.getElementById('check-prog-fill').style.width = pct + '%';
+}// ── BASE STRENGTH SCORE ──
+function scoreCalc() {
+  const th = parseInt(document.getElementById('sc-th').value)||0;
+  if(!th) { document.getElementById('sc-result').classList.remove('show'); return; }
+  const bk = parseInt(document.getElementById('sc-bk').value)||0;
+  const aq = parseInt(document.getElementById('sc-aq').value)||0;
+  const gw = parseInt(document.getElementById('sc-gw').value)||0;
+  const rc = parseInt(document.getElementById('sc-rc').value)||0;
+  const ea = parseInt(document.getElementById('sc-ea').value)||0;
+  const it = parseInt(document.getElementById('sc-it').value)||0;
+  const ss = parseInt(document.getElementById('sc-ss').value)||0;
+  const xb = parseInt(document.getElementById('sc-xb').value)||0;
+  const ad = parseInt(document.getElementById('sc-ad').value)||0;
+
+  // Max values per TH18
+  const maxBk=105,maxAq=105,maxGw=80,maxRc=55,maxEa=8,maxIt=11,maxSs=6,maxXb=12,maxAd=16;
+  const heroScore   = Math.round(((bk/maxBk)+(aq/maxAq)+(gw/maxGw)+(rc/maxRc))/4*100);
+  const defScore    = Math.round(((ea/maxEa)+(it/maxIt)+(ss/maxSs)+(xb/maxXb)+(ad/maxAd))/5*100);
+  const thScore     = Math.round((th/18)*100);
+  const overall     = Math.round(heroScore*0.4 + defScore*0.35 + thScore*0.25);
+
+  const ranks = [
+    {min:90,label:'⚔ Legendary Chief',   color:'#ffd97a'},
+    {min:75,label:'🔥 War Machine',        color:'#e74c3c'},
+    {min:60,label:'🛡️ Veteran Chief',     color:'#e8b84b'},
+    {min:45,label:'⚡ Rising Chief',       color:'#3498db'},
+    {min:30,label:'🏹 Apprentice Chief',   color:'#9b59b6'},
+    {min:0, label:'🌱 Recruit',            color:'#8a7050'},
+  ];
+  const rank = ranks.find(r => overall >= r.min);
+  const ring = document.getElementById('sc-ring');
+  ring.style.borderColor = rank.color;
+  document.getElementById('sc-val').textContent = overall;
+  document.getElementById('sc-rank').innerHTML = '<span style="color:'+rank.color+'">'+rank.label+'</span>';
+
+  const bars = [
+    {label:'Heroes',  val:heroScore,  color:'var(--purple)'},
+    {label:'Defense', val:defScore,   color:'var(--red2)'},
+    {label:'TH Level',val:thScore,    color:'var(--blue)'},
+  ];
+  const barsEl = document.getElementById('sc-bars');
+  barsEl.innerHTML = '';
+  bars.forEach(b => {
+    barsEl.innerHTML += `<div class="score-bar-item">
+      <span class="score-bar-label">${b.label}</span>
+      <div class="score-bar-track"><div class="score-bar-fill" style="width:${b.val}%;background:${b.color}"></div></div>
+      <span class="score-bar-num">${b.val}</span>
+    </div>`;
+  });
+
+  const weak = heroScore < defScore ? 'heroes' : 'defenses';
+  const advices = {
+    heroes: 'Your heroes are your weakest link. Prioritise Dark Elixir into hero upgrades above all else.',
+    defenses: 'Your defenses have room to grow. Focus on Eagle Artillery, Infernos, and Scattershots first.',
+  };
+  document.getElementById('sc-advice').innerHTML = '<strong>Advice:</strong> ' + advices[weak];
+  document.getElementById('sc-result').classList.add('show');
+}
+
+// ── UPGRADE ROADMAP ──
+const ROADMAP_DATA = {
+  8:[
+    {week:'Week 1',title:'Blacksmith + Air Defenses',items:['Build the Blacksmith immediately — Hero Equipment is a massive power spike','Start upgrading all 4 Air Defenses to max — TH8 wars are Dragon-heavy','Queue Dark Barbarian and Dark Archer in the Lab']},
+    {week:'Week 2',title:'Heroes + Dark Spells',items:['Push Barbarian King levels with all saved Dark Elixir','Upgrade Dark Spell Factory — Poison and Earthquake are essential','Upgrade Mortars and Wizard Towers for splash coverage']},
+    {week:'Week 3',title:'Army Buildings + Storages',items:['Upgrade all Army Camps to max housing space','Upgrade Elixir Storage and Dark Elixir Storage to hold more loot','Continue BK levels — aim for Level 10 before TH9']},
+    {week:'Week 4+',title:'Walls + Cleanup',items:['Max all remaining defenses (Cannons, Archer Towers)','Walls to Level 8 with excess Gold','When BK hits 10+ and all defenses are max — consider TH9']},
+  ],
+  9:[
+    {week:'Week 1',title:'Archer Queen + X-Bows',items:['Build Archer Queen the moment you upgrade — she changes everything','Build both X-Bows immediately and start upgrading','Max Dark Elixir Drills to fund two heroes simultaneously']},
+    {week:'Week 2',title:'Heroes + Lab',items:['Split DE between BK and AQ — never let either sit idle','Unlock LavaLoon in Lab: Lava Hound + Balloon upgrades','Upgrade Spell Factory — Lightning and Earthquake combos']},
+    {week:'Week 3',title:'Defenses + Camps',items:['Upgrade Mortars, Air Defenses, and Wizard Towers','Max Army Camps to full housing space','Continue hero levels — target BK 20 / AQ 20 minimum before TH10']},
+    {week:'Week 4+',title:'Polish + TH10 Prep',items:['Walls to Level 9','Upgrade Clan Castle to hold bigger donations','Heroes to 25/25 before TH10 is strongly recommended']},
+  ],
+  10:[
+    {week:'Week 1',title:'Inferno Towers + Heroes',items:['Build BOTH Inferno Towers and begin upgrades immediately','BK and AQ never idle — DE straight into heroes every level','Upgrade Clan Castle for better defensive/offensive CC troops']},
+    {week:'Week 2',title:'Lab + Key Troops',items:['Miner unlock and upgrade — essential at TH10+','Bowler unlock in Dark Barracks','Hog Rider upgrades — Hog Miner is a top TH10 strategy']},
+    {week:'Week 3',title:'Eagle Artillery Prep + Camps',items:['Max Army Camps (more troops = better attacks)','Continue Inferno upgrades — Single and Multi modes matter','Upgrade Air Defenses to cover Dragon and Lava threats']},
+    {week:'Week 4+',title:'Polish + TH11 Prep',items:['Heroes to 40/40 — this is the TH10 benchmark','Walls to Level 10 with excess Gold and Elixir','Upgrade Storages to hold enough for Grand Warden unlock']},
+  ],
+  11:[
+    {week:'Week 1',title:'Grand Warden + Eagle Artillery',items:['Build Grand Warden first day — every level is transformative','Build Eagle Artillery and begin upgrading — most powerful TH11 defense','Start Warden leveling immediately alongside BK and AQ']},
+    {week:'Week 2',title:'Siege Workshop + EDragon',items:['Build Siege Workshop and unlock Wall Wrecker','Electro Dragon lab research — EDragon + Balloon is top TH11 strategy','Upgrade Inferno Towers and Air Defenses']},
+    {week:'Week 3',title:'Heroes Marathon',items:['Heroes are now consuming the most DE — farm aggressively','GW levels even at low levels make a huge difference in 3-star attacks','Upgrade Army Camps and Spell Factory']},
+    {week:'Week 4+',title:'Max and Prepare for TH12',items:['Heroes to 50/50/20 before TH12 is recommended','Walls to Level 11','All defenses maxed — especially Infernos and Eagle']},
+  ],
+  12:[
+    {week:'Week 1',title:'Giga Tesla + Workshop',items:['Giga Tesla upgrades — TH12 weapon with death bomb at max level','Workshop: craft Wall Wrecker and Battle Blimp immediately','Start BK/AQ/GW hero upgrades — never idle']},
+    {week:'Week 2',title:'Yeti + Siege',items:['Yeti Smash lab research — dominant TH12 attack','Upgrade Workshop to level 3 for Stone Slammer','Continue hero levels — GW is now critical for 3-star raids']},
+    {week:'Week 3',title:'Defenses + Scattershot Prep',items:['Max all existing defenses before TH13','Prep DE storage for Royal Champion unlock at TH13','Heroes to 65/65/40 — target before TH13']},
+    {week:'Week 4+',title:'Walls + Final Push',items:['Walls to Level 12','Max all remaining buildings','RC-ready: save 250,000 DE for immediate Royal Champion build at TH13']},
+  ],
+  13:[
+    {week:'Week 1',title:'Royal Champion + Scattershots',items:['Build Royal Champion immediately and begin leveling','Build both Scattershots and upgrade — massive defensive addition','BK/AQ/GW/RC all upgrading in parallel']},
+    {week:'Week 2',title:'Giga Inferno + Heroes',items:['Upgrade Giga Inferno (TH13 weapon) fully','RC targets defenses — essential for clean-up in war attacks','Lab: focus on troops you use most in war']},
+    {week:'Week 3',title:'Pet House Prep + Defense',items:['Max all key defenses before TH14','Prep for Pet House: save Elixir for build cost','Heroes to 75/75/50/25 benchmark for TH13']},
+    {week:'Week 4+',title:'Walls + Polish',items:['Walls to Level 13','Upgrade Clan Castle to max level','All 4 heroes leveling — never idle any']},
+  ],
+  14:[
+    {week:'Week 1',title:'Pet House + Builder Huts',items:['Build Pet House immediately and unlock first 4 pets','Weaponize all 5 Builder Huts — they now defend and repair','Assign L.A.S.S.I to BK, Electro Owl to AQ as starting point']},
+    {week:'Week 2',title:'Pets + Heroes',items:['Level all pets to 5 as a priority — each level adds meaningful power','Heroes to 80/80/55/35 as TH14 benchmark','Lab: max Miners, Bowlers, and Super Troops']},
+    {week:'Week 3',title:'Defense + Giga Inferno',items:['Max Giga Inferno — TH14 adds poison bomb on death','Upgrade Scattershots, Infernos, and all air defenses','Upgrade Eagle Artillery to max']},
+    {week:'Week 4+',title:'Walls + Equipment',items:['Walls to Level 14','Start Blacksmith equipment upgrades — Eternal Tome first','Pets to Level 10 — farm DE aggressively']},
+  ],
+  15:[
+    {week:'Week 1',title:'Monolith + Spell Towers + Minion Prince',items:['Build Monolith immediately — % damage is devastating against tanks','Build Spell Towers and choose Rage mode first','Build Minion Prince and start leveling alongside other heroes']},
+    {week:'Week 2',title:'Root Rider + Heroes',items:['Root Rider lab research — one of the strongest troops ever added','Heroes to 90/90/65/40/10 — five heroes now','Upgrade Monolith and Spell Towers to max']},
+    {week:'Week 3',title:'Epic Equipment',items:['Blacksmith: upgrade Eternal Tome and Frozen Arrow with Starry Ores','Level pets to 15 — LASSI and Mighty Yak are top choices','Max all key defenses']},
+    {week:'Week 4+',title:'Walls + Final Push',items:['Walls to Level 15','All 5 heroes upgrading continuously','Max Clan Castle and Workshop']},
+  ],
+  16:[
+    {week:'Week 1',title:'Defense Merges + Spirit Fox',items:['Merge Archer Towers into Multi-Archer Towers (max them first)','Merge Cannons into Ricochet Cannons','Unlock Spirit Fox pet — pairs with Invisibility Spell perfectly']},
+    {week:'Week 2',title:'Heroes + New Troops',items:['Heroes to 95/95/70/45/30 benchmark','Upgrade Super Witches — Super Witch Smash remains dominant','Max Scattershots and Monolith upgrades']},
+    {week:'Week 3',title:'Epic Equipment + Pets',items:['Focus Starry Ores on 1-2 Epic items only','Pets to Level 15+ for all heroes you use most','Continue Ricochet Cannon and Multi-Archer Tower upgrades']},
+    {week:'Week 4+',title:'Walls + Cleanup',items:['Walls to Level 16','Max all buildings — you are in late TH16 now','Prep DE for TH17 hero boosts (BK/AQ to 100 is TH17 benchmark)']},
+  ],
+  17:[
+    {week:'Week 1',title:'Inferno Artillery + Multi-Gear Tower',items:['Inferno Artillery is already built from the TH17 merge — upgrade it fully','Build Multi-Gear Tower from merged geared defenses','All 5 heroes upgrading — BK/AQ heading to 100']},
+    {week:'Week 2',title:'Heroes + Firespitter',items:['Thrower and Revive Spell lab research','Upgrade Firespitter defense — cone-area coverage is unique','Heroes: BK 100 / AQ 100 / GW 75 / RC 50 / MP 70 before TH18']},
+    {week:'Week 3',title:'Equipment + Pets Max',items:['Max Eternal Tome and Frozen Arrow — best-in-slot at this level','Pets: aim for Level 15+ on all assigned pets','Upgrade Monolith and remaining defenses to max']},
+    {week:'Week 4+',title:'Walls + TH18 Prep',items:['Walls to Level 17','Save Dark Elixir for Dragon Duke at TH18','All builders busy — never idle a Builder at TH17']},
+  ],
+  18:[
+    {week:'Week 1',title:'Revenge Tower + Dragon Duke + Super Wizard Merge',items:['Build Revenge Tower immediately — ramps up rage over the attack','Unlock Dragon Duke and start leveling with all saved DE','Merge two Wizard Towers into Super Wizard Tower']},
+    {week:'Week 2',title:'6 Heroes + Equipment',items:['All 6 heroes leveling simultaneously — never idle any','Focus Starry Ores on Eternal Tome then Frozen Arrow','Super Witch Smash with Dragon Duke is the current top TH18 strategy']},
+    {week:'Week 3',title:'Defenses + Pets',items:['Upgrade Super Wizard Tower to max — chain damage is devastating','Revenge Tower placement: centre of base for maximum ramp-up time','Pets: assign Duke to Electro Owl or Spirit Fox for air attacks']},
+    {week:'Week 4+',title:'Legend League + End Game',items:['Walls to Level 19 (125 pieces, 10M each)','Practice 2-3 attack strategies in Multiplayer before Legend League','BK/AQ to 105, GW to 80, RC to 55, MP to 95, DD to 25 — end game']},
+  ],
+};
+
+function roadmapLoad() {
+  const th = parseInt(document.getElementById('rm-th').value);
+  const out = document.getElementById('rm-output');
+  if(!th || !ROADMAP_DATA[th]) { out.style.display='none'; return; }
+  out.style.display = 'block';
+  document.getElementById('rm-title').textContent = 'TH' + th + ' Upgrade Roadmap';
+  const weeks = ROADMAP_DATA[th];
+  const container = document.getElementById('rm-weeks');
+  container.innerHTML = '';
+  weeks.forEach((w, i) => {
+    const div = document.createElement('div');
+    div.className = 'roadmap-week';
+    div.innerHTML = `
+      <div class="roadmap-week-header" onclick="rmToggle(this)">
+        <span class="roadmap-week-num">${w.week}</span>
+        <span class="roadmap-week-title">${w.title}</span>
+        <span class="roadmap-week-chevron">▼</span>
+      </div>
+      <div class="roadmap-week-body${i===0?' open':''}">
+        ${w.items.map(item=>`<div class="roadmap-item">${item}</div>`).join('')}
+      </div>`;
+    container.appendChild(div);
+  });
+}
+
+function rmToggle(header) {
+  const body = header.nextElementSibling;
+  const chev = header.querySelector('.roadmap-week-chevron');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  chev.style.transform = isOpen ? '' : 'rotate(180deg)';
+}
+
+// ── LOOT EFFICIENCY CALCULATOR ──
+const LOOT_ARMIES = {
+  8:[
+    {id:'barch',   name:'Barch',         icon:'⚔', trainCost:25000,  avgLoot:150000, de:200, desc:'Barbarians + Archers — cheapest, fastest'},
+    {id:'giheal',  name:'GiHeal',        icon:'🗡️',trainCost:55000,  avgLoot:200000, de:400, desc:'Giants + Healers — good for dead bases'},
+    {id:'dragon',  name:'Dragon Raid',   icon:'🐉',trainCost:180000, avgLoot:250000, de:800, desc:'All Dragons — powerful but expensive'},
+    {id:'giant',   name:'Giant Goblin',  icon:'💰',trainCost:40000,  avgLoot:220000, de:300, desc:'Giants + Goblins — resource focused'},
+  ],
+  9:[
+    {id:'barch',   name:'Barch',         icon:'⚔', trainCost:28000,  avgLoot:180000, de:300,  desc:'Still effective for dead base hunting'},
+    {id:'lavaloon',name:'LavaLoon',      icon:'🎈',trainCost:200000, avgLoot:280000, de:1200, desc:'Lava Hound + Balloons — top TH9 air'},
+    {id:'hogs',    name:'Hog Rider',     icon:'🐗',trainCost:90000,  avgLoot:240000, de:1800, desc:'Fast and agile — great farming army'},
+    {id:'sgoblin', name:'Super Goblins', icon:'👺',trainCost:60000,  avgLoot:260000, de:200,  desc:'Super Goblins + Healers — fast loot'},
+  ],
+  10:[
+    {id:'barch',   name:'Barch',         icon:'⚔', trainCost:30000,  avgLoot:200000, de:300,  desc:'Quick dead-base farming'},
+    {id:'miner',   name:'Miner Army',    icon:'⛏️',trainCost:130000, avgLoot:300000, de:1000, desc:'Miners + Healers — versatile TH10'},
+    {id:'hogs',    name:'Hog Rider',     icon:'🐗',trainCost:100000, avgLoot:280000, de:2000, desc:'Consistent ground farming strategy'},
+    {id:'sgoblin', name:'Super Goblins', icon:'👺',trainCost:70000,  avgLoot:280000, de:200,  desc:'Fast resources, cheap to train'},
+  ],
+  11:[
+    {id:'barch',   name:'Barch',         icon:'⚔', trainCost:32000,  avgLoot:220000, de:300,  desc:'Pure loot dead base hunting'},
+    {id:'sgoblin', name:'Super Goblins', icon:'👺',trainCost:80000,  avgLoot:320000, de:400,  desc:'Best Elixir ratio at high TH'},
+    {id:'miner',   name:'Miner Army',    icon:'⛏️',trainCost:150000, avgLoot:360000, de:1200, desc:'Miners + Healers — solid farming'},
+    {id:'edrag',   name:'EDragon Spam',  icon:'⚡',trainCost:220000, avgLoot:400000, de:900,  desc:'Powerful but slow to train'},
+  ],
+  12:[
+    {id:'sgoblin', name:'Super Goblins', icon:'👺',trainCost:90000,  avgLoot:360000, de:400,  desc:'Best DE ratio for resource farming'},
+    {id:'miner',   name:'Miner Army',    icon:'⛏️',trainCost:160000, avgLoot:400000, de:1400, desc:'Versatile and consistent'},
+    {id:'yeti',    name:'Yeti Smash',    icon:'🐻',trainCost:250000, avgLoot:450000, de:1600, desc:'Powerful — better for war than farm'},
+    {id:'witch',   name:'Super Witch',   icon:'🧙',trainCost:200000, avgLoot:420000, de:800,  desc:'Strong midgame farming option'},
+  ],
+  13:[
+    {id:'sgoblin', name:'Super Goblins', icon:'👺',trainCost:100000, avgLoot:380000, de:500,  desc:'Still the cheapest per-loot option'},
+    {id:'miner',   name:'Miner Hybrid',  icon:'⛏️',trainCost:180000, avgLoot:440000, de:1600, desc:'Miners + Hogs — flexible attack'},
+    {id:'witch',   name:'Super Witch',   icon:'🧙',trainCost:210000, avgLoot:460000, de:900,  desc:'Large army with bat spell backup'},
+    {id:'rootbow', name:'Root Rider',    icon:'🌿',trainCost:300000, avgLoot:500000, de:1200, desc:'Ignores walls — farming powerhouse'},
+  ],
+  14:[
+    {id:'sgoblin', name:'Super Goblins', icon:'👺',trainCost:110000, avgLoot:400000, de:500,  desc:'Fast loot focus — best efficiency ratio'},
+    {id:'witch',   name:'Super Witch',   icon:'🧙',trainCost:220000, avgLoot:480000, de:1000, desc:'Bat Spell backed — strong 3-star'},
+    {id:'rootbow', name:'Root Rider',    icon:'🌿',trainCost:320000, avgLoot:540000, de:1400, desc:'Wall-ignoring — consistent farmer'},
+    {id:'miner',   name:'Miner Hybrid',  icon:'⛏️',trainCost:200000, avgLoot:460000, de:1800, desc:'Balanced attack and loot strategy'},
+  ],
+  15:[
+    {id:'sgoblin', name:'Super Goblins', icon:'👺',trainCost:120000, avgLoot:420000, de:500,  desc:'Pure resource — nothing faster'},
+    {id:'witch',   name:'Super Witch',   icon:'🧙',trainCost:240000, avgLoot:500000, de:1100, desc:'Super Witch + Bats dominant TH15'},
+    {id:'rootbow', name:'Root Rider',    icon:'🌿',trainCost:340000, avgLoot:560000, de:1500, desc:'Solid across all base types'},
+    {id:'lavaloon',name:'LavaLoon',      icon:'🎈',trainCost:280000, avgLoot:520000, de:1200, desc:'Air blitz — strong with Dragon Duke'},
+  ],
+  16:[
+    {id:'sgoblin', name:'Super Goblins', icon:'👺',trainCost:130000, avgLoot:440000, de:600,  desc:'Cheap and fast — best ratio'},
+    {id:'witch',   name:'Super Witch',   icon:'🧙',trainCost:260000, avgLoot:520000, de:1200, desc:'Dominant TH16 meta strategy'},
+    {id:'rootbow', name:'Root Rider',    icon:'🌿',trainCost:360000, avgLoot:580000, de:1600, desc:'Wall bypass is huge at TH16'},
+    {id:'lavaloon',name:'LavaLoon',      icon:'🎈',trainCost:300000, avgLoot:540000, de:1300, desc:'Good for Titan/Champion farming'},
+  ],
+  17:[
+    {id:'sgoblin', name:'Super Goblins', icon:'👺',trainCost:140000, avgLoot:460000, de:600,  desc:'Still best DE/Elixir ratio'},
+    {id:'witch',   name:'Super Witch',   icon:'🧙',trainCost:280000, avgLoot:540000, de:1300, desc:'Top TH17 farming strategy'},
+    {id:'rootbow', name:'Root Rider',    icon:'🌿',trainCost:380000, avgLoot:600000, de:1800, desc:'Consistent across base types'},
+    {id:'lavaloon',name:'LavaLoon+Duke', icon:'🎈',trainCost:320000, avgLoot:560000, de:1400, desc:'Dragon Duke improves air attacks significantly'},
+  ],
+  18:[
+    {id:'sgoblin', name:'Super Goblins', icon:'👺',trainCost:150000, avgLoot:480000, de:700,  desc:'Cheapest per loot — always efficient'},
+    {id:'witch',   name:'Super Witch',   icon:'🧙',trainCost:300000, avgLoot:560000, de:1400, desc:'Top tier TH18 meta — Bat Spell backed'},
+    {id:'rootbow', name:'Root Rider',    icon:'🌿',trainCost:400000, avgLoot:620000, de:1900, desc:'Wall-ignoring powerhouse at TH18'},
+    {id:'lavaloon',name:'LavaLoon+Duke', icon:'🎈',trainCost:340000, avgLoot:580000, de:1500, desc:'Dragon Duke makes air blitz viable again'},
+  ],
+};
+
+let lootSelected = [];
+
+function lootLoad() {
+  const th = parseInt(document.getElementById('loot-th').value);
+  const card = document.getElementById('loot-armies-card');
+  const res  = document.getElementById('loot-result');
+  res.classList.remove('show');
+  lootSelected = [];
+  if(!th || !LOOT_ARMIES[th]) { card.style.display='none'; return; }
+  card.style.display = 'block';
+  const grid = document.getElementById('loot-army-grid');
+  grid.innerHTML = '';
+  LOOT_ARMIES[th].forEach(army => {
+    const div = document.createElement('div');
+    div.className = 'loot-army-card';
+    div.id = 'loot-card-' + army.id;
+    div.onclick = () => lootToggleArmy(army.id);
+    div.innerHTML = `<div class="loot-army-icon">${army.icon}</div><div class="loot-army-name">${army.name}</div><div class="loot-army-cost">${fmtNum(army.trainCost)} Elixir</div>`;
+    grid.appendChild(div);
+  });
+}
+
+function lootToggleArmy(id) {
+  const idx = lootSelected.indexOf(id);
+  if(idx >= 0) {
+    lootSelected.splice(idx,1);
+    document.getElementById('loot-card-'+id).classList.remove('selected');
+  } else {
+    lootSelected.push(id);
+    document.getElementById('loot-card-'+id).classList.add('selected');
+  }
+}
+
+function lootCalc() {
+  const th = parseInt(document.getElementById('loot-th').value);
+  if(!th || lootSelected.length < 1) return;
+  const armies = LOOT_ARMIES[th].filter(a => lootSelected.includes(a.id));
+  if(!armies.length) return;
+
+  const scored = armies.map(a => {
+    const ratio = a.avgLoot / a.trainCost;
+    const deRatio = a.de > 0 ? (a.avgLoot / a.trainCost) * 0.8 + (a.de / 100) * 0.2 : ratio;
+    return {...a, ratio: Math.round(ratio*10)/10, deRatio};
+  });
+  scored.sort((a,b) => b.ratio - a.ratio);
+  const best = scored[0];
+
+  document.getElementById('loot-winner-icon').textContent = best.icon;
+  document.getElementById('loot-winner-name').textContent = best.name + ' wins';
+  document.getElementById('loot-winner-reason').textContent = 'Highest loot return per Elixir spent';
+
+  const tbody = document.getElementById('loot-result-body');
+  tbody.innerHTML = '';
+  scored.forEach((a,i) => {
+    const tr = document.createElement('tr');
+    const isWin = i === 0;
+    tr.innerHTML = `
+      <td style="${isWin?'color:var(--gold);font-weight:700':''}">${a.icon} ${a.name}</td>
+      <td>${fmtNum(a.trainCost)}</td>
+      <td>${fmtNum(a.avgLoot)}${a.de?` + ${a.de} DE`:''}</td>
+      <td class="${isWin?'loot-winner':''}">${a.ratio}x${isWin?' 🏆':''}</td>`;
+    tbody.appendChild(tr);
+  });
+
+  const adviceMap = {
+    barch:'Barch is the fastest dead-base hunter. Run it whenever you see full Collectors outside walls.',
+    sgoblin:'Super Goblins give you the best Elixir return in the game. Best for pure resource farming sessions.',
+    miner:'Miner armies are versatile — they work on almost any base layout and are reliable for consistent loot.',
+    hogs:'Hog Riders are fast and surgical. Great for targeting specific storages in well-defended bases.',
+    witch:'Super Witch is meta for war, but expensive to train. Better for wars than pure farming.',
+    lavaloon:'LavaLoon is a powerful air army. Use it when Air Defenses are weak and you need quick 2-3 stars.',
+    rootbow:'Root Riders ignore walls completely — game-changing for heavily-compartmented bases.',
+    edrag:'Electro Dragon spam is powerful but slow to retrain. Reserve for Legend League or war.',
+    yeti:'Yeti Smash is war-focused. The training cost makes it inefficient for daily farming.',
+    default:'Use cheaper armies for farming and save expensive compositions for war attacks.',
+  };
+  document.getElementById('loot-advice').innerHTML = '<strong>Tip:</strong> ' + (adviceMap[best.id] || adviceMap.default);
+  document.getElementById('loot-result').classList.add('show');
+}
+// ── SUPPORT PAGE ──
+function supportSend() {
+  const email = document.getElementById('sup-email').value.trim();
+  const msg   = document.getElementById('sup-msg').value.trim();
+  const ok    = document.getElementById('sup-success');
+  const err   = document.getElementById('sup-error');
+  ok.style.display = 'none'; err.style.display = 'none';
+  if(!email || !msg) { err.style.display='block'; return; }
+  // Open mail client as fallback (replace with Formspree endpoint for production)
+  const name  = document.getElementById('sup-name').value.trim() || 'Chief';
+  const body  = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + msg);
+  window.open('mailto:your@email.com?subject=ClashForge%20Message&body=' + body, '_blank');
+  ok.style.display = 'block';
+  document.getElementById('sup-name').value = '';
+  document.getElementById('sup-email').value = '';
+  document.getElementById('sup-msg').value = '';
+}
+
 </script>
 </body>
 </html>
