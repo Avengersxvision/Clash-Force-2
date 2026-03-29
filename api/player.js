@@ -1,69 +1,60 @@
-export async function onRequest(context) {
-  const url = new URL(context.request.url);
-  const tag = url.searchParams.get('tag');
+// Vercel Serverless Function — CoC Player Lookup
+// Tries multiple API keys in case Vercel rotates IPs
+// Add keys as coc_api_1, coc_api_2, coc_api_3 in Vercel Environment Variables
 
-  if (!tag) {
-    return Response.json({ error: 'Player tag is required' }, { status: 400 });
-  }
+export default async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+
+  if (req.method === 'OPTIONS') return res.status(200).end();
+
+  const { tag } = req.query;
+  if (!tag) return res.status(400).json({ error: 'Player tag is required' });
 
   const cleanTag = tag.replace(/^#/, '').toUpperCase();
-  const cocUrl = `https://api.clashofclans.com/v1/players/%23${cleanTag}`;
+  const url = `https://api.clashofclans.com/v1/players/%23${encodeURIComponent(cleanTag)}`;
 
-  const res = await fetch(cocUrl, {
-    headers: {
-      'Authorization': `Bearer ${context.env.coc_api}`,
-      'Accept': 'application/json'
+  // Try each key until one works
+  const keys = [
+    process.env.coc_api_1,
+    process.env.coc_api_2,
+    process.env.coc_api_3,
+  ].filter(Boolean);
+
+  if (keys.length === 0) {
+    return res.status(500).json({ error: 'No API keys configured on server' });
+  }
+
+  let lastError = null;
+
+  for (const key of keys) {
+    try {
+      const cocRes = await fetch(url, {
+        headers: {
+          'Authorization': `Bearer ${key}`,
+          'Accept': 'application/json',
+        },
+      });
+
+      const data = await cocRes.json();
+
+      // If IP not allowed, try next key
+      if (cocRes.status === 403 && data.reason === 'accessDenied.invalidIp') {
+        lastError = data;
+        continue;
+      }
+
+      return res.status(cocRes.status).json(data);
+
+    } catch (err) {
+      lastError = { error: err.message };
+      continue;
     }
-  });
+  }
 
-  const data = await res.json();
-
-  return new Response(JSON.stringify(data), {
-    status: res.status,
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
-    }
+  // All keys failed
+  return res.status(403).json({
+    error: 'All API keys blocked. Add Vercel IP to CoC developer portal.',
+    detail: lastError
   });
 }
-```
-
----
-
-**Step 4 — Add your API key**
-- Cloudflare Dashboard → Pages → clashforge → **Settings** → **Environment Variables**
-- Add: `coc_api` = your CoC API token
-- Click **Save**
-
----
-
-**Step 5 — Whitelist Cloudflare IPs in CoC API**
-
-Go to developer.clashofclans.com and add these to your API key:
-```
-162.158.0.0/15
-172.64.0.0/13
-173.245.48.0/20
-103.21.244.0/22
-```
-
----
-
-**Step 6 — Test**
-```
-https://clashforge.pages.dev/api/player?tag=Q0GL8VQP9
-```
-
-Should return your full player JSON. Done — no more IP rotation issues, ever.
-
----
-
-**Your folder structure on GitHub:**
-```
-clashforge/
-├── index.html
-├── ads.txt
-├── README.md
-└── functions/
-    └── api/
-        └── player.js   ← Cloudflare Pages Function
