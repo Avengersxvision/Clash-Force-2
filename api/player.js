@@ -1,73 +1,69 @@
-// Vercel Serverless Function — CoC Player Lookup
-// File: /api/player.js
-// Reads COC_API_KEY from Vercel environment variables
-// Called by: /api/player?tag=ABC123
-
-export default async function handler(req, res) {
-  // Allow cross-origin from your own site
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-  // Handle preflight
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-
-  const { tag } = req.query;
+export async function onRequest(context) {
+  const url = new URL(context.request.url);
+  const tag = url.searchParams.get('tag');
 
   if (!tag) {
-    return res.status(400).json({ error: 'Player tag is required' });
+    return Response.json({ error: 'Player tag is required' }, { status: 400 });
   }
 
-  const apiKey = process.env.coc_api;
-  if (!apiKey) {
-    return res.status(500).json({ error: 'API key not configured on server' });
-  }
-
-  // Clean tag — remove # and encode
   const cleanTag = tag.replace(/^#/, '').toUpperCase();
-  const url = `https://api.clashofclans.com/v1/players/%23${cleanTag}`;
+  const cocUrl = `https://api.clashofclans.com/v1/players/%23${cleanTag}`;
 
-  try {
-    const cocRes = await fetch(url, {
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Accept': 'application/json',
-      },
-    });
-
-    const data = await cocRes.json();
-
-    if (!cocRes.ok) {
-      return res.status(cocRes.status).json({
-        error: data.message || `CoC API error: ${cocRes.status}`,
-        reason: data.reason || 'unknown',
-      });
+  const res = await fetch(cocUrl, {
+    headers: {
+      'Authorization': `Bearer ${context.env.coc_api}`,
+      'Accept': 'application/json'
     }
+  });
 
-    // Return only what we need — no sensitive data
-    return res.status(200).json({
-      name:              data.name,
-      tag:               data.tag,
-      townHallLevel:     data.townHallLevel,
-      expLevel:          data.expLevel,
-      trophies:          data.trophies,
-      bestTrophies:      data.bestTrophies,
-      warStars:          data.warStars,
-      attackWins:        data.attackWins,
-      defenseWins:       data.defenseWins,
-      donations:         data.donations,
-      donationsReceived: data.donationsReceived,
-      clan:              data.clan ? { name: data.clan.name, tag: data.clan.tag } : null,
-      heroes:            (data.heroes || []).map(h => ({
-        name:  h.name,
-        level: h.level,
-      })),
-      league:            data.league ? data.league.name : null,
-    });
+  const data = await res.json();
 
-  } catch (err) {
-    return res.status(500).json({ error: 'Server error: ' + err.message });
-  }
+  return new Response(JSON.stringify(data), {
+    status: res.status,
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    }
+  });
 }
+```
+
+---
+
+**Step 4 — Add your API key**
+- Cloudflare Dashboard → Pages → clashforge → **Settings** → **Environment Variables**
+- Add: `coc_api` = your CoC API token
+- Click **Save**
+
+---
+
+**Step 5 — Whitelist Cloudflare IPs in CoC API**
+
+Go to developer.clashofclans.com and add these to your API key:
+```
+162.158.0.0/15
+172.64.0.0/13
+173.245.48.0/20
+103.21.244.0/22
+```
+
+---
+
+**Step 6 — Test**
+```
+https://clashforge.pages.dev/api/player?tag=Q0GL8VQP9
+```
+
+Should return your full player JSON. Done — no more IP rotation issues, ever.
+
+---
+
+**Your folder structure on GitHub:**
+```
+clashforge/
+├── index.html
+├── ads.txt
+├── README.md
+└── functions/
+    └── api/
+        └── player.js   ← Cloudflare Pages Function
